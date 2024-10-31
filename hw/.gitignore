@@ -3,3 +3,6 @@ bluetooth-audio/*auto_saved*
 bluetooth-audio/~*
 bluetooth-audio/*backup*
 datasheets/obs/
+bluetooth-audio/fp-info-cache
+bluetooth-audio/fp-lib-table
+bluetooth-audio/sym-lib-table
