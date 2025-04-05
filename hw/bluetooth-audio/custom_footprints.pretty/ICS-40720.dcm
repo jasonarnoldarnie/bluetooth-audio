@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP ICS-40720
+D MEMS Microphones (Microphone), SNR(Nom)=70dBA, LxWxT (mm)=4x3x1.2
+K
+F https://product.tdk.com/system/files/dam/doc/product/sw_piezo/mic/mems-mic/data_sheet/ds-000045-v1.3-ics-40720.pdf
+$ENDCMP
+#
+#End Doc Library
