@@ -25,8 +25,8 @@
 				)
 			)
 		)
-		(property "Footprint" "custom_footprints:2x5 2mm JTAG header pads only"
-			(at 2.286 -11.938 0)
+		(property "Footprint" ""
+			(at 0 0 0)
 			(effects
 				(font
 					(size 1.27 1.27)

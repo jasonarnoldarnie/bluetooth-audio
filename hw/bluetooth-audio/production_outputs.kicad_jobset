@@ -1,0 +1,175 @@
+{
+  "jobs": [
+    {
+      "description": "",
+      "id": "276eb01b-95e3-47e5-ab93-ab65290fd365",
+      "settings": {
+        "description": "",
+        "disable_aperture_macros": false,
+        "drawing_sheet": "",
+        "include_netlist_attributes": true,
+        "layers": [
+          "F.Cu",
+          "In1.Cu",
+          "In2.Cu",
+          "In3.Cu",
+          "In4.Cu",
+          "In5.Cu",
+          "In6.Cu",
+          "In7.Cu",
+          "In8.Cu",
+          "In9.Cu",
+          "In10.Cu",
+          "In11.Cu",
+          "In12.Cu",
+          "In13.Cu",
+          "In14.Cu",
+          "In15.Cu",
+          "In16.Cu",
+          "In17.Cu",
+          "In18.Cu",
+          "In19.Cu",
+          "In20.Cu",
+          "In21.Cu",
+          "In22.Cu",
+          "In23.Cu",
+          "In24.Cu",
+          "In25.Cu",
+          "In26.Cu",
+          "In27.Cu",
+          "In28.Cu",
+          "In29.Cu",
+          "In30.Cu",
+          "B.Cu",
+          "F.Paste",
+          "B.Paste",
+          "F.SilkS",
+          "B.SilkS",
+          "F.Mask",
+          "B.Mask",
+          "Edge.Cuts"
+        ],
+        "layers_include_on_all": [],
+        "layers_include_on_all_set": false,
+        "layers_to_include_on_all_layers": [],
+        "output_filename": "fab",
+        "plot_drawing_sheet": false,
+        "plot_footprint_values": true,
+        "plot_invisible_text": false,
+        "plot_pad_numbers": false,
+        "plot_ref_des": true,
+        "precision": 5,
+        "subtract_solder_mask_from_silk": false,
+        "use_drill_origin": false,
+        "use_protel_file_extension": true,
+        "use_x2_format": true
+      },
+      "type": "pcb_export_gerbers"
+    },
+    {
+      "description": "",
+      "id": "4bd4a4ce-7512-46c8-ab11-bf74b61ce1c4",
+      "settings": {
+        "description": "",
+        "drill_origin": "abs",
+        "excellon.combine_pth_npth": true,
+        "excellon.minimal_header": false,
+        "excellon.mirror_y": false,
+        "excellon.oval_drill_route": false,
+        "format": "excellon",
+        "generate_map": false,
+        "gerber_precision": 5,
+        "map_format": "pdf",
+        "output_dir": "fab",
+        "units": "in",
+        "zero_format": "decimal"
+      },
+      "type": "pcb_export_drill"
+    },
+    {
+      "description": "",
+      "id": "89769acb-9217-4bcb-a665-82d03d2209ab",
+      "settings": {
+        "description": "",
+        "exclude_dnp": true,
+        "exclude_footprints_with_th": false,
+        "format": "csv",
+        "gerber_board_edge": true,
+        "negate_bottom_x": false,
+        "output_filename": "pcba/positions.csv",
+        "side": "both",
+        "single_file": false,
+        "smd_only": false,
+        "units": "mm",
+        "use_drill_place_file_origin": true
+      },
+      "type": "pcb_export_pos"
+    },
+    {
+      "description": "",
+      "id": "62ccd040-8706-48ee-b1b2-e8feba396132",
+      "settings": {
+        "bom_format_preset_name": "",
+        "bom_preset_name": "",
+        "description": "",
+        "exclude_dnp": true,
+        "field_delimiter": ",",
+        "fields_group_by": [],
+        "fields_labels": [
+          "Designator",
+          "Footprint",
+          "Quantity",
+          "Value",
+          "Datasheet",
+          "Description",
+          "#",
+          "JLCPCB Part #"
+        ],
+        "fields_ordered": [
+          "Reference",
+          "Footprint",
+          "${QUANTITY}",
+          "Value",
+          "__Datasheet",
+          "__Description",
+          "__${ITEM_NUMBER}",
+          "Supplier Part Number"
+        ],
+        "filter_string": "",
+        "include_excluded_from_bom": false,
+        "keep_line_breaks": false,
+        "keep_tabs": false,
+        "output_filename": "pcba\\bom.csv",
+        "ref_delimiter": ",",
+        "ref_range_delimiter": "",
+        "sort_asc": true,
+        "sort_field": "Reference",
+        "string_delimiter": ""
+      },
+      "type": "sch_export_bom"
+    }
+  ],
+  "meta": {
+    "version": 1
+  },
+  "outputs": [
+    {
+      "description": "JLC PCB FAB ONLY",
+      "id": "baab7a51-9fe0-4be7-86dd-dfa1d8e5a552",
+      "only": [],
+      "settings": {
+        "output_path": "production\\fabrication\\"
+      },
+      "type": "folder"
+    },
+    {
+      "description": "JLC PCBA",
+      "id": "b88e2b8e-0b20-49ed-9430-b0be0ce76b24",
+      "only": [],
+      "settings": {
+        "output_path": "production\\jlc_pcba\\"
+      },
+      "type": "folder"
+    }
+  ]
+}
