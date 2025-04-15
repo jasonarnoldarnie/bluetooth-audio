@@ -7,6 +7,28 @@
 	(lib_symbols)
 	(global_label "VCC"
 		(shape input)
+		(at 143.51 102.87 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "09b72c75-feb3-4b1d-a9e0-358297dc848e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 150.1238 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "VCC"
+		(shape input)
 		(at 101.6 44.45 180)
 		(fields_autoplaced yes)
 		(effects
@@ -23,28 +45,6 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "VCC"
-		(shape input)
-		(at 121.92 41.91 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "af08649c-5fce-4c92-a209-601251308920")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 128.5338 41.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 				(hide yes)
 			)
 		)
@@ -156,7 +156,7 @@
 		)
 	)
 	(sheet
-		(at 121.92 36.83)
+		(at 143.51 95.25)
 		(size 77.47 36.83)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -170,9 +170,9 @@
 		(fill
 			(color 255 255 194 1.0000)
 		)
-		(uuid "55b72bbf-9038-47b8-a963-4590678f9f83")
-		(property "Sheetname" "Micro"
-			(at 121.92 36.1184 0)
+		(uuid "8c9964e6-f0c6-4449-9d58-d02ed46671df")
+		(property "Sheetname" "Digital (page 5)"
+			(at 143.51 94.5384 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -181,7 +181,7 @@
 			)
 		)
 		(property "Sheetfile" "micro.kicad_sch"
-			(at 121.92 74.2446 0)
+			(at 143.51 132.6646 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -192,7 +192,7 @@
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d"
-					(page "3")
+					(page "5")
 				)
 			)
 		)

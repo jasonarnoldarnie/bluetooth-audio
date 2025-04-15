@@ -674,12 +674,12 @@
       "Power"
     ],
     [
-      "55b72bbf-9038-47b8-a963-4590678f9f83",
-      "Micro"
-    ],
-    [
       "0f4fac18-add1-4ad4-9475-492acd2dc726",
       "audio"
+    ],
+    [
+      "8c9964e6-f0c6-4449-9d58-d02ed46671df",
+      "Digital (page 5)"
     ]
   ],
   "text_variables": {}
