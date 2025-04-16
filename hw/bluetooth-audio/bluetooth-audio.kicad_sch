@@ -5,72 +5,6 @@
 	(uuid "eafc8824-f117-40b2-99b0-597946d6c01d")
 	(paper "A4")
 	(lib_symbols)
-	(global_label "VCC"
-		(shape input)
-		(at 143.51 102.87 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "09b72c75-feb3-4b1d-a9e0-358297dc848e")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 150.1238 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "VCC"
-		(shape input)
-		(at 101.6 44.45 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "1c55bc12-57c9-4219-a6f2-1955dc16d4fd")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 94.9862 44.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "VCC"
-		(shape input)
-		(at 80.01 104.14 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "cdadbcd3-ba67-4ec7-9b3e-232fac965ee8")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 86.6238 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(sheet
 		(at 80.01 97.79)
 		(size 35.56 29.21)
@@ -156,8 +90,50 @@
 		)
 	)
 	(sheet
-		(at 143.51 95.25)
-		(size 77.47 36.83)
+		(at 56.8182 147.5975)
+		(size 35.56 29.21)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 255 194 1.0000)
+		)
+		(uuid "75a01f10-e1ad-480b-bd54-0519cd40fdd1")
+		(property "Sheetname" "testpoints"
+			(at 56.8182 146.8859 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "audio.kicad_sch"
+			(at 56.8182 177.3921 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 143.51 25.4)
+		(size 77.47 106.68)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -172,7 +148,7 @@
 		)
 		(uuid "8c9964e6-f0c6-4449-9d58-d02ed46671df")
 		(property "Sheetname" "Digital (page 5)"
-			(at 143.51 94.5384 0)
+			(at 143.51 24.6884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
