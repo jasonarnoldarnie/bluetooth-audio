@@ -114,7 +114,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "audio.kicad_sch"
+		(property "Sheetfile" "testpoints.kicad_sch"
 			(at 56.8182 177.3921 0)
 			(effects
 				(font
