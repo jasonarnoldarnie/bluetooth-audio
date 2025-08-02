@@ -1505,10 +1505,6 @@
 					(reference "#PWR055")
 					(unit 1)
 				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "#PWR053")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -1579,10 +1575,6 @@
 					(reference "C45")
 					(unit 1)
 				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "C40")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -1648,10 +1640,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "R25")
-					(unit 1)
-				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "R21")
 					(unit 1)
 				)
 			)
@@ -1743,10 +1731,6 @@
 					(reference "J3")
 					(unit 1)
 				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "J1")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -1814,10 +1798,6 @@
 					(reference "C51")
 					(unit 1)
 				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "C41")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -1881,10 +1861,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "#PWR054")
-					(unit 1)
-				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "#PWR052")
 					(unit 1)
 				)
 			)
@@ -1955,10 +1931,6 @@
 					(reference "TP8")
 					(unit 1)
 				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "TP7")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -2026,10 +1998,6 @@
 					(reference "R26")
 					(unit 1)
 				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "R22")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -2093,10 +2061,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "#PWR065")
-					(unit 1)
-				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "#PWR064")
 					(unit 1)
 				)
 			)
@@ -2166,10 +2130,6 @@
 					(reference "R24")
 					(unit 1)
 				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "R23")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -2235,10 +2195,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "C52")
-					(unit 1)
-				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "C42")
 					(unit 1)
 				)
 			)
@@ -2311,10 +2267,6 @@
 					(reference "C47")
 					(unit 1)
 				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "C43")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -2378,10 +2330,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "#PWR068")
-					(unit 1)
-				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "#PWR062")
 					(unit 1)
 				)
 			)
@@ -2469,10 +2417,6 @@
 					(reference "MK2")
 					(unit 1)
 				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "MK1")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -2536,10 +2480,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "#PWR066")
-					(unit 1)
-				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "#PWR063")
 					(unit 1)
 				)
 			)
@@ -2611,10 +2551,6 @@
 					(reference "C49")
 					(unit 1)
 				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "C39")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -2678,10 +2614,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "#PWR067")
-					(unit 1)
-				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "#PWR061")
 					(unit 1)
 				)
 			)
@@ -2752,10 +2684,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "C50")
-					(unit 1)
-				)
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/75a01f10-e1ad-480b-bd54-0519cd40fdd1"
-					(reference "C44")
 					(unit 1)
 				)
 			)

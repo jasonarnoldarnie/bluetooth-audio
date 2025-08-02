@@ -147,7 +147,7 @@
 			(color 255 255 194 1.0000)
 		)
 		(uuid "8c9964e6-f0c6-4449-9d58-d02ed46671df")
-		(property "Sheetname" "Digital (page 5)"
+		(property "Sheetname" "Digital"
 			(at 143.51 24.6884 0)
 			(effects
 				(font

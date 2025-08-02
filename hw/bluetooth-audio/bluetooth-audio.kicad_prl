@@ -117,7 +117,9 @@
     "sort_ascending": true,
     "sorting_column": 0
   },
-  "open_jobsets": [],
+  "open_jobsets": [
+    "production_outputs.kicad_jobset"
+  ],
   "project": {
     "files": []
   },
