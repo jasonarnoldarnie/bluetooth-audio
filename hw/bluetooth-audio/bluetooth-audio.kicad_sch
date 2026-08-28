@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20250114)
+	(version 20260306)
 	(generator "eeschema")
-	(generator_version "9.0")
+	(generator_version "10.0")
 	(uuid "eafc8824-f117-40b2-99b0-597946d6c01d")
 	(paper "A4")
 	(lib_symbols)
@@ -18,12 +18,14 @@
 		(uuid "1c55bc12-57c9-4219-a6f2-1955dc16d4fd")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 94.9862 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
-				(hide yes)
 			)
 		)
 	)
@@ -40,12 +42,14 @@
 		(uuid "af08649c-5fce-4c92-a209-601251308920")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 128.5338 41.91 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
 			)
 		)
 	)
@@ -62,12 +66,14 @@
 		(uuid "cdadbcd3-ba67-4ec7-9b3e-232fac965ee8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 86.6238 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
 			)
 		)
 	)
@@ -84,11 +90,13 @@
 			(type solid)
 		)
 		(fill
-			(color 255 255 194 1.0000)
+			(color 255 255 194 1)
 		)
 		(uuid "0f4fac18-add1-4ad4-9475-492acd2dc726")
 		(property "Sheetname" "audio"
 			(at 80.01 97.0784 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -98,6 +106,8 @@
 		)
 		(property "Sheetfile" "audio.kicad_sch"
 			(at 80.01 127.5846 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -126,11 +136,13 @@
 			(type solid)
 		)
 		(fill
-			(color 255 255 194 1.0000)
+			(color 255 255 194 1)
 		)
 		(uuid "541dab54-ea50-443b-9935-4ff5142dd0fa")
 		(property "Sheetname" "Power"
 			(at 43.18 36.1184 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -140,6 +152,8 @@
 		)
 		(property "Sheetfile" "power.kicad_sch"
 			(at 43.18 79.3246 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -168,11 +182,13 @@
 			(type solid)
 		)
 		(fill
-			(color 255 255 194 1.0000)
+			(color 255 255 194 1)
 		)
 		(uuid "55b72bbf-9038-47b8-a963-4590678f9f83")
 		(property "Sheetname" "Micro"
 			(at 121.92 36.1184 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -182,6 +198,8 @@
 		)
 		(property "Sheetfile" "micro.kicad_sch"
 			(at 121.92 74.2446 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
