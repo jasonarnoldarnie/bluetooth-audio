@@ -56,9 +56,13 @@ Registered **globally** in KiCad 10 via the `KICAD_USER_LIB` environment variabl
 sees them with no per-project setup. Nicknames kept as `custom_symbols` / `custom_footprints`, so
 all existing `lib_id` references resolve with zero schematic or PCB edits — verified.
 
-**Next session should:** The dual-rail power edit, unchanged and now unblocked.
-[`power.kicad_sch`](../hw/bluetooth-audio/power.kicad_sch) still has
-`Regulator_Linear:NCP1117-3.3_SOT223` as its only regulator — the split is not started.
+**Next session should:** Swap the regulator parts. The **rail split is already done** — corrected
+2026-08-28: [`power.kicad_sch`](../hw/bluetooth-audio/power.kicad_sch) has two regulators (U7, U8)
+feeding `+3V3_SYS` and `+3V3_AUDIO`, each with its own test point. What remains is that both are
+`NCP1117-3.3_SOT223`, not the specified parts: Rail A → **AP7361C-33Y5** (SOT-89-5, ultra-low
+dropout, needed to survive on battery), Rail B → **LP5907MFX-3.3** (6.5 µV<sub>RMS</sub>, the whole
+point of a separate analog rail). Two SOT-223 parts also spend the board area the review asked to
+reclaim.
 
 **Discovered / decided:**
 - **Both project lib tables were broken** — pointed at `${KIPRJMOD}/symbols/` and
@@ -79,8 +83,14 @@ all existing `lib_id` references resolve with zero schematic or PCB edits — ve
 - Dropped KiCad 5 legacy cruft (`.dcm`/`.lib`/`.mod`) and the duplicate ICS-40720 footprint.
 - `ICS-40720.stp` was referenced by its footprint but **never existed in the tree**. Reference now
   points at the library's 3D dir; drop the STEP in and it resolves.
-- Google Drive's sync daemon is churning file mtimes — it is why `git status` shows every binary as
-  modified. The library repo was deliberately placed on local disk, outside Drive, for this reason.
+- **Fab package is stale.** The gerbers, drill, BOM and position files under
+  `production/jlc_pcba/` are byte-identical to the April 2025 commit — they describe the pre-split
+  board. **Do not order from them.** They only *appeared* modified in `git status` because
+  `core.autocrlf=true` plus a stale index stat-cache; `git add` refreshed the index and found no
+  change. The schematics, by contrast, had genuinely changed.
+- Project moved off Google Drive to `C:\Users\jason\electronics\bluetooth-audio` on 2026-08-28.
+  16 months of uncommitted work committed in five chunks and pushed; `main` had been stale since
+  April 2025. The library repo was placed on local disk for the same reason.
 
 ---
 
