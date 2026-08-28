@@ -1,0 +1,30 @@
+# KiCad writes LF. Without this, a Windows checkout rewrites every line on clone and the
+# first save comes back as a whole-file diff, which makes schematic history unreadable.
+*.kicad_pro   text eol=lf
+*.kicad_sch   text eol=lf
+*.kicad_pcb   text eol=lf
+*.kicad_sym   text eol=lf
+*.kicad_mod   text eol=lf
+*.kicad_dru   text eol=lf
+*.kicad_wks   text eol=lf
+*.net         text eol=lf
+fp-lib-table  text eol=lf
+sym-lib-table text eol=lf
+
+# Markdown documents are edited by hand and by tooling on both platforms.
+*.md text eol=lf
+
+# Shell hooks must be LF whatever the platform, or /bin/sh rejects them with
+# "bad interpreter: no such file or directory".
+.githooks/* text eol=lf
+
+# Binary: never diffed, never merged. The design overview PDF is regenerated rather than
+# merged, so a conflict on it is resolved by re-running the hook.
+*.pdf   binary
+*.png   binary
+*.jpg   binary
+*.step  binary
+*.stp   binary
+*.wrl   binary
+*.xlsx  binary
+*.zip   binary

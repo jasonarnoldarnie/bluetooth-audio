@@ -1,0 +1,28 @@
+# Repo-wide ignores. KiCad-specific rules for the board itself live in hw/.gitignore,
+# which already covers autosaves, *backup*, fp-info-cache and the local library tables.
+
+# --- KiCad --------------------------------------------------------------------
+# Per-user project state: window layout, last sheet opened, local net colours.
+# Not design data, and it changes every time the project is opened.
+*.kicad_prl
+
+# Editor backup files. KiCad writes <name>.kicad_sch-bak on save.
+*-bak
+
+# Lock files written while a project is open.
+*.lck
+
+# --- Tooling ------------------------------------------------------------------
+# VS Code "Local History" extension.
+.history/
+
+# One-off safety copies taken before a config migration.
+*.bak-preclaude
+
+# --- Office / OS --------------------------------------------------------------
+# Excel owner-lock file, present only while a workbook is open.
+~$*
+
+desktop.ini
+Thumbs.db
+.DS_Store
