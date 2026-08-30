@@ -216,9 +216,29 @@ whose integrated D+/D− isolation switch also solves the problem that the CH340
 Deferred; the EN1/EN2 GPIO control above is what keeps it a firmware-plus-one-IC change rather than a
 respin.
 
-**Guard rail.** ILIM mode has no VIN-DPM, so a wrong detection has no graceful foldback. A VBUS
-divider into ADC1 lets firmware revert to USB500 if VBUS sags below ~4.5 V. **Do not** probe
-adaptively by stepping up and watching what happens — without VIN-DPM the failure mode is a brownout.
+**Guard rail.** ILIM mode has no VIN-DPM, so a wrong detection has no graceful foldback. `R38`/`R39`
+(100 k / 47 k) divide VBUS to `USB_VBUS_SENSE` — 5.0 V → 1.60 V, 5.5 V → 1.76 V — with `C53` 100 nF at
+the tap. Firmware reverts to USB500 if VBUS sags below ~4.5 V. The divider only draws (34 µA) when USB
+is present, so it costs nothing on battery.
+
+100 nF rather than the 1 µF used on `BAT_ADC`: this is a protection function with a deadline. Against
+the divider's 32 kΩ Thévenin impedance it gives τ = 3.2 ms, so a 100 ms poll sees a collapse ~30 τ
+after it happens. A larger cap would average over a third of the reaction window.
+
+**Do not** probe adaptively — stepping up to ILIM mode and watching what happens. Without VIN-DPM the
+failure mode is a brownout, not a graceful foldback.
+
+> **Accepted risk — CC pins have no ESD protection.** The USBLC6 covers D+/D− and VBUS only. CC1 and
+> CC2 are exposed contacts in the receptacle and are directly touchable, so IEC 61000-4-2 contact
+> discharge is a live threat. The 1 kΩ series resistors (`R36`/`R37`) protect the ADC pins but not
+> `R4`/`R5` or the connector node itself. They also bound a VBUS-to-CC short — which the USB-C spec
+> requires sinks to survive — to (5 − 3.6)/1 k ≈ 1.4 mA of clamp injection at the ESP32, which the pin
+> tolerates; a faulty 20 V source would push 16 mA, which it does not.
+>
+> **Decision (2026-08-30): not mitigated in Rev B.** The fix, if it is ever wanted, is a
+> low-capacitance TVS array on CC1/CC2 placed at the connector ahead of `R36`/`R37` — sub-pF against
+> the ~200 pF sink CC budget, and low leakage so it does not corrupt the resistive advertisement.
+> TPD4E05U06 is the obvious candidate. Revisit if field units show USB-C detection failures.
 
 ### 3.5 Safety timers
 
@@ -260,11 +280,33 @@ rating.
 | Low | Hi-Z | Charge complete, or suspended |
 | Low | **2 Hz flash** | Fault — safety timer expired, or TS out of range |
 
+`R28`/`R29` are 330 Ω, giving ~2.7 mA per LED at 3.3 V — visible, and inside the 5 mA the `/PGOOD`
+and `/CHG` open-drain outputs are specified to sink. Both LEDs are dark on battery, since the pins go
+high-impedance with no input present.
+
 **State of charge** is voltage-based: `R34`/`R35` form a 100 k / 100 k divider from `BAT` to ground,
 tapped as `BAT_ADC` (4.2 V → 2.1 V, inside ADC1's usable 150–2450 mV window at 11 dB attenuation).
-It costs 21 µA continuously, ~15 mAh/month — negligible against the cell. **100 nF at the tap** is
-required: 50 kΩ source impedance is high for the ESP32 SAR ADC. Calibrate with `esp_adc_cal` and the
-eFuse Vref, and multisample; raw ADC error is ±6 %, which is ±250 mV of cell voltage and useless.
+It costs 21 µA continuously, ~15 mAh/month — negligible against the cell.
+
+**`C52` 100 nF at the tap is not optional, and it is not impedance matching.** It does two jobs:
+
+- **Charge reservoir.** The ESP32's ADC is successive-approximation: closing the sampling switch
+  requires an internal sample-and-hold capacitor of a few pF to charge to the input voltage *through
+  the external source impedance*, in a few microseconds. The divider's Thévenin impedance is
+  100 k ‖ 100 k = **50 kΩ**, five times Espressif's <10 kΩ guideline, so without a local cap each
+  conversion drags the node down and the converter digitises the droop. At ~10⁴ times the S/H
+  capacitance, `C52` supplies that charge with no measurable sag and refills through the 50 kΩ
+  between samples.
+- **Low-pass filter.** f_c = 1/(2π × 50 k × 100 nF) = **31.8 Hz**, τ = 5 ms. `BAT_ADC` is a
+  high-impedance trace crossing the board — exactly the node that collects switching and RF noise —
+  and cell voltage moves over minutes, so heavy filtering is free accuracy. Allow ~25 ms after
+  power-up before trusting a reading.
+
+The alternative was a lower-impedance divider: 10 k / 10 k needs no cap but draws 210 µA from the cell
+permanently instead of 21 µA. The capacitor is the cheaper trade.
+
+Calibrate with `esp_adc_cal` and the eFuse Vref, and multisample; raw ADC error is ±6 %, which is
+±250 mV of cell voltage and useless.
 
 Two limits define what this can deliver. The reading is meaningless while charging — the charger is
 driving V<sub>BAT</sub> toward 4.2 V — so firmware uses the `/PGOOD`+`/CHG` state instead and snaps to
@@ -550,10 +592,13 @@ Hardware choices that constrain firmware, or vice versa.
 fit BC1.2 detection; ground-loop mitigation (transformers vs battery-only playback); crystal offset
 measurement; RF match tuning; BOM line consolidation.
 
-**Not yet on the schematic** (§3 describes the target): `R_ITERM` and `R_TMR` are still marked DNP and
-`R_TMR` still carries a 0 Ω value; the `BAT_ADC` filter cap and the VBUS sense divider are absent; the
-`EN1`/`EN2`/`/PGOOD`/`/CHG`/`BAT_ADC`/`USB_CC*` global labels have no counterparts on the micro sheet
-yet; and `+3V3_SYS` is still a separate net from the micro sheet's `+3V3`.
+**Accepted risks:** CC pins carry no ESD protection (§3.4) — decided 2026-08-30, not mitigated in
+Rev B.
+
+**Not yet on the schematic** (§3 describes the target): the
+`EN1`/`EN2`/`/PGOOD`/`/CHG`/`BAT_ADC`/`USB_CC*`/`USB_VBUS_SENSE` global labels have no counterparts on
+the micro sheet yet; the CH340K load switch is not drawn; and `+3V3_SYS` is still a separate net from
+the micro sheet's `+3V3`. The power sheet itself is otherwise complete.
 
 ---
 
@@ -605,3 +650,4 @@ exposed pad.
 | A | 2025-04-05 | As-built schematic, commit `369c5f9` |
 | B | 2026-08-24 | This document created. Scope decisions resolved; 12 deltas in §10 |
 | B | 2026-08-30 | §3 expanded to cover the full charger configuration: power-path loops, EN1/EN2 strapping, charge programming, source detection, safety timers, TS qualification, SoC and GPIO map. Deltas 13–16 |
+| B | 2026-08-30 | Power sheet complete: `R_ITERM`/`R_TMR` populated, LEDs to 330 Ω, ADC anti-droop caps and VBUS sense divider added. CC ESD recorded as an accepted risk |
