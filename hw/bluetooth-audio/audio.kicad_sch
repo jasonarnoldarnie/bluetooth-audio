@@ -7227,34 +7227,34 @@
 			)
 		)
 		(pin "1"
-			(uuid "e1dc870f-867b-4478-b522-ba7f6c8bc75d")
+			(uuid "e1dc870f-867b-4478-b522-ba7f6c8bc75e")
 		)
 		(pin "2"
-			(uuid "192ca2f6-3535-4559-b51f-76b017028dc9")
+			(uuid "192ca2f6-3535-4559-b51f-76b017028dca")
 		)
 		(pin "9"
-			(uuid "222bbb9d-1578-4377-b296-c831a8832187")
+			(uuid "222bbb9d-1578-4377-b296-c831a8832188")
 		)
 		(pin "10"
-			(uuid "dee83043-6701-4ef6-ab48-66f212f5d6f7")
+			(uuid "dee83043-6701-4ef6-ab48-66f212f5d6f8")
 		)
 		(pin "4"
-			(uuid "c3b6f5d3-ada6-4893-be38-dad3b0773aa1")
+			(uuid "c3b6f5d3-ada6-4893-be38-dad3b0773aa2")
 		)
 		(pin "5"
-			(uuid "4042ccca-6eef-47e4-a46b-54491c0aba8a")
+			(uuid "4042ccca-6eef-47e4-a46b-54491c0aba8b")
 		)
 		(pin "7"
-			(uuid "69470ab4-51b6-45bf-9ffc-7ef0c1f9001c")
+			(uuid "69470ab4-51b6-45bf-9ffc-7ef0c1f9001d")
 		)
 		(pin "3"
-			(uuid "7b5a5500-79b2-4797-9160-171985e8aab9")
+			(uuid "7b5a5500-79b2-4797-9160-171985e8aaba")
 		)
 		(pin "6"
-			(uuid "bf1649b4-b9cd-476a-946c-6f709cfee436")
+			(uuid "bf1649b4-b9cd-476a-946c-6f709cfee437")
 		)
 		(pin "8"
-			(uuid "987bde6a-73f3-419a-93b3-6cd01cedad4a")
+			(uuid "987bde6a-73f3-419a-93b3-6cd01cedad4b")
 		)
 		(instances
 			(project "bluetooth-audio"
@@ -10032,34 +10032,34 @@
 			)
 		)
 		(pin "1"
-			(uuid "e1dc870f-867b-4478-b522-ba7f6c8bc75d")
+			(uuid "e1dc870f-867b-4478-b522-ba7f6c8bc75f")
 		)
 		(pin "2"
-			(uuid "192ca2f6-3535-4559-b51f-76b017028dc9")
+			(uuid "192ca2f6-3535-4559-b51f-76b017028dcb")
 		)
 		(pin "9"
-			(uuid "222bbb9d-1578-4377-b296-c831a8832187")
+			(uuid "222bbb9d-1578-4377-b296-c831a8832189")
 		)
 		(pin "10"
-			(uuid "dee83043-6701-4ef6-ab48-66f212f5d6f7")
+			(uuid "dee83043-6701-4ef6-ab48-66f212f5d6f9")
 		)
 		(pin "4"
-			(uuid "c3b6f5d3-ada6-4893-be38-dad3b0773aa1")
+			(uuid "c3b6f5d3-ada6-4893-be38-dad3b0773aa3")
 		)
 		(pin "5"
-			(uuid "4042ccca-6eef-47e4-a46b-54491c0aba8a")
+			(uuid "4042ccca-6eef-47e4-a46b-54491c0aba8c")
 		)
 		(pin "7"
-			(uuid "69470ab4-51b6-45bf-9ffc-7ef0c1f9001c")
+			(uuid "69470ab4-51b6-45bf-9ffc-7ef0c1f9001e")
 		)
 		(pin "3"
-			(uuid "7b5a5500-79b2-4797-9160-171985e8aab9")
+			(uuid "7b5a5500-79b2-4797-9160-171985e8aabb")
 		)
 		(pin "6"
-			(uuid "bf1649b4-b9cd-476a-946c-6f709cfee436")
+			(uuid "bf1649b4-b9cd-476a-946c-6f709cfee438")
 		)
 		(pin "8"
-			(uuid "987bde6a-73f3-419a-93b3-6cd01cedad4a")
+			(uuid "987bde6a-73f3-419a-93b3-6cd01cedad4c")
 		)
 		(instances
 			(project "bluetooth-audio"

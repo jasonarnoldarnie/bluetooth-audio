@@ -1,6 +1,6 @@
 # Bluetooth Audio Adaptor — Design Overview
 
-**Rev B (in design)** · Updated 2026-08-28 · Jason
+**Rev B (in design)** · Updated 2026-08-30 · Jason
 Describes the **target design**. Deltas from as-built Rev A are listed in §10.
 
 > Living document. Every confirmed design change lands here. Planning, open questions and review
@@ -32,15 +32,19 @@ not BLE Audio**. This single requirement determines the MCU (§5).
 
 ```
                       ┌──────────────────┐
-                      │  Li-ion cell     │
+                      │  Li-ion cell     │──── NTC ──► TS   temperature qualification
                       │  + 10 k NTC      │
                       └────────▲─────────┘
-                               │ BAT (charge / discharge)
+                               │ BAT ──[100k]──┬── BAT_ADC ──► ADC1
+                               │               └──[100k]── GND
   USB-C ── VBUS 5 V ──► ┌──────┴───────┐
-                        │   BQ24074    │  power path · DPPM
-                        │   charger    │  SYS clamped ≤ 4.4 V
-                        └──────┬───────┘
-                               │ SYS  3.0 – 4.4 V
+    ├─ USBLC6 (ESD)     │   BQ24074    │  power path · DPPM
+    ├─ CC1/CC2 ──► ADC1 │   charger    │  SYS clamped ≤ 4.4 V
+    └─ C47 10 µF        └──┬───────┬───┘
+                           │       ├── EN1 / EN2  ◄── GPIO   input-limit select
+       ILIM ISET ──────────┘       ├── /PGOOD, /CHG ──► GPIO
+       ITERM TMR                   │
+                               SYS │ 3.0 – 4.4 V
                      ┌─────────┴─────────┐
                      ▼                   ▼
               ┌─────────────┐     ┌─────────────┐
@@ -102,11 +106,187 @@ board and the efficiency gain does not pay for the noise.
 | **BQ24074RGTR** (C54313) | Power-path charger | 1.5 A, SYS clamped ≤4.4 V, DPPM, NTC input, 10.5 V OVP |
 | **AP7361C-33Y5-13** (C460397) | LDO A — digital/RF | SOT-89-5, 1 A, ultra-low dropout |
 | **LP5907MFX-3.3** (C80670) | LDO B — codec analog | 6.5 µV<sub>RMS</sub>, high PSRR, no bypass cap needed |
-| **USBLC6-2SC6** | USB ESD | In-line on D+/D− |
+| **USBLC6-2SC6** | USB ESD | In-line on D+/D−; its `VBUS` pin stays at the connector, upstream of the charger |
 | Li-ion cell + 10 k NTC | Energy | Removable. NTC bonded to cell, not PCB |
 
-**Charger behaviour.** System load takes priority over charge current (DPPM). SYS follows USB when
-present, battery when not. The ≤4.4 V clamp is what makes LDO A's thermals work (§7).
+**VBUS reaches exactly three things:** the ESD array, the charger's `IN` pin, and `C47`. Every other
+load in the system hangs off `SYS`, including both LDOs. That is what makes the board behave
+identically on USB and on battery.
+
+### 3.1 Power path — the five loops
+
+In priority order. The system load always outranks the battery.
+
+| Loop | Trips at | Behaviour |
+|---|---|---|
+| Input current limit | `EN1`/`EN2` + `R_ILIM` | Hard ceiling on total current into `IN`. Everything else lives inside this budget |
+| VIN-DPM | V<sub>IN</sub> falls to 4.5 V | Reduces input current so a weak source cannot be crashed. **Active only in USB100/USB500 modes** |
+| DPPM | V<sub>SYS</sub> falls to V<sub>O(REG)</sub> − 100 mV ≈ 4.3 V | Cuts *charge* current to hold SYS up. Charge termination is disabled while active |
+| Battery supplement | V<sub>SYS</sub> < V<sub>BAT</sub> − 40 mV | Charge current already zero and the load still exceeds the input limit — BATFET turns fully on and the cell supplements. Exits above V<sub>BAT</sub> − 20 mV |
+| Thermal regulation | T<sub>J</sub> ≥ 125 °C | Folds back charge current regardless of the above |
+
+The last three slow the safety timers **in proportion to the charge-current reduction**. A
+deliberately low `R_ISET` gets no such slowdown — the timer would run at full speed while the cell
+trickled. This is why `R_ISET` is set *above* anything the input can deliver, and DPPM is left to
+mediate (§3.3).
+
+### 3.2 Input current limit — mode strapping
+
+`EN2`/`EN1` select the limit. Datasheet Table 7-2 orders the columns EN2, EN1:
+
+| EN2 | EN1 | Limit | When |
+|---|---|---|---|
+| 0 | **1** | **475 mA (USB500)** | **Power-on default** — and any unknown or default-USB source |
+| 1 | 0 | 1.073 A (`R_ILIM`) | Firmware has confirmed a ≥1.5 A source (§3.4) |
+| 0 | 0 | 95 mA (USB100) | Strict compliance on an un-enumerated host port |
+| 1 | 1 | — | Standby / USB suspend |
+
+**The default must be USB500, not USB100.** Both pins floating gives USB100 through the chip's
+285 kΩ internal pulldowns, and 100 mA cannot run a 171 mA system: with a flat cell the board would
+brown out before firmware ran and could never raise the limit. USB500 boots the system, matches what
+a PC port allows after enumeration, and is a mode that has VIN-DPM behind it.
+
+```
+   SYS ──[R30 100k]──┬── EN1 ──► GPIO (drive open-drain)     default HIGH (3.26 V)
+                     │
+                (285k internal pulldown)
+
+   GND ──[R31 100k]──┴── EN2 ──► GPIO (push-pull)            default LOW
+```
+
+**100 kΩ, not 0 Ω** — the GPIO must be able to override the resistor. Against the internal 285 kΩ,
+EN1 sits at 4.4 × 285/385 = 3.26 V, comfortably over the 1.4 V V<sub>IH</sub>.
+
+**Pull up to `SYS`, not `3V3_A`** — `3V3_A` does not exist until the system has booted, and the whole
+point of the default is to be defined before that. `SYS` is present whenever either source is, and at
+4.4 V max sits inside the EN pin's 1.4–6 V window (7 V absolute max).
+
+Drive `EN1` open-drain: the pull-up is to 4.4 V and the GPIO drives 3.3 V. Leave both pins alone
+whenever `/PGOOD` is high-Z — the EN inputs are ignored in power-down mode, and driving EN1 low would
+only burn cell current through R30.
+
+### 3.3 Charge programming
+
+| Resistor | Value | Formula | Result |
+|---|---|---|---|
+| `R_ISET` | 1.2 kΩ **1 %** | I<sub>CHG</sub> = K<sub>ISET</sub>/R, K = 890 | **742 mA** (664–812 over spread) |
+| `R_ILIM` | 1.5 kΩ | I<sub>IN(max)</sub> = K<sub>ILIM</sub>/R, K = 1610 | **1.073 A** |
+| `R_ITERM` | 3.0 kΩ | I<sub>TERM</sub> = 0.03 × R<sub>ITERM</sub>/R<sub>ISET</sub> | **75 mA** (≈C/27 on a 2000 mAh cell) |
+| `R_TMR` | 56 kΩ | t<sub>MAXCHG</sub> = 10 × K<sub>TMR</sub> × R, K = 48 s/kΩ | **7.5 h** (5.6 h worst case) |
+
+Pre-charge falls out of the same ISET resistor: K<sub>PRECHG</sub>/R<sub>ISET</sub> = 88/1200 =
+**73 mA**, the conventional 10 % of fast charge.
+
+742 mA is 0.37C on a 2000 mAh cell and 0.25C on a 3000 mAh one — safe for either, so this resistor
+does not depend on the cell decision. Use 1 % on `R_ISET`: TI calls this out specifically to avoid
+tripping the internal RISET short-circuit test.
+
+**`ILIM` must never be left open — an open `ILIM` pin disables all charging.** Worth an explicit
+bring-up check.
+
+`R_NTC_LIN` is fitted **DNP** by design: it stands in for the pack NTC if a cell without one is used,
+or can be replaced by a high-value linearising resistor. It must not be populated alongside a real
+NTC — see §3.6.
+
+### 3.4 Source capability detection
+
+The default is USB500, so detection only ever has to answer one question: **is this a ≥1.5 A
+charger?** Everything else falls back safely.
+
+**CC sensing (C-to-C only).** `R36`/`R37` tap CC1/CC2 through 1 kΩ into ADC1. With Rd = 5.1 kΩ:
+
+| Source Rp | V<sub>CC</sub> | Advertised |
+|---|---|---|
+| 56 kΩ | 0.42 V | Default USB |
+| 22 kΩ | 0.94 V | 1.5 A |
+| 10 kΩ | 1.69 V | 3.0 A |
+
+Thresholds: >0.2 V attached, >0.66 V ≥ 1.5 A, >1.23 V = 3.0 A. Read **both** pins — only one carries
+the Rp, the other is open or is VCONN, and the pair also gives plug orientation. **No filter capacitor
+on the CC nodes:** the spec caps sink CC capacitance at ~200 pF. Multisample in software instead.
+Re-read periodically; a source may change its advertisement at any time.
+
+**The limitation that shapes the architecture:** a USB-A-to-C cable is *required* by the spec to
+contain a 56 kΩ Rp, so CC always reports Default USB no matter how large the charger behind it. For
+the expected majority case — an A-to-C cable — CC sensing tells you nothing.
+
+**BC1.2 (not fitted).** The only mechanism that unlocks a USB-A wall charger, by detecting that D+ is
+shorted to D− through ≤200 Ω (a Dedicated Charging Port). Needs a detector IC — BQ24392 or MAX14636 —
+whose integrated D+/D− isolation switch also solves the problem that the CH340K sits on that bus.
+Deferred; the EN1/EN2 GPIO control above is what keeps it a firmware-plus-one-IC change rather than a
+respin.
+
+**Guard rail.** ILIM mode has no VIN-DPM, so a wrong detection has no graceful foldback. A VBUS
+divider into ADC1 lets firmware revert to USB500 if VBUS sags below ~4.5 V. **Do not** probe
+adaptively by stepping up and watching what happens — without VIN-DPM the failure mode is a brownout.
+
+### 3.5 Safety timers
+
+`R_TMR` = 56 kΩ gives a 7.5 h fast-charge timer (5.6 h worst case) and a 45 min pre-charge timer.
+Leaving `TMR` floating selects the internal default of 5 h typ / 4 h min; grounding it disables the
+timers entirely.
+
+The timer must outlast the slowest legitimate charge. Worst case is a 3000 mAh cell charging in
+USB500 mode while playing: ~304 mA of charge current against 742 mA programmed is a 0.41 reduction,
+so the 5.6 h timer counts at 0.41× and covers 13.7 h of wall clock against an 8.9 h charge.
+
+On expiry the part latches a fault and **`/CHG` flashes at ~2 Hz**. Firmware should decode that — it
+is also how a TS fault surfaces, and it is otherwise invisible.
+
+### 3.6 Battery temperature qualification
+
+Mandatory in hardware, not firmware. `TS` sources 75 µA into the pack thermistor and compares:
+
+```
+V_HOT  = 300 mV   →  R_TS ≤ 4.0 kΩ   →  too hot    (≈50 °C on a 10 k 103AT-2)
+V_COLD = 2100 mV  →  R_TS ≥ 28 kΩ    →  too cold   (≈ 0 °C)
+```
+
+The valid window is therefore **4.0 kΩ – 28 kΩ**, which a bare 10 k Type-2 NTC maps onto 0–50 °C with
+3 °C hysteresis. Any added network shifts those trip points: a 10 kΩ resistor in parallel with the NTC
+moves the hot trip to ~33 °C, and a 1 kΩ resistor pins R<sub>TS</sub> below 1 kΩ permanently,
+inhibiting all charging. **Fit the pack NTC or `R_NTC_LIN`, never both.**
+
+### 3.7 Status and state of charge
+
+`/PGOOD` and `/CHG` are open-drain, pulled up to **`3V3_A`** (not `SYS`) so both nets are clean 3.3 V
+logic a GPIO can read directly — pulling them to the 4.4 V SYS rail would exceed the ESP32's input
+rating.
+
+| /PGOOD | /CHG | State |
+|---|---|---|
+| Hi-Z | Hi-Z | Running on battery |
+| Low | Low | Charging |
+| Low | Hi-Z | Charge complete, or suspended |
+| Low | **2 Hz flash** | Fault — safety timer expired, or TS out of range |
+
+**State of charge** is voltage-based: `R34`/`R35` form a 100 k / 100 k divider from `BAT` to ground,
+tapped as `BAT_ADC` (4.2 V → 2.1 V, inside ADC1's usable 150–2450 mV window at 11 dB attenuation).
+It costs 21 µA continuously, ~15 mAh/month — negligible against the cell. **100 nF at the tap** is
+required: 50 kΩ source impedance is high for the ESP32 SAR ADC. Calibrate with `esp_adc_cal` and the
+eFuse Vref, and multisample; raw ADC error is ±6 %, which is ±250 mV of cell voltage and useless.
+
+Two limits define what this can deliver. The reading is meaningless while charging — the charger is
+driving V<sub>BAT</sub> toward 4.2 V — so firmware uses the `/PGOOD`+`/CHG` state instead and snaps to
+100 % on termination. And the Li-ion OCV curve is flat from roughly 20 % to 80 % SoC, so voltage alone
+gives ±10–15 % there. **This is a four-segment gauge and a dependable low-battery warning, not a
+trustworthy percentage.** If a real percentage is ever needed over AVRCP, add a MAX17048 to the
+existing I²C bus.
+
+### 3.8 Power-related GPIO map
+
+The budget is essentially full. Allocate deliberately.
+
+| Signal | Dir | Pin class |
+|---|---|---|
+| `EN1`, `EN2` | out | any GPIO (`GPIO16`/`GPIO17`; avoid strapping pins) |
+| `AUDIO_VCC_EN` | out | any GPIO. Pulled low by `R33`, so the codec rail is **off at boot** |
+| CH340K gate | out | any GPIO — gate on a GPIO rather than `/PGOOD`, so firmware can isolate the bridge during BC1.2 detection |
+| `/PGOOD`, `/CHG` | in | any input pin |
+| `BAT_ADC`, `USB_CC1`, `USB_CC2`, VBUS sense | in | **ADC1 only** — ADC2 is unusable while the radio is active |
+
+Four output-capable pins remain free (`GPIO4`, `16`, `17`, `21`) against exactly four outputs needed.
+Input-only ADC1 pins `GPIO34`, `36`, `39`, plus `GPIO32`/`33`, cover the inputs. There is no slack.
 
 **Safety.** Charging is inhibited outside the cell's temperature window in hardware via the NTC on
 `TS` — not in firmware. Cell is removable; device is not stored in the vehicle.
@@ -226,6 +406,28 @@ Cutoff = 3.3 V + V_dropout(280 mA)
 
 **Runtime** (LDO path, ~83 % usable): 1000 mAh ≈ 4.8 h · 2000 mAh ≈ 9.7 h · 3000 mAh ≈ 14.5 h.
 
+**Charge current and time.** `R_ISET` programs 742 mA, but the input limit is what actually binds in
+every mode except ILIM. CC delivers ~85 % of capacity; the CV tail to a 75 mA termination adds ~0.5 h.
+
+| Mode | Input | System | Charge | 2000 mAh | 3000 mAh |
+|---|---|---|---|---|---|
+| USB500, idle | 475 mA | ~20 mA | 455 mA | 4.2 h | 6.1 h |
+| USB500, playing | 475 mA | 171 mA | 304 mA | 6.1 h | 8.9 h |
+| ILIM, either | 1.073 A | 20–171 mA | **742 mA** (ISET binds) | 2.8 h | 3.9 h |
+
+**Charger thermal.** Linear, so the charger burns (V_IN − V_BAT) × I_CHG plus the pass-FET loss.
+Worst case is the start of fast charge, V_BAT ≈ 3.0 V, in ILIM mode:
+
+```
+P = (5.0 − 4.4) × 0.913  +  (4.4 − 3.0) × 0.742  =  0.55 + 1.04  =  1.59 W
+VQFN-16 RGT, θJA = 44.5 °C/W  →  ΔT = 71 °C  →  Tj ≈ 96 °C at 25 °C ambient     ✓
+                                                Tj ≈ 116 °C at 45 °C ambient    ✓ (reg. point 125 °C)
+USB500 mode: P = 0.71 W  →  ΔT = 32 °C  →  Tj ≈ 57 °C                           ✓
+```
+
+The input current limit is what guarantees this — raising `R_ISET` cannot overheat the part, because
+`ILIM` caps the current before it gets there.
+
 **Crystal load capacitance.**
 
 ```
@@ -314,6 +516,12 @@ Hardware choices that constrain firmware, or vice versa.
 | **I²S full duplex** | Required for HFP. Configure both TX and RX channels. |
 | **TX/RX switch** | One GPIO selects the audio path. Firmware must track mode. |
 | **Deep sleep** | If used for battery standby, populate the CAP2 RC network. |
+| **Charger limit sequencing** | Boot default is USB500 (§3.2). Firmware may raise to ILIM mode only after confirming a ≥1.5 A source. Drive `EN1` open-drain; leave both pins alone when `/PGOOD` is high-Z. |
+| **CC read** | `USB_CC1`/`USB_CC2` on **ADC1**. Read both, take the one in a valid band. An A-to-C cable always reports Default USB — do not treat that as a fault. |
+| **`/CHG` fault** | A ~2 Hz flash is a latched fault (timer expiry or TS out of range), not "charging". Decode it; clear by toggling `CE` or the input. |
+| **SoC blindness** | `BAT_ADC` is meaningless while charging. Report charger state instead, and snap to 100 % when `/CHG` releases. |
+| **Codec rail** | `AUDIO_VCC_EN` is pulled low, so LDO B is **off at reset**. Firmware must enable it before touching the codec on I²C/I²S, or the ESP32 will back-power the ES8388 through its ESD diodes. |
+| **CH340K gate** | Bridge is on a GPIO-controlled switch. Keep it off when USB is absent (~10 mA of battery budget) and during any BC1.2 detection. |
 
 ---
 
@@ -333,9 +541,19 @@ Hardware choices that constrain firmware, or vice versa.
 | 10 | Add battery charger, NTC, cell connector, VBAT sense | Battery in scope |
 | 11 | NCP1117 → low-dropout LDO in SOT-89 | 1.2 V dropout cannot run from a cell |
 | 12 | Crystal load caps 18 pF → ~15 pF, then trim | Over-loaded; ±10 ppm required |
+| 13 | Charger input limit made firmware-selectable (`EN1`/`EN2` on GPIOs, 100 kΩ pulls) | Fixed strap cannot adapt to source capability; default USB500 boots on a flat cell |
+| 14 | `/PGOOD`, `/CHG` pull-ups moved SYS → 3V3_A and routed to GPIOs | 4.4 V exceeds the ESP32 input rating; status was LED-only |
+| 15 | Add `BAT_ADC` divider, CC1/CC2 sense taps | State of charge (REQ-PWR-10) and source detection |
+| 16 | Gate the CH340K on a GPIO | ~10 mA of battery budget with USB absent |
 
-**Still open:** ground-loop mitigation (transformers vs battery-only playback); crystal offset
+**Still open:** cell choice (2000 mAh pouch vs 3000 mAh 18650) and therefore charge time; whether to
+fit BC1.2 detection; ground-loop mitigation (transformers vs battery-only playback); crystal offset
 measurement; RF match tuning; BOM line consolidation.
+
+**Not yet on the schematic** (§3 describes the target): `R_ITERM` and `R_TMR` are still marked DNP and
+`R_TMR` still carries a 0 Ω value; the `BAT_ADC` filter cap and the VBUS sense divider are absent; the
+`EN1`/`EN2`/`/PGOOD`/`/CHG`/`BAT_ADC`/`USB_CC*` global labels have no counterparts on the micro sheet
+yet; and `+3V3_SYS` is still a separate net from the micro sheet's `+3V3`.
 
 ---
 
@@ -386,3 +604,4 @@ exposed pad.
 |---|---|---|
 | A | 2025-04-05 | As-built schematic, commit `369c5f9` |
 | B | 2026-08-24 | This document created. Scope decisions resolved; 12 deltas in §10 |
+| B | 2026-08-30 | §3 expanded to cover the full charger configuration: power-path loops, EN1/EN2 strapping, charge programming, source detection, safety timers, TS qualification, SoC and GPIO map. Deltas 13–16 |
