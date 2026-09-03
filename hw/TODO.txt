@@ -1,0 +1,43 @@
+Dual power path management - current limit decisions
+3v3 regulator - use correct 5 pin step file
+Choose molex footprint for battery connector
+Fix JLCPCB kicad mcp database (battery connector chat)
+Update design overview (change this to a pre-push hook?)
+Delete google drive project
+
+=== MICRO SHEET — from design-review-micro.md (2026-08-31) ===
+
+DONE (2026-08-31, netlist-verified):
+  [x] UART TX/RX crossover fixed (U0RXD<->CH340 TXD, U0TXD<->CH340 RXD)
+  [x] Flash IO2/IO3 uncrossed (GPIO9/SPIWP->IO2, GPIO10/SPIHD->IO3)
+  [x] Digital rail unified to +3V3_SYS (incl. reconnecting the EN pull-up R11 that the rename orphaned)
+  [x] CH340K load switch drawn: Q2 AO3401A (SOT-23, C15127) high-side P-FET, R40 100k gate pulldown
+      (default-ON so flashing works), gate CH340_EN on GPIO21. Firmware drives GPIO21 HIGH to disable.
+
+DONE (2026-08-31, cont.):
+  [x] Full ESP32 GPIO map committed (see design-overview.md 3.8). Interface wired: EN1->16, EN2->17,
+      AUDIO_VCC_EN->4, AUDIO_SW->5, CH340_EN->21, CHARGE_EN->2, /PGOOD->38, /CHG->32, BAT_ADC->34,
+      USB_CC1->36, USB_CC2->37, USB_VBUS_SENSE->39. All analog on ADC1. GPIO33 = spare.
+  [x] TX/RX audio switch: AUDIO_SW (GPIO5) drives both TS5A23159 inputs. LOW=RX, HIGH=TX.
+      (TS5A wiring verified correct against TI datasheet - COM=jack, NC=codec-out, NO=codec-in.)
+
+FIX BEFORE LAYOUT (still open):
+  [S2] Crystal load caps 18pF -> ~15pF then trim on measured offset (delta #12 not applied)
+  [S2] Firmware LEDs D1/D3 (R12/R18) 1k -> 330R; consider ~150R or lower-Vf part for blue
+       (delta #7 was applied to power LEDs only; blue at ~0.3mA is invisible)
+  [ ]  CH340 load-switch follow-up: when bridge is disabled, its UART/DTR/RTS pins can back-feed the
+       dead VCC through clamp diodes - tristate ESP32 UART pins when off, or accept the leakage
+  [S3] ERC cleanup: resync stale library symbols (36), snap off-grid wire endpoints (35), re-annotate;
+       also fix the ~22 dangling power-interface global labels once they are wired to the ESP32
+
+DECISIONS:
+  Confirm final GPIO map incl. the TX/RX switch (see design-overview.md §3.8) so FW + schematic agree
+  Standardise rail naming: adopt schematic +V_SYS / +3V3_SYS / +3V3_AUDIO, rename doc's 3V3_A/3V3_B
+
+CHEAP WINS:
+  Annotate R26 = "DNP - selects 1.8V flash, do not populate" on the schematic (correct as-is)
+  Verify CH340K V3 pin decoupling (V3 tied to VCC is correct for 3.3V per CH340 datasheet v3B)
+
+PROCESS:
+  Validate USB flashing + serial on the first assembled board before committing a second layout
+  (both flash-path S1 defects survived only because nothing has been assembled)

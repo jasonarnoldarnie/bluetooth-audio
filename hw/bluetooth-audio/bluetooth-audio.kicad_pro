@@ -704,7 +704,7 @@
         "uuid": "eafc8824-f117-40b2-99b0-597946d6c01d"
       }
     ],
-    "used_designators": "#PWR20,#PWR87-88,#PWR97-98,R_ISET1,R34-37",
+    "used_designators": "J2,R4-5,R17,R36-40,Q2,#PWR27-30,#PWR68,#PWR70,#PWR78,#PWR80,#PWR86,#PWR100-101,C51,C53,U5",
     "variants": []
   },
   "sheets": [

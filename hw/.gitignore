@@ -3,6 +3,9 @@ bluetooth-audio/*auto_saved*
 bluetooth-audio/~*
 bluetooth-audio/*backup*
 datasheets/obs/
+# MCP tooling artifacts (checkpoint snapshots and call logs)
+bluetooth-audio/snapshots/
+bluetooth-audio/logs/
 bluetooth-audio/fp-info-cache
 bluetooth-audio/fp-lib-table
 bluetooth-audio/sym-lib-table

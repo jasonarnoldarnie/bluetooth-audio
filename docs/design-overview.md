@@ -1,6 +1,6 @@
 # Bluetooth Audio Adaptor — Design Overview
 
-**Rev B (in design)** · Updated 2026-08-30 · Jason
+**Rev B (in design)** · Updated 2026-09-03 · Jason
 Describes the **target design**. Deltas from as-built Rev A are listed in §10.
 
 > Living document. Every confirmed design change lands here. Planning, open questions and review
@@ -315,20 +315,60 @@ gives ±10–15 % there. **This is a four-segment gauge and a dependable low-bat
 trustworthy percentage.** If a real percentage is ever needed over AVRCP, add a MAX17048 to the
 existing I²C bus.
 
-### 3.8 Power-related GPIO map
+### 3.8 ESP32 GPIO map (committed 2026-08-31, netlist-verified)
 
-The budget is essentially full. Allocate deliberately.
+Complete map. The budget is **full**: one spare (`GPIO33`). `S` marks an ESP32 strapping pin — its
+level is latched at reset, so anything on it must present the right level at boot (see the implications
+list below). All analog is on **ADC1** because ADC2 is dead whenever the radio is on.
 
-| Signal | Dir | Pin class |
-|---|---|---|
-| `EN1`, `EN2` | out | any GPIO (`GPIO16`/`GPIO17`; avoid strapping pins) |
-| `AUDIO_VCC_EN` | out | any GPIO. Pulled low by `R33`, so the codec rail is **off at boot** |
-| CH340K gate | out | any GPIO — gate on a GPIO rather than `/PGOOD`, so firmware can isolate the bridge during BC1.2 detection |
-| `/PGOOD`, `/CHG` | in | any input pin |
-| `BAT_ADC`, `USB_CC1`, `USB_CC2`, VBUS sense | in | **ADC1 only** — ADC2 is unusable while the radio is active |
+| GPIO | Pin | Signal | Dir | S | Boot level / notes |
+|---|---|---|---|---|---|
+| 0 | 23 | `MCLK` (I²S) | out | **S** | Must be HIGH at boot. Internal PU; codec MCLK input is Hi-Z at reset. Auto-boot pulls it low for download. |
+| 1 | 41 | `UART_TX` (U0TXD → CH340 RXD) | out | | Boot-log UART. |
+| 2 | 22 | `CHARGE_EN` (→ charger `/CE`) | out | **S** | Must be LOW/float at boot — and `R32` (1 k→GND) holds it low, which also = **charging enabled**. FW drives HIGH to pause charging; any reset re-enables (fail-safe). Keeps TP4. |
+| 3 | 40 | `UART_RX` (U0RXD ← CH340 TXD) | in | | |
+| 4 | 24 | `AUDIO_VCC_EN` (→ LDO B EN) | out | | `R33` pulldown → codec rail **off at boot**; FW raises to power codec. |
+| 5 | 34 | `AUDIO_SW` (→ TS5A23159 IN1+IN2) | out | **S** | Internal PU → HIGH at boot = **TX** by default. **Do not add an external pull.** FW sets **LOW = RX**, HIGH = TX. |
+| 6–11 | 31,32,33,28,29,30 | SPI flash (`CLK`/`SD0-3`/`CMD`) | — | | Reserved for `VDD_SDIO` flash. Not available. |
+| 12 | 18 | `MTDI` (JTAG TDI) | I/O | **S** | **VDD_SDIO voltage select — must be LOW at boot for 3.3 V flash.** Pull-up `R26` is **DNP — do not populate.** A debugger driving TDI high across reset bricks boot. |
+| 13 | 20 | `MTCK` (JTAG) | I/O | | J4 DNP header. |
+| 14 | 17 | `MTMS` (JTAG) | I/O | | J4 DNP header. |
+| 15 | 21 | `MTDO` (JTAG TDO) | I/O | **S** | Must be HIGH at boot (enables boot log). Internal PU. |
+| 16 | 25 | `EN1` (charger limit) | out (OD) | | Drive **open-drain** (pull-up is to 4.4 V SYS). Ext 100 k→SYS = USB500 default at boot. |
+| 17 | 27 | `EN2` (charger limit) | out | | Ext 100 k→GND = default LOW at boot. |
+| 18 | 35 | `I2C_CLK` | I/O | | To ES8388 + codec bus. |
+| 19 | 38 | `LED_GREEN` | out | | |
+| 21 | 42 | `CH340_EN` (→ Q2 gate) | out | | `R40` pulldown → **default ON** so the bridge is powered for flashing; FW drives HIGH to disable on battery. |
+| 22 | 39 | `LED_BLUE` | out | | |
+| 23 | 36 | `I2C_DATA` | I/O | | |
+| 25 | 14 | `LRCK` (I²S) | I/O | | |
+| 26 | 15 | `DSDIN` (I²S) | out | | |
+| 27 | 16 | `SCLK` (I²S) | I/O | | |
+| 32 | 12 | `/CHG` (charger status) | in | | ADC1_CH4 used as digital in. |
+| 33 | 13 | **spare** | — | | ADC1_CH5. Fit a no-connect flag. |
+| 34 | 10 | `BAT_ADC` | in | | ADC1_CH6, input-only. |
+| 35 | 11 | `ASDOUT` (I²S data in) | in | | ADC1_CH7, input-only — correct home for an input-only signal. |
+| 36 | 5 | `USB_CC1` | in | | ADC1_CH0, input-only. |
+| 37 | 6 | `USB_CC2` | in | | ADC1_CH1, input-only. |
+| 38 | 7 | `/PGOOD` (charger status) | in | | ADC1_CH2, input-only. |
+| 39 | 8 | `USB_VBUS_SENSE` | in | | ADC1_CH3, input-only. |
 
-Four output-capable pins remain free (`GPIO4`, `16`, `17`, `21`) against exactly four outputs needed.
-Input-only ADC1 pins `GPIO34`, `36`, `39`, plus `GPIO32`/`33`, cover the inputs. There is no slack.
+**Strapping-pin implications (the ones that bite):**
+
+- **GPIO0 / GPIO2** — the boot-mode pair. Normal boot needs GPIO0 high, GPIO2 low. GPIO0 doubles as
+  MCLK (codec input Hi-Z at reset, so safe) and the auto-boot circuit pulls it low to flash. GPIO2 =
+  `CHARGE_EN`, held low by `R32` — which satisfies both "low at boot" *and* "charging enabled by
+  default." FW must only drive GPIO2 high (pause charge) *after* boot.
+- **GPIO12 (MTDI)** — sets flash voltage at reset. It **must be low** (→ 3.3 V); `R26` is the 1.8 V
+  pull-up and is **DNP by design**. HW: never populate `R26`. FW/bench: an attached JTAG debugger can
+  drive TDI high across reset and select 1.8 V, bricking boot — either detach during power-up or burn
+  the `XPD_SDIO_*` eFuses to force 3.3 V (irreversible).
+- **GPIO15 (MTDO)** must be high at reset (internal PU handles it); leave it undriven at boot.
+- **GPIO5 (AUDIO_SW)** samples high at reset (SDIO-timing strap, irrelevant here). Consequence: the
+  audio switch defaults to **TX** at boot. Harmless (no audio yet); FW drives it **low = RX** on init.
+  The only HW rule: **do not tie an external pull to GPIO5**, or it fights the strap.
+- General FW rule: every strapping pin used as an output must be left as an input (Hi-Z) through reset
+  and only driven once the app starts — external pulls (or the internal strap pull) set the boot state.
 
 **Safety.** Charging is inhibited outside the cell's temperature window in hardware via the NTC on
 `TS` — not in firmware. Cell is removable; device is not stored in the vehicle.
@@ -552,11 +592,12 @@ Hardware choices that constrain firmware, or vice versa.
 | **Pairing persistence** | Bluedroid writes bonding keys to **NVS in flash** automatically. Survives power-off with no battery. Requires an initialised NVS partition. |
 | **MCLK pin** | ESP32 can emit MCLK only on GPIO0/1/3. GPIO1/3 are the UART, so **GPIO0** — which is also the BOOT strapping pin. Safe: the codec's MCLK input is high-Z at reset. |
 | **ADC** | Use **ADC1 only** (battery sense). ADC2 is unusable while the radio is active. GPIO32–39 free. |
-| **Flash mode** | Configure **DIO**. QIO requires IO2/IO3 correct — fixed in Rev B, but DIO is the safe default. |
+| **Flash mode** | Either works: IO2/IO3 uncrossed on the schematic 2026-08-31 (delta #4 applied), so QIO is now safe. DIO remains a fine default. |
 | **JTAG + GPIO12** | MTDI is the VDD_SDIO strapping pin. A debugger driving TDI high across reset selects 1.8 V and the 3.3 V flash fails. Fix: burn `XPD_SDIO_*` eFuses to force 3.3 V. **Irreversible.** |
 | **Codec I²C address** | 0x20 (`CE` low). ESP-ADF's ES8388 driver default. |
 | **I²S full duplex** | Required for HFP. Configure both TX and RX channels. |
-| **TX/RX switch** | One GPIO selects the audio path. Firmware must track mode. |
+| **TX/RX switch** | `AUDIO_SW` (GPIO5) drives both TS5A23159 control inputs (IN1+IN2 tied — the two switches are the L/R channels of one select). **LOW = RX** (jack ← LOUT1/ROUT1), **HIGH = TX** (jack → LIN2/RIN2). GPIO5 is a strapping pin: boot default is HIGH (=TX); FW must set LOW for playback on init. |
+| **Charge enable** | `CHARGE_EN` (GPIO2) → charger `/CE`, active-low. `R32` holds it low = charging enabled at boot; FW drives HIGH to pause charging. GPIO2 is a strapping pin (must be low at boot) — the pulldown satisfies both. A reset re-enables charging (fail-safe); the NTC still guards temperature regardless. |
 | **Deep sleep** | If used for battery standby, populate the CAP2 RC network. |
 | **Charger limit sequencing** | Boot default is USB500 (§3.2). Firmware may raise to ILIM mode only after confirming a ≥1.5 A source. Drive `EN1` open-drain; leave both pins alone when `/PGOOD` is high-Z. |
 | **CC read** | `USB_CC1`/`USB_CC2` on **ADC1**. Read both, take the one in a valid band. An A-to-C cable always reports Default USB — do not treat that as a fault. |
@@ -595,10 +636,37 @@ measurement; RF match tuning; BOM line consolidation.
 **Accepted risks:** CC pins carry no ESD protection (§3.4) — decided 2026-08-30, not mitigated in
 Rev B.
 
-**Not yet on the schematic** (§3 describes the target): the
-`EN1`/`EN2`/`/PGOOD`/`/CHG`/`BAT_ADC`/`USB_CC*`/`USB_VBUS_SENSE` global labels have no counterparts on
-the micro sheet yet; the CH340K load switch is not drawn; and `+3V3_SYS` is still a separate net from
-the micro sheet's `+3V3`. The power sheet itself is otherwise complete.
+**Micro-sheet status** (§3 describes the target). Tracking the 2026-08-31 micro-sheet review
+([`design-review-micro.md`](design-review-micro.md)) and the fixes applied since.
+
+*Applied on the schematic (verified against netlist 2026-08-31):*
+- ✅ **UART TX/RX crossover fixed** — `UART_RX` = {ESP32 U0RXD, CH340 TXD}, `UART_TX` = {U0TXD, CH340
+  RXD}. Board can now be flashed. (was S1)
+- ✅ **Flash IO2/IO3 uncrossed** — SPIWP(GPIO9)→IO2, SPIHD(GPIO10)→IO3. QIO-safe now. (delta #4, was S1)
+- ✅ **Digital rail unified** — micro `+3V3` renamed to `+3V3_SYS`, tied to the LDO A output (U7.5).
+  The stray `+3V3` symbol on the ESP32 `EN` pull-up (R11) was also switched to `+3V3_SYS`, so `EN`
+  is no longer floating.
+- ✅ **CH340K load switch drawn** (delta #16) — `Q2` AO3401A (SOT-23, LCSC C15127) high-side P-FET:
+  source `+3V3_SYS` → drain `CH340_VCC` → CH340 VCC/V3 + C19. Gate `CH340_EN` on **GPIO21**, with
+  `R40` 100 kΩ **pull-down = default-ON** (so the ROM bootloader is powered for flashing with no
+  firmware). Firmware drives GPIO21 **high to disable** the bridge on battery. Note: when off, the
+  bridge's UART/DTR/RTS pins can still back-feed its dead VCC through clamp diodes — tristate the
+  ESP32 UART pins when disabling, or accept the small leakage.
+
+- ✅ **Full ESP32 interface wired** (§3.8) — `EN1`/`EN2`/`/PGOOD`/`/CHG`/`BAT_ADC`/`USB_CC1`/`USB_CC2`/
+  `USB_VBUS_SENSE`/`AUDIO_VCC_EN`/`CHARGE_EN` all land on GPIOs; all four analog senses on ADC1. The
+  TX/RX switch (`AUDIO_SW`, GPIO5) drives both TS5A23159 control inputs (delta #9 now controllable).
+  Charge enable (`CHARGE_EN`, GPIO2) is now firmware-controllable.
+
+*Still to do on the micro sheet:*
+- **Crystal load caps still 18 pF** (delta #12 not applied; target ~15 pF then trim).
+- **Firmware LEDs D1/D3 still 1 kΩ** (delta #7 hit the power LEDs only; blue ≈ 0.3 mA, invisible).
+- **`GPIO33` spare** — fit a no-connect flag so it doesn't ERC.
+- **Schematic hygiene:** stale library-symbol caches, off-grid endpoints, annotation errors — ERC
+  cleanup due.
+
+**Rev A→B deltas still unapplied:** #7 (LED resistors — micro sheet only), #12 (crystal caps).
+Deltas #4, #9, #13–16 are now on the schematic.
 
 ---
 
@@ -625,6 +693,7 @@ exposed pad.
 - ESP32 datasheet · ESP32 Hardware Design Guidelines · ESP32 Technical Reference Manual
 - ES8388 datasheet rev 5.0 · ES8388 User Guide
 - W25Q32JV datasheet rev G
+- WCH CH340 datasheet v3B (`WCH-CH340-datasheet-v3B.pdf`) — TXD=output, RXD=input; V3→VCC at 3.3 V
 - ESP32-LyraT v4.3 schematic — reference design for the codec section
 - AN043 2.4 GHz PCB Antenna · Antennas for IoT
 
@@ -637,7 +706,8 @@ exposed pad.
 **Project**
 
 - [`requirements-design.md`](requirements-design.md) — requirements, constraints, traceability
-- [`design-review-v1.md`](design-review-v1.md) — netlist audit and findings
+- [`design-review-v1.md`](design-review-v1.md) — netlist audit and findings (initial)
+- [`design-review-micro.md`](design-review-micro.md) — micro-sheet review, 2026-08-31
 - [`battery-power-proposal.md`](battery-power-proposal.md) — battery architecture
 - [`mems-microphone-primer.md`](mems-microphone-primer.md) — mic theory and selection
 
@@ -651,3 +721,6 @@ exposed pad.
 | B | 2026-08-24 | This document created. Scope decisions resolved; 12 deltas in §10 |
 | B | 2026-08-30 | §3 expanded to cover the full charger configuration: power-path loops, EN1/EN2 strapping, charge programming, source detection, safety timers, TS qualification, SoC and GPIO map. Deltas 13–16 |
 | B | 2026-08-30 | Power sheet complete: `R_ITERM`/`R_TMR` populated, LEDs to 330 Ω, ADC anti-droop caps and VBUS sense divider added. CC ESD recorded as an accepted risk |
+| B | 2026-08-31 | Micro-sheet review ([`design-review-micro.md`](design-review-micro.md)): found UART TX/RX swap (S1) and confirmed flash IO2/IO3 still crossed; corrected the §9 "flash fixed" claim and the §3.8 GPIO map (added TX/RX switch, fixed the free-output count); expanded §10 with the undrawn micro↔power interface and unapplied deltas |
+| B | 2026-08-31 | Micro-sheet fixes landed: UART crossover, flash IO2/IO3, rail unified to `+3V3_SYS` (EN pull-up reconnected), and CH340K high-side load switch drawn (Q2 AO3401A + R40 100 kΩ pull-down, gate `CH340_EN` on GPIO21, default-ON). Netlist-verified. Remaining: interface wiring to ESP32, TX/RX switch GPIO, crystal caps, D1/D3 resistors |
+| B | 2026-08-31 | Full ESP32 GPIO map committed (§3.8) with strapping-pin FW/HW implications: interface signals wired to the ESP32 (EN1/EN2, /PGOOD, /CHG, ADC senses, AUDIO_VCC_EN, CHARGE_EN→GPIO2), `AUDIO_SW`→GPIO5 driving both TS5A23159 inputs (LOW=RX, HIGH=TX). Verified TS5A23159 pinout against TI datasheet — COM=jack/NC=codec-out/NO=codec-in, both channels symmetric (a prior review note claiming asymmetry was wrong, now withdrawn). Remaining: crystal caps, D1/D3 resistors, GPIO33 NC flag, ERC hygiene |
