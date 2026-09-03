@@ -1,83 +1,88 @@
 #!/bin/sh
 #
 # Keep the design overview's date stamp honest and its PDF snapshot in step with the
-# markdown, in the same commit.
+# LaTeX source, in the same commit.
 #
-# Runs only when the design overview itself is staged, so ordinary commits pay nothing.
+# Runs only when docs/design-overview.tex is staged, so ordinary commits pay nothing.
 #
-#   git config hooks.designpdf false     disable without deleting the hook
-#   git config hooks.designpdf.snapshot true   also keep a dated copy under docs/snapshots/
+#   git config hooks.designpdf false            disable without deleting the hook
+#   git config hooks.designpdf.snapshot true    also keep a dated copy under docs/snapshots/
 #
+# Renders with Tectonic (XeTeX). Looked up on PATH, then %LOCALAPPDATA%\Programs\Tectonic.
 # Installed by setting core.hooksPath to this directory, so the hook is version
-# controlled and every clone gets it. See docs/ or the repo README.
+# controlled and every clone gets it. See the README.
 
 set -e
 
-DOC="docs/design-overview.md"
+DOC="docs/design-overview.tex"
 PDF="docs/design-overview.pdf"
-RENDERER=".githooks/md_to_pdf.py"
 
 if [ "$(git config --bool hooks.designpdf || echo true)" = "false" ]; then
     exit 0
 fi
 
-# Nothing to do unless this commit actually touches the overview.
+# Nothing to do unless this commit actually touches the overview source.
 git diff --cached --name-only --diff-filter=ACM | grep -qx "$DOC" || exit 0
 
 cd "$(git rev-parse --show-toplevel)"
-[ -f "$RENDERER" ] || { echo "pre-commit: $RENDERER missing; skipping PDF." >&2; exit 0; }
 
+TODAY=$(date +%Y-%m-%d)
+
+# --- Stamp the \docdate{...} line (best-effort; needs python) ---------------------
+# Only that one field is touched -- the revision letter is a human decision.
 PYTHON=""
 for candidate in python3 python py; do
     if command -v "$candidate" >/dev/null 2>&1; then
         # `py` is the Windows launcher and needs a version flag; the others are used as-is.
-        if [ "$candidate" = "py" ]; then
-            PYTHON="py -3"
-        else
-            PYTHON="$candidate"
-        fi
+        if [ "$candidate" = "py" ]; then PYTHON="py -3"; else PYTHON="$candidate"; fi
         break
     fi
 done
-[ -n "$PYTHON" ] || { echo "pre-commit: no python found; skipping PDF." >&2; exit 0; }
-
-TODAY=$(date +%Y-%m-%d)
-
-# Refresh the "Updated <date>" field in the document's stamp line. Only that one field
-# is touched -- the revision letter is a human decision, not something a hook should
-# guess at.
-$PYTHON - "$DOC" "$TODAY" <<'PY'
+if [ -n "$PYTHON" ]; then
+    $PYTHON - "$DOC" "$TODAY" <<'PY'
 import re, sys
 path, today = sys.argv[1], sys.argv[2]
 with open(path, encoding="utf-8") as fh:
     text = fh.read()
 new, n = re.subn(
-    r"(?m)^(\*\*Rev .*?· Updated )\d{4}-\d{2}-\d{2}",
-    lambda m: m.group(1) + today,
-    text,
-    count=1,
+    r"(\\newcommand\{\\docdate\}\{)\d{4}-\d{2}-\d{2}(\})",
+    lambda m: m.group(1) + today + m.group(2),
+    text, count=1,
 )
 if n and new != text:
     with open(path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(new)
     print(f"pre-commit: stamped {path} as updated {today}")
 elif not n:
-    print(f"pre-commit: no '** Rev ... - Updated <date>' stamp line in {path}; left alone")
+    print(f"pre-commit: no \\docdate stamp in {path}; left alone")
 PY
+else
+    echo "pre-commit: no python found; skipping date stamp." >&2
+fi
 
-# The PDF is rendered from the staged content, which is what the commit will contain.
-# `git branch --show-current` rather than `rev-parse --abbrev-ref HEAD`: the latter
-# fails on an unborn branch, which is exactly the state of the very first commit, and
-# `set -e` would then reject that commit.
-BRANCH=$(git branch --show-current 2>/dev/null || true)
-STAMP="Snapshot of $DOC · $TODAY · branch ${BRANCH:-(detached)}"
-$PYTHON "$RENDERER" "$DOC" -o "$PDF" --stamp "$STAMP" || {
-    echo "pre-commit: PDF render failed. Commit continues; the PDF is now stale." >&2
+# --- Locate Tectonic --------------------------------------------------------------
+TECTONIC=""
+if command -v tectonic >/dev/null 2>&1; then
+    TECTONIC="tectonic"
+elif command -v cygpath >/dev/null 2>&1 \
+     && [ -x "$(cygpath -u "$LOCALAPPDATA")/Programs/Tectonic/tectonic.exe" ]; then
+    TECTONIC="$(cygpath -u "$LOCALAPPDATA")/Programs/Tectonic/tectonic.exe"
+fi
+if [ -z "$TECTONIC" ]; then
+    echo "pre-commit: tectonic not found; committing .tex without refreshing the PDF (now stale)." >&2
     git add "$DOC"
     exit 0
-}
+fi
 
-git add "$DOC" "$PDF"
+# --- Render (Tectonic is self-contained: no aux-file clutter left behind) ----------
+if "$TECTONIC" -X compile "$DOC" --outdir docs >/dev/null 2>&1; then
+    git add "$DOC" "$PDF"
+    echo "pre-commit: rendered $PDF with tectonic"
+else
+    echo "pre-commit: tectonic render failed. Commit continues; the PDF is now stale." >&2
+    git add "$DOC"
+    exit 0
+fi
 
 if [ "$(git config --bool hooks.designpdf.snapshot || echo false)" = "true" ]; then
     mkdir -p docs/snapshots

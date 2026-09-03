@@ -15,7 +15,7 @@ DONE (2026-08-31, netlist-verified):
       (default-ON so flashing works), gate CH340_EN on GPIO21. Firmware drives GPIO21 HIGH to disable.
 
 DONE (2026-08-31, cont.):
-  [x] Full ESP32 GPIO map committed (see design-overview.md 3.8). Interface wired: EN1->16, EN2->17,
+  [x] Full ESP32 GPIO map committed (see design-overview.tex 3.8). Interface wired: EN1->16, EN2->17,
       AUDIO_VCC_EN->4, AUDIO_SW->5, CH340_EN->21, CHARGE_EN->2, /PGOOD->38, /CHG->32, BAT_ADC->34,
       USB_CC1->36, USB_CC2->37, USB_VBUS_SENSE->39. All analog on ADC1. GPIO33 = spare.
   [x] TX/RX audio switch: AUDIO_SW (GPIO5) drives both TS5A23159 inputs. LOW=RX, HIGH=TX.
@@ -31,7 +31,7 @@ FIX BEFORE LAYOUT (still open):
        also fix the ~22 dangling power-interface global labels once they are wired to the ESP32
 
 DECISIONS:
-  Confirm final GPIO map incl. the TX/RX switch (see design-overview.md §3.8) so FW + schematic agree
+  Confirm final GPIO map incl. the TX/RX switch (see design-overview.tex §3.8) so FW + schematic agree
   Standardise rail naming: adopt schematic +V_SYS / +3V3_SYS / +3V3_AUDIO, rename doc's 3V3_A/3V3_B
 
 CHEAP WINS:

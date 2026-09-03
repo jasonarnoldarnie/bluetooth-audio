@@ -12,6 +12,14 @@
 # Lock files written while a project is open.
 *.lck
 
+# --- LaTeX --------------------------------------------------------------------
+# Tectonic renders docs/design-overview.pdf from the .tex; intermediates are transient.
+docs/*.log
+docs/*.aux
+docs/*.out
+docs/*.toc
+docs/*.synctex.gz
+
 # --- Tooling ------------------------------------------------------------------
 # VS Code "Local History" extension.
 .history/

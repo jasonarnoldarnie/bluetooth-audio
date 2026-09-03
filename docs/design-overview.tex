@@ -1,0 +1,913 @@
+% Bluetooth Audio Adaptor — Design Overview
+% Rendered with Tectonic (XeTeX).  Build:  tectonic design-overview.tex
+% The "Updated" date on the stamp line below is refreshed by the pre-commit hook.
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{fontspec}
+% Latin Modern is served from Tectonic's bundle by filename (by-name lookup is unreliable here).
+\setmainfont{lmroman10-regular.otf}[
+  BoldFont       = lmroman10-bold.otf,
+  ItalicFont     = lmroman10-italic.otf,
+  BoldItalicFont = lmroman10-bolditalic.otf,
+]
+% Consolas is a Windows system font, resolved by name; it has the box-drawing glyphs the
+% ASCII diagrams need (Latin Modern Mono does not).
+\setmonofont{Consolas}[Scale=0.85]
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fancyvrb}
+\usepackage{newunicodechar}
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+\usepackage{underscore} % must load late: lets SIGNAL_NAMEs be typed with a literal _
+
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\fvset{fontsize=\footnotesize}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% --- Unicode glyphs used in prose/tables (verbatim blocks bypass these) ----------
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≤}{\ensuremath{\le}}
+\newunicodechar{≥}{\ensuremath{\ge}}
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{←}{\ensuremath{\leftarrow}}
+\newunicodechar{↔}{\ensuremath{\leftrightarrow}}
+\newunicodechar{×}{\ensuremath{\times}}
+\newunicodechar{−}{\ensuremath{-}}
+\newunicodechar{±}{\ensuremath{\pm}}
+\newunicodechar{·}{\textperiodcentered}
+\newunicodechar{°}{\textdegree}
+\newunicodechar{µ}{\textmu}
+\newunicodechar{μ}{\textmu}
+\newunicodechar{Ω}{\ensuremath{\Omega}}
+\newunicodechar{Ω}{\ensuremath{\Omega}} % U+2126 ohm sign
+\newunicodechar{θ}{\ensuremath{\theta}}
+\newunicodechar{Δ}{\ensuremath{\Delta}}
+\newunicodechar{τ}{\ensuremath{\tau}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{‖}{\ensuremath{\|}}
+\newunicodechar{∥}{\ensuremath{\|}}
+\newunicodechar{✓}{\ensuremath{\checkmark}}
+\newunicodechar{✅}{\ensuremath{\checkmark}}
+\newunicodechar{⁴}{\textsuperscript{4}}
+\newunicodechar{✗}{\ensuremath{\times}}
+
+% Callout box for notes / accepted risks
+\newenvironment{callout}
+  {\par\medskip\noindent\begin{minipage}{\linewidth}\color{black}%
+   \setlength{\parskip}{4pt}\leftskip=1.5em \rightskip=1em\relax}
+  {\end{minipage}\par\medskip}
+
+% Document stamp (hook updates the date)
+\newcommand{\docrev}{Rev B (in design)}
+\newcommand{\docdate}{2026-09-03}
+\newcommand{\docauthor}{Jason}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries Bluetooth Audio Adaptor — Design Overview}\\[6pt]
+  {\large\textbf{\docrev} · Updated \docdate\ · \docauthor}
+\end{center}
+
+Describes the \textbf{target design}. Deltas from as-built Rev~A are listed in §10.
+
+\begin{callout}
+Living document. Every confirmed design change lands here. Planning, open questions and review
+findings live in \texttt{requirements-design.md} and \texttt{design-review-v1.md} — not here.
+\end{callout}
+
+\hrule
+\section{Function}
+
+Bluetooth audio adaptor for a car AUX input. Powered from USB-C or an internal Li-ion cell.
+
+\begin{tabularx}{\linewidth}{@{}l X l@{}}
+\toprule
+\textbf{Mode} & \textbf{Path} & \textbf{Status} \\
+\midrule
+\textbf{RX} (primary) & Phone → Bluetooth A2DP → codec DAC → 3.5 mm out & Rev A hardware complete \\
+\textbf{TX}           & 3.5 mm in → codec ADC → Bluetooth → headphones/speaker & Rev B addition \\
+\textbf{HFP} handsfree & On-board mic → codec ADC → BT; BT → DAC → jack & Rev B addition \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Key constraint:} must work with all phones, not just recent ones → \textbf{Bluetooth Classic
+(A2DP/HFP), not BLE Audio}. This single requirement determines the MCU (§5).
+
+\textbf{Out of scope:} amplified speaker output, multipoint pairing, app control.
+
+\section{Architecture}
+
+\textbf{Power tree}
+
+\begin{Verbatim}
+                      ┌──────────────────┐
+                      │  Li-ion cell     │──── NTC ──► TS   temperature qualification
+                      │  + 10 k NTC      │
+                      └────────▲─────────┘
+                               │ BAT ──[100k]──┬── BAT_ADC ──► ADC1
+                               │               └──[100k]── GND
+  USB-C ── VBUS 5 V ──► ┌──────┴───────┐
+    ├─ USBLC6 (ESD)     │   BQ24074    │  power path · DPPM
+    ├─ CC1/CC2 ──► ADC1 │   charger    │  SYS clamped ≤ 4.4 V
+    └─ C47 10 µF        └──┬───────┬───┘
+                           │       ├── EN1 / EN2  ◄── GPIO   input-limit select
+       ILIM ISET ──────────┘       ├── /PGOOD, /CHG ──► GPIO
+       ITERM TMR                   │
+                               SYS │ 3.0 – 4.4 V
+                     ┌─────────┴─────────┐
+                     ▼                   ▼
+              ┌─────────────┐     ┌─────────────┐
+              │   LDO A     │     │   LDO B     │
+              │  AP7361C    │     │  LP5907     │
+              │  SOT-89 1 A │     │  low noise  │
+              └──────┬──────┘     └──────┬──────┘
+                     │ 3V3_A             │ 3V3_B
+                     │                   │
+         ESP32 · flash · CH340K       ES8388 · MEMS mic
+              · LEDs  (280 mA pk)          (20 mA)
+\end{Verbatim}
+
+\textbf{Signal chain}
+
+\begin{Verbatim}
+   40 MHz XTAL ──┐        ┌── W25Q32JV 4 MB flash
+                 │        │
+   PCB antenna   │        │ SPI          USB-C ── USBLC6 ── CH340K
+   + C-L-C match─┤        │                                    │
+                 ▼        ▼                                    │ UART
+              ┌──────────────────────────┐                     │ + DTR/RTS
+              │     ESP32-D0WD-V3        │◄────────────────────┘
+              │  BT Classic + BLE        │
+              └──────┬────────────┬──────┘
+                 I2C │        I2S │  (MCLK/SCLK/LRCK/DSDIN/ASDOUT)
+                     ▼            ▼
+              ┌──────────────────────────┐
+              │   ES8388 stereo codec    │
+              └───▲──────────┬───────▲───┘
+        LIN1/RIN1 │  LOUT1/  │       │ LIN2/RIN2
+                  │  ROUT1   ▼       │
+                  │      ┌───────────┴───────┐
+                  │      │  TS5A23159 SPDT   │  TX / RX select
+                  │      └─────────┬─────────┘
+                  │                │ 1 µF AC coupling
+                  │                ▼
+          on-board MEMS mic   3.5 mm TRS jack
+          (differential pair)
+\end{Verbatim}
+
+\textbf{Rails}
+
+\begin{tabularx}{\linewidth}{@{}l l X X@{}}
+\toprule
+\textbf{Rail} & \textbf{Source} & \textbf{Loads} & \textbf{Why separate} \\
+\midrule
+SYS 3.0–4.4 V & BQ24074 & Both LDOs & Power path: USB when present, battery when not \\
+3V3_A & LDO A & ESP32, flash, CH340K, LEDs & Carries RF current bursts \\
+3V3_B & LDO B (LP5907) & ES8388, mic & Isolates a 96 dB codec from those bursts \\
+\bottomrule
+\end{tabularx}
+
+\section{Power subsystem}
+
+Linear regulation throughout. A switching converter was rejected: this is a mixed-signal audio
+board and the efficiency gain does not pay for the noise.
+
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\toprule
+\textbf{Part} & \textbf{Function} & \textbf{Key spec} \\
+\midrule
+\textbf{BQ24074RGTR} (C54313) & Power-path charger & 1.5 A, SYS clamped ≤4.4 V, DPPM, NTC input, 10.5 V OVP \\
+\textbf{AP7361C-33Y5-13} (C460397) & LDO A — digital/RF & SOT-89-5, 1 A, ultra-low dropout \\
+\textbf{LP5907MFX-3.3} (C80670) & LDO B — codec analog & 6.5 µV\textsubscript{RMS}, high PSRR, no bypass cap needed \\
+\textbf{USBLC6-2SC6} & USB ESD & In-line on D+/D−; its \texttt{VBUS} pin stays at the connector, upstream of the charger \\
+Li-ion cell + 10 k NTC & Energy & Removable. NTC bonded to cell, not PCB \\
+\bottomrule
+\end{tabularx}
+
+\textbf{VBUS reaches exactly three things:} the ESD array, the charger's \texttt{IN} pin, and
+\texttt{C47}. Every other load in the system hangs off \texttt{SYS}, including both LDOs. That is what
+makes the board behave identically on USB and on battery.
+
+\subsection{Power path — the five loops}
+
+In priority order. The system load always outranks the battery.
+
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\toprule
+\textbf{Loop} & \textbf{Trips at} & \textbf{Behaviour} \\
+\midrule
+Input current limit & \texttt{EN1}/\texttt{EN2} + \texttt{R_ILIM} & Hard ceiling on total current into \texttt{IN}. Everything else lives inside this budget \\
+VIN-DPM & V\textsubscript{IN} falls to 4.5 V & Reduces input current so a weak source cannot be crashed. \textbf{Active only in USB100/USB500 modes} \\
+DPPM & V\textsubscript{SYS} falls to V\textsubscript{O(REG)} − 100 mV ≈ 4.3 V & Cuts \textit{charge} current to hold SYS up. Charge termination is disabled while active \\
+Battery supplement & V\textsubscript{SYS} < V\textsubscript{BAT} − 40 mV & Charge current already zero and the load still exceeds the input limit — BATFET turns fully on and the cell supplements. Exits above V\textsubscript{BAT} − 20 mV \\
+Thermal regulation & T\textsubscript{J} ≥ 125 °C & Folds back charge current regardless of the above \\
+\bottomrule
+\end{tabularx}
+
+The last three slow the safety timers \textbf{in proportion to the charge-current reduction}. A
+deliberately low \texttt{R_ISET} gets no such slowdown — the timer would run at full speed while the
+cell trickled. This is why \texttt{R_ISET} is set \textit{above} anything the input can deliver, and
+DPPM is left to mediate (§3.3).
+
+\subsection{Input current limit — mode strapping}
+
+\texttt{EN2}/\texttt{EN1} select the limit. Datasheet Table 7-2 orders the columns EN2, EN1:
+
+\begin{tabularx}{\linewidth}{@{}c c l X@{}}
+\toprule
+\textbf{EN2} & \textbf{EN1} & \textbf{Limit} & \textbf{When} \\
+\midrule
+0 & \textbf{1} & \textbf{475 mA (USB500)} & \textbf{Power-on default} — and any unknown or default-USB source \\
+1 & 0 & 1.073 A (\texttt{R_ILIM}) & Firmware has confirmed a ≥1.5 A source (§3.4) \\
+0 & 0 & 95 mA (USB100) & Strict compliance on an un-enumerated host port \\
+1 & 1 & — & Standby / USB suspend \\
+\bottomrule
+\end{tabularx}
+
+\textbf{The default must be USB500, not USB100.} Both pins floating gives USB100 through the chip's
+285 kΩ internal pulldowns, and 100 mA cannot run a 171 mA system: with a flat cell the board would
+brown out before firmware ran and could never raise the limit. USB500 boots the system, matches what
+a PC port allows after enumeration, and is a mode that has VIN-DPM behind it.
+
+\begin{Verbatim}
+   SYS ──[R30 100k]──┬── EN1 ──► GPIO (drive open-drain)     default HIGH (3.26 V)
+                     │
+                (285k internal pulldown)
+
+   GND ──[R31 100k]──┴── EN2 ──► GPIO (push-pull)            default LOW
+\end{Verbatim}
+
+\textbf{100 kΩ, not 0 Ω} — the GPIO must be able to override the resistor. Against the internal
+285 kΩ, EN1 sits at 4.4 × 285/385 = 3.26 V, comfortably over the 1.4 V V\textsubscript{IH}.
+
+\textbf{Pull up to \texttt{SYS}, not \texttt{3V3_A}} — \texttt{3V3_A} does not exist until the system
+has booted, and the whole point of the default is to be defined before that. \texttt{SYS} is present
+whenever either source is, and at 4.4 V max sits inside the EN pin's 1.4–6 V window (7 V absolute
+max).
+
+Drive \texttt{EN1} open-drain: the pull-up is to 4.4 V and the GPIO drives 3.3 V. Leave both pins
+alone whenever \texttt{/PGOOD} is high-Z — the EN inputs are ignored in power-down mode, and driving
+EN1 low would only burn cell current through R30.
+
+\subsection{Charge programming}
+
+\begin{tabularx}{\linewidth}{@{}l l X l@{}}
+\toprule
+\textbf{Resistor} & \textbf{Value} & \textbf{Formula} & \textbf{Result} \\
+\midrule
+\texttt{R_ISET} & 1.2 kΩ \textbf{1 \%} & I\textsubscript{CHG} = K\textsubscript{ISET}/R, K = 890 & \textbf{742 mA} (664–812 over spread) \\
+\texttt{R_ILIM} & 1.5 kΩ & I\textsubscript{IN(max)} = K\textsubscript{ILIM}/R, K = 1610 & \textbf{1.073 A} \\
+\texttt{R_ITERM} & 3.0 kΩ & I\textsubscript{TERM} = 0.03 × R\textsubscript{ITERM}/R\textsubscript{ISET} & \textbf{75 mA} (≈C/27 on a 2000 mAh cell) \\
+\texttt{R_TMR} & 56 kΩ & t\textsubscript{MAXCHG} = 10 × K\textsubscript{TMR} × R, K = 48 s/kΩ & \textbf{7.5 h} (5.6 h worst case) \\
+\bottomrule
+\end{tabularx}
+
+Pre-charge falls out of the same ISET resistor: K\textsubscript{PRECHG}/R\textsubscript{ISET} =
+88/1200 = \textbf{73 mA}, the conventional 10 \% of fast charge.
+
+742 mA is 0.37C on a 2000 mAh cell and 0.25C on a 3000 mAh one — safe for either, so this resistor
+does not depend on the cell decision. Use 1 \% on \texttt{R_ISET}: TI calls this out specifically to
+avoid tripping the internal RISET short-circuit test.
+
+\textbf{\texttt{ILIM} must never be left open — an open \texttt{ILIM} pin disables all charging.}
+Worth an explicit bring-up check.
+
+\texttt{R_NTC_LIN} is fitted \textbf{DNP} by design: it stands in for the pack NTC if a cell without
+one is used, or can be replaced by a high-value linearising resistor. It must not be populated
+alongside a real NTC — see §3.6.
+
+\subsection{Source capability detection}
+
+The default is USB500, so detection only ever has to answer one question: \textbf{is this a ≥1.5 A
+charger?} Everything else falls back safely.
+
+\textbf{CC sensing (C-to-C only).} \texttt{R36}/\texttt{R37} tap CC1/CC2 through 1 kΩ into ADC1. With
+Rd = 5.1 kΩ:
+
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\toprule
+\textbf{Source Rp} & \textbf{V\textsubscript{CC}} & \textbf{Advertised} \\
+\midrule
+56 kΩ & 0.42 V & Default USB \\
+22 kΩ & 0.94 V & 1.5 A \\
+10 kΩ & 1.69 V & 3.0 A \\
+\bottomrule
+\end{tabularx}
+
+Thresholds: >0.2 V attached, >0.66 V ≥ 1.5 A, >1.23 V = 3.0 A. Read \textbf{both} pins — only one
+carries the Rp, the other is open or is VCONN, and the pair also gives plug orientation. \textbf{No
+filter capacitor on the CC nodes:} the spec caps sink CC capacitance at ≈200 pF. Multisample in
+software instead. Re-read periodically; a source may change its advertisement at any time.
+
+\textbf{The limitation that shapes the architecture:} a USB-A-to-C cable is \textit{required} by the
+spec to contain a 56 kΩ Rp, so CC always reports Default USB no matter how large the charger behind
+it. For the expected majority case — an A-to-C cable — CC sensing tells you nothing.
+
+\textbf{BC1.2 (not fitted).} The only mechanism that unlocks a USB-A wall charger, by detecting that
+D+ is shorted to D− through ≤200 Ω (a Dedicated Charging Port). Needs a detector IC — BQ24392 or
+MAX14636 — whose integrated D+/D− isolation switch also solves the problem that the CH340K sits on
+that bus. Deferred; the EN1/EN2 GPIO control above is what keeps it a firmware-plus-one-IC change
+rather than a respin.
+
+\textbf{Guard rail.} ILIM mode has no VIN-DPM, so a wrong detection has no graceful foldback.
+\texttt{R38}/\texttt{R39} (100 k / 47 k) divide VBUS to \texttt{USB_VBUS_SENSE} — 5.0 V → 1.60 V,
+5.5 V → 1.76 V — with \texttt{C53} 100 nF at the tap. Firmware reverts to USB500 if VBUS sags below
+≈4.5 V. The divider only draws (34 µA) when USB is present, so it costs nothing on battery.
+
+100 nF rather than the 1 µF used on \texttt{BAT_ADC}: this is a protection function with a deadline.
+Against the divider's 32 kΩ Thévenin impedance it gives τ = 3.2 ms, so a 100 ms poll sees a collapse
+≈30 τ after it happens. A larger cap would average over a third of the reaction window.
+
+\textbf{Do not} probe adaptively — stepping up to ILIM mode and watching what happens. Without
+VIN-DPM the failure mode is a brownout, not a graceful foldback.
+
+\begin{callout}
+\textbf{Accepted risk — CC pins have no ESD protection.} The USBLC6 covers D+/D− and VBUS only. CC1
+and CC2 are exposed contacts in the receptacle and are directly touchable, so IEC 61000-4-2 contact
+discharge is a live threat. The 1 kΩ series resistors (\texttt{R36}/\texttt{R37}) protect the ADC
+pins but not \texttt{R4}/\texttt{R5} or the connector node itself. They also bound a VBUS-to-CC
+short — which the USB-C spec requires sinks to survive — to (5 − 3.6)/1 k ≈ 1.4 mA of clamp injection
+at the ESP32, which the pin tolerates; a faulty 20 V source would push 16 mA, which it does not.
+
+\textbf{Decision (2026-08-30): not mitigated in Rev B.} The fix, if it is ever wanted, is a
+low-capacitance TVS array on CC1/CC2 placed at the connector ahead of \texttt{R36}/\texttt{R37} —
+sub-pF against the ≈200 pF sink CC budget, and low leakage so it does not corrupt the resistive
+advertisement. TPD4E05U06 is the obvious candidate. Revisit if field units show USB-C detection
+failures.
+\end{callout}
+
+\subsection{Safety timers}
+
+\texttt{R_TMR} = 56 kΩ gives a 7.5 h fast-charge timer (5.6 h worst case) and a 45 min pre-charge
+timer. Leaving \texttt{TMR} floating selects the internal default of 5 h typ / 4 h min; grounding it
+disables the timers entirely.
+
+The timer must outlast the slowest legitimate charge. Worst case is a 3000 mAh cell charging in
+USB500 mode while playing: ≈304 mA of charge current against 742 mA programmed is a 0.41 reduction,
+so the 5.6 h timer counts at 0.41× and covers 13.7 h of wall clock against an 8.9 h charge.
+
+On expiry the part latches a fault and \textbf{\texttt{/CHG} flashes at ≈2 Hz}. Firmware should
+decode that — it is also how a TS fault surfaces, and it is otherwise invisible.
+
+\subsection{Battery temperature qualification}
+
+Mandatory in hardware, not firmware. \texttt{TS} sources 75 µA into the pack thermistor and compares:
+
+\begin{Verbatim}
+V_HOT  = 300 mV   →  R_TS ≤ 4.0 kΩ   →  too hot    (≈50 °C on a 10 k 103AT-2)
+V_COLD = 2100 mV  →  R_TS ≥ 28 kΩ    →  too cold   (≈ 0 °C)
+\end{Verbatim}
+
+The valid window is therefore \textbf{4.0 kΩ – 28 kΩ}, which a bare 10 k Type-2 NTC maps onto
+0–50 °C with 3 °C hysteresis. Any added network shifts those trip points: a 10 kΩ resistor in
+parallel with the NTC moves the hot trip to ≈33 °C, and a 1 kΩ resistor pins R\textsubscript{TS}
+below 1 kΩ permanently, inhibiting all charging. \textbf{Fit the pack NTC or \texttt{R_NTC_LIN},
+never both.}
+
+\subsection{Status and state of charge}
+
+\texttt{/PGOOD} and \texttt{/CHG} are open-drain, pulled up to \textbf{\texttt{3V3_A}} (not
+\texttt{SYS}) so both nets are clean 3.3 V logic a GPIO can read directly — pulling them to the 4.4 V
+SYS rail would exceed the ESP32's input rating.
+
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\toprule
+\textbf{/PGOOD} & \textbf{/CHG} & \textbf{State} \\
+\midrule
+Hi-Z & Hi-Z & Running on battery \\
+Low & Low & Charging \\
+Low & Hi-Z & Charge complete, or suspended \\
+Low & \textbf{2 Hz flash} & Fault — safety timer expired, or TS out of range \\
+\bottomrule
+\end{tabularx}
+
+\texttt{R28}/\texttt{R29} are 330 Ω, giving ≈2.7 mA per LED at 3.3 V — visible, and inside the 5 mA
+the \texttt{/PGOOD} and \texttt{/CHG} open-drain outputs are specified to sink. Both LEDs are dark on
+battery, since the pins go high-impedance with no input present.
+
+\textbf{State of charge} is voltage-based: \texttt{R34}/\texttt{R35} form a 100 k / 100 k divider
+from \texttt{BAT} to ground, tapped as \texttt{BAT_ADC} (4.2 V → 2.1 V, inside ADC1's usable
+150–2450 mV window at 11 dB attenuation). It costs 21 µA continuously, ≈15 mAh/month — negligible
+against the cell.
+
+\textbf{\texttt{C52} 100 nF at the tap is not optional, and it is not impedance matching.} It does
+two jobs:
+
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{Charge reservoir.} The ESP32's ADC is successive-approximation: closing the sampling
+  switch requires an internal sample-and-hold capacitor of a few pF to charge to the input voltage
+  \textit{through the external source impedance}, in a few microseconds. The divider's Thévenin
+  impedance is 100 k ‖ 100 k = \textbf{50 kΩ}, five times Espressif's <10 kΩ guideline, so without a
+  local cap each conversion drags the node down and the converter digitises the droop. At ≈10⁴ times
+  the S/H capacitance, \texttt{C52} supplies that charge with no measurable sag and refills through
+  the 50 kΩ between samples.
+\item \textbf{Low-pass filter.} f_c = 1/(2π × 50 k × 100 nF) = \textbf{31.8 Hz}, τ = 5 ms.
+  \texttt{BAT_ADC} is a high-impedance trace crossing the board — exactly the node that collects
+  switching and RF noise — and cell voltage moves over minutes, so heavy filtering is free accuracy.
+  Allow ≈25 ms after power-up before trusting a reading.
+\end{itemize}
+
+The alternative was a lower-impedance divider: 10 k / 10 k needs no cap but draws 210 µA from the
+cell permanently instead of 21 µA. The capacitor is the cheaper trade.
+
+Calibrate with \texttt{esp_adc_cal} and the eFuse Vref, and multisample; raw ADC error is ±6 \%,
+which is ±250 mV of cell voltage and useless.
+
+Two limits define what this can deliver. The reading is meaningless while charging — the charger is
+driving V\textsubscript{BAT} toward 4.2 V — so firmware uses the \texttt{/PGOOD}+\texttt{/CHG} state
+instead and snaps to 100 \% on termination. And the Li-ion OCV curve is flat from roughly 20 \% to
+80 \% SoC, so voltage alone gives ±10–15 \% there. \textbf{This is a four-segment gauge and a
+dependable low-battery warning, not a trustworthy percentage.} If a real percentage is ever needed
+over AVRCP, add a MAX17048 to the existing I²C bus.
+
+\subsection{ESP32 GPIO map (committed 2026-08-31, netlist-verified)}
+
+Complete map. The budget is \textbf{full}: one spare (\texttt{GPIO33}). \textbf{S} marks an ESP32
+strapping pin — its level is latched at reset, so anything on it must present the right level at boot
+(see the implications list below). All analog is on \textbf{ADC1} because ADC2 is dead whenever the
+radio is on.
+
+\footnotesize
+\begin{longtable}{@{}c c L{3.4cm} c c L{6.2cm}@{}}
+\toprule
+\textbf{GPIO} & \textbf{Pin} & \textbf{Signal} & \textbf{Dir} & \textbf{S} & \textbf{Boot level / notes} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{GPIO} & \textbf{Pin} & \textbf{Signal} & \textbf{Dir} & \textbf{S} & \textbf{Boot level / notes} \\
+\midrule
+\endhead
+0 & 23 & \texttt{MCLK} (I²S) & out & \textbf{S} & Must be HIGH at boot. Internal PU; codec MCLK input is Hi-Z at reset. Auto-boot pulls it low for download. \\
+1 & 41 & \texttt{UART_TX} (U0TXD → CH340 RXD) & out & & Boot-log UART. \\
+2 & 22 & \texttt{CHARGE_EN} (→ charger \texttt{/CE}) & out & \textbf{S} & Must be LOW/float at boot — and \texttt{R32} (1 k→GND) holds it low, which also = \textbf{charging enabled}. FW drives HIGH to pause charging; any reset re-enables (fail-safe). Keeps TP4. \\
+3 & 40 & \texttt{UART_RX} (U0RXD ← CH340 TXD) & in & & \\
+4 & 24 & \texttt{AUDIO_VCC_EN} (→ LDO B EN) & out & & \texttt{R33} pulldown → codec rail \textbf{off at boot}; FW raises to power codec. \\
+5 & 34 & \texttt{AUDIO_SW} (→ TS5A23159 IN1+IN2) & out & \textbf{S} & Internal PU → HIGH at boot = \textbf{TX} by default. \textbf{Do not add an external pull.} FW sets \textbf{LOW = RX}, HIGH = TX. \\
+6–11 & 31,32,33,28,29,30 & SPI flash (\texttt{CLK}/\texttt{SD0-3}/\texttt{CMD}) & — & & Reserved for \texttt{VDD_SDIO} flash. Not available. \\
+12 & 18 & \texttt{MTDI} (JTAG TDI) & I/O & \textbf{S} & \textbf{VDD_SDIO voltage select — must be LOW at boot for 3.3 V flash.} Pull-up \texttt{R26} is \textbf{DNP — do not populate.} A debugger driving TDI high across reset bricks boot. \\
+13 & 20 & \texttt{MTCK} (JTAG) & I/O & & J4 DNP header. \\
+14 & 17 & \texttt{MTMS} (JTAG) & I/O & & J4 DNP header. \\
+15 & 21 & \texttt{MTDO} (JTAG TDO) & I/O & \textbf{S} & Must be HIGH at boot (enables boot log). Internal PU. \\
+16 & 25 & \texttt{EN1} (charger limit) & out (OD) & & Drive \textbf{open-drain} (pull-up is to 4.4 V SYS). Ext 100 k→SYS = USB500 default at boot. \\
+17 & 27 & \texttt{EN2} (charger limit) & out & & Ext 100 k→GND = default LOW at boot. \\
+18 & 35 & \texttt{I2C_CLK} & I/O & & To ES8388 + codec bus. \\
+19 & 38 & \texttt{LED_GREEN} & out & & \\
+21 & 42 & \texttt{CH340_EN} (→ Q2 gate) & out & & \texttt{R40} pulldown → \textbf{default ON} so the bridge is powered for flashing; FW drives HIGH to disable on battery. \\
+22 & 39 & \texttt{LED_BLUE} & out & & \\
+23 & 36 & \texttt{I2C_DATA} & I/O & & \\
+25 & 14 & \texttt{LRCK} (I²S) & I/O & & \\
+26 & 15 & \texttt{DSDIN} (I²S) & out & & \\
+27 & 16 & \texttt{SCLK} (I²S) & I/O & & \\
+32 & 12 & \texttt{/CHG} (charger status) & in & & ADC1_CH4 used as digital in. \\
+33 & 13 & \textbf{spare} & — & & ADC1_CH5. Fit a no-connect flag. \\
+34 & 10 & \texttt{BAT_ADC} & in & & ADC1_CH6, input-only. \\
+35 & 11 & \texttt{ASDOUT} (I²S data in) & in & & ADC1_CH7, input-only — correct home for an input-only signal. \\
+36 & 5 & \texttt{USB_CC1} & in & & ADC1_CH0, input-only. \\
+37 & 6 & \texttt{USB_CC2} & in & & ADC1_CH1, input-only. \\
+38 & 7 & \texttt{/PGOOD} (charger status) & in & & ADC1_CH2, input-only. \\
+39 & 8 & \texttt{USB_VBUS_SENSE} & in & & ADC1_CH3, input-only. \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\textbf{Strapping-pin implications (the ones that bite):}
+
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{GPIO0 / GPIO2} — the boot-mode pair. Normal boot needs GPIO0 high, GPIO2 low. GPIO0
+  doubles as MCLK (codec input Hi-Z at reset, so safe) and the auto-boot circuit pulls it low to
+  flash. GPIO2 = \texttt{CHARGE_EN}, held low by \texttt{R32} — which satisfies both "low at boot"
+  \textit{and} "charging enabled by default." FW must only drive GPIO2 high (pause charge)
+  \textit{after} boot.
+\item \textbf{GPIO12 (MTDI)} — sets flash voltage at reset. It \textbf{must be low} (→ 3.3 V);
+  \texttt{R26} is the 1.8 V pull-up and is \textbf{DNP by design}. HW: never populate \texttt{R26}.
+  FW/bench: an attached JTAG debugger can drive TDI high across reset and select 1.8 V, bricking
+  boot — either detach during power-up or burn the \texttt{XPD_SDIO_*} eFuses to force 3.3 V
+  (irreversible).
+\item \textbf{GPIO15 (MTDO)} must be high at reset (internal PU handles it); leave it undriven at
+  boot.
+\item \textbf{GPIO5 (AUDIO_SW)} samples high at reset (SDIO-timing strap, irrelevant here).
+  Consequence: the audio switch defaults to \textbf{TX} at boot. Harmless (no audio yet); FW drives
+  it \textbf{low = RX} on init. The only HW rule: \textbf{do not tie an external pull to GPIO5}, or
+  it fights the strap.
+\item General FW rule: every strapping pin used as an output must be left as an input (Hi-Z) through
+  reset and only driven once the app starts — external pulls (or the internal strap pull) set the
+  boot state.
+\end{itemize}
+
+\textbf{Safety.} Charging is inhibited outside the cell's temperature window in hardware via the NTC
+on \texttt{TS} — not in firmware. Cell is removable; device is not stored in the vehicle.
+
+\textbf{Why not LFP:} 3.2 V nominal sits below the 3.3 V rail for most of its discharge, forcing a
+boost converter in front of the codec.
+
+\section{Audio subsystem}
+
+\textbf{ES8388} stereo codec — 24-bit, 96 dB DAC dynamic range, −83 dB THD+N. Chosen over the ESP32's
+internal DAC for quality, and over a DAC-only part because HFP needs an ADC.
+
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\toprule
+\textbf{Signal} & \textbf{Connection} \\
+\midrule
+Control & I²C, address \textbf{0x20} (\texttt{CE} pulled to DGND) \\
+Audio & I²S, codec as \textbf{slave}; full duplex for HFP \\
+Clocks & MCLK, SCLK, LRCK from ESP32 \\
+Output & LOUT1/ROUT1 → 1 µF → 10 Ω → analog switch → jack \\
+Input (TX) & Jack → switch → LIN2/RIN2 \\
+Input (mic) & Differential LIN1/RIN1 \\
+\bottomrule
+\end{tabularx}
+
+\textbf{All four codec rails run at 3.3 V.} DVDD/PVDD at 1.8 V would put the codec's I/O in a
+different logic domain from the 3.3 V ESP32 — see §7.
+
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\toprule
+\textbf{Part} & \textbf{Function} & \textbf{Key spec} \\
+\midrule
+\textbf{ES8388} & Stereo codec & QFN-28, 0.4 mm; AVDD/HPVDD/DVDD/PVDD all 3V3 \\
+\textbf{SPH8878LR5H-1} (C3171733) & MEMS microphone & LGA-6, differential \textbf{or} single-ended, MSL 1 \\
+\textbf{TS5A23159DGSR} (C42751) & TX/RX path switch & Dual SPDT, 1 Ω R\textsubscript{on}, break-before-make \\
+3.5 mm TRS jack & Audio I/O & 3-pole \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Output coupling.} 1 µF blocks the VMID bias. Into a ≈10 kΩ AUX load that is a ≈16 Hz corner.
+Use a case size large enough that Class-II dielectric distortion stays below the codec's own THD.
+
+\textbf{Ground loop.} Chassis ground (USB charger) and head-unit audio ground form a loop →
+alternator whine. Mitigations: run on battery with USB unplugged (free), or fit 1:1 isolation
+transformers in place of R7/R8. Both provisioned; footprints accept either.
+
+\section{Microcontroller \& RF}
+
+\textbf{ESP32-D0WD-V3.} QFN-48, 0.35 mm pitch, dual-core Xtensa LX6.
+
+\textbf{Selected for firmware capability, not silicon features:} it is the only Espressif part whose
+radio hardware supports \textbf{Bluetooth Classic}, and the only one whose SDK provides an \textbf{A2DP
+sink} and \textbf{HFP}. ESP32-S3/C3/C6/H2 and the entire Nordic nRF range are BLE-only. This choice
+follows directly from §1's compatibility requirement.
+
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\toprule
+\textbf{Part} & \textbf{Function} & \textbf{Key spec} \\
+\midrule
+\textbf{ESP32-D0WD-V3} & MCU + radio & BT Classic + BLE + Wi-Fi; needs external flash \\
+\textbf{W25Q32JV} & Program store & 4 MB, 3.3 V (\texttt{JV} not \texttt{JW}), on VDD_SDIO \\
+40 MHz crystal & Reference & ±10 ppm required; load caps per §7 \\
+PCB inverted-F antenna + C-L-C match & 2.4 GHz & 50 Ω controlled impedance, 4-layer \\
+\bottomrule
+\end{tabularx}
+
+\textbf{RF front end is a deliberate learning exercise.} A pre-certified module would remove the
+matching network, crystal trim and impedance routing — that is precisely the work being kept.
+Requires a NanoVNA (antenna S11) and a frequency-offset measurement to close.
+
+\textbf{Stackup:} 4-layer. Signal / GND / PWR / Signal, with a solid ground plane under the RF
+section.
+
+\section{Programming \& debug}
+
+No USB peripheral on this ESP32 variant, and no SWD (Xtensa, not ARM).
+
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\toprule
+\textbf{Path} & \textbf{Parts} & \textbf{Use} \\
+\midrule
+USB auto-program & CH340K + UMH3N dual transistor on DTR/RTS & Day-to-day flashing \\
+Off-board serial & J3 header (DNP) & Fallback \\
+JTAG & J4 2×5 header (DNP), ESP-PROG & Debugging \\
+\bottomrule
+\end{tabularx}
+
+Headers are DNP — fit before a debug session. 13 test points cover I²C, mic, audio out, boot, GPIO
+and rails.
+
+\section{Key calculations}
+
+\textbf{Power budget}
+
+\begin{tabularx}{\linewidth}{@{}X l r@{}}
+\toprule
+\textbf{Load} & \textbf{Rail} & \textbf{Current} \\
+\midrule
+ESP32, BT Classic streaming (avg) & A & 130 mA \\
+ESP32 transmit peak & A & 250 mA \\
+SPI flash & A & 5 mA \\
+CH340K (USB attached only) & A & 10 mA \\
+2× LED @ 330 Ω & A & 8 mA \\
+\textbf{Rail A} & & \textbf{155 mA avg · 280 mA peak} \\
+ES8388 @ 3.3 V, playback + record & B & 18 mA \\
+MEMS mic & B & 0.4 mA \\
+\textbf{Rail B} & & \textbf{≈20 mA} \\
+\bottomrule
+\end{tabularx}
+
+\textbf{LDO A thermal.} Bluetooth bursts last 1–2 ms; package time constant is seconds, so the
+junction integrates to the average, not the peak.
+
+\begin{Verbatim}
+P_avg = (4.4 − 3.3) × 0.155 = 0.17 W
+SOT-89, θJA ≈ 100 °C/W  →  ΔT = 17 °C  →  Tj ≈ 87 °C at 70 °C ambient      ✓
+SOT-23-5, θJA ≈ 200 °C/W →  ΔT = 34 °C  →  Tj ≈ 104 °C                     ✓ but tight
+\end{Verbatim}
+
+\textbf{LDO A dropout → usable battery.} Dropout, not current, is the binding spec.
+
+\begin{Verbatim}
+Cutoff = 3.3 V + V_dropout(280 mA)
+
+  150 mV → 3.45 V → ~87 % of cell
+  250 mV → 3.55 V → ~83 %
+  400 mV → 3.70 V → ~75 %
+  1.2 V  → 4.50 V → will not run on battery       (NCP1117, Rev A — removed)
+\end{Verbatim}
+
+\textbf{Runtime} (LDO path, ≈83 \% usable): 1000 mAh ≈ 4.8 h · 2000 mAh ≈ 9.7 h · 3000 mAh ≈ 14.5 h.
+
+\textbf{Charge current and time.} \texttt{R_ISET} programs 742 mA, but the input limit is what
+actually binds in every mode except ILIM. CC delivers ≈85 \% of capacity; the CV tail to a 75 mA
+termination adds ≈0.5 h.
+
+\begin{tabularx}{\linewidth}{@{}l l l l l l@{}}
+\toprule
+\textbf{Mode} & \textbf{Input} & \textbf{System} & \textbf{Charge} & \textbf{2000 mAh} & \textbf{3000 mAh} \\
+\midrule
+USB500, idle & 475 mA & ≈20 mA & 455 mA & 4.2 h & 6.1 h \\
+USB500, playing & 475 mA & 171 mA & 304 mA & 6.1 h & 8.9 h \\
+ILIM, either & 1.073 A & 20–171 mA & \textbf{742 mA} (ISET binds) & 2.8 h & 3.9 h \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Charger thermal.} Linear, so the charger burns (V_IN − V_BAT) × I_CHG plus the pass-FET loss.
+Worst case is the start of fast charge, V_BAT ≈ 3.0 V, in ILIM mode:
+
+\begin{Verbatim}
+P = (5.0 − 4.4) × 0.913  +  (4.4 − 3.0) × 0.742  =  0.55 + 1.04  =  1.59 W
+VQFN-16 RGT, θJA = 44.5 °C/W  →  ΔT = 71 °C  →  Tj ≈ 96 °C at 25 °C ambient     ✓
+                                                Tj ≈ 116 °C at 45 °C ambient    ✓ (reg. point 125 °C)
+USB500 mode: P = 0.71 W  →  ΔT = 32 °C  →  Tj ≈ 57 °C                           ✓
+\end{Verbatim}
+
+The input current limit is what guarantees this — raising \texttt{R_ISET} cannot overheat the part,
+because \texttt{ILIM} caps the current before it gets there.
+
+\textbf{Crystal load capacitance.}
+
+\begin{Verbatim}
+CL = (C1 × C2)/(C1 + C2) + C_stray        C_stray ≈ 2–5 pF
+
+Rev A: 18 pF ‖ 18 pF → 9 + 3 ≈ 12 pF against a 10 pF crystal → over-loaded, frequency low
+Rev B: ≈ 15 pF ‖ 15 pF → 7.5 + 3 ≈ 10.5 pF, then trim on measured offset (±10 ppm required)
+\end{Verbatim}
+
+\textbf{Logic-level compatibility (why all codec rails are 3.3 V).}
+
+\begin{Verbatim}
+ESP32   VIH(min) = 0.75 × 3.3 = 2.475 V     VIL(max) = 0.825 V
+Codec at PVDD 1.8 V: VOH ≈ 1.8 V  →  lands between VIL and VIH = undefined
+Codec abs-max input = DVDD + 0.3 V = 2.1 V  →  3.3 V drive exceeds it
+\end{Verbatim}
+
+\textbf{Audio output coupling.} f = 1/(2π · 10 kΩ · 1 µF) ≈ 16 Hz.
+
+\section{Conceptual circuits}
+
+\textbf{Microphone — differential, no external bias.} MEMS outputs are internally biased
+(0.66/0.70 V, 340/410 Ω). An electret-style bias resistor fights the internal amplifier and costs
+headroom.
+
+\begin{Verbatim}
+   3V3_B ──[100 Ω]──┬────────── MIC VDD          RC filter: mic PSRR is only −45 dB
+                    │
+                 [1 µF]
+                    │
+                   GND
+
+   OUT+ ──┬──╫ 100 nF ──► ES8388 LIN1     Route OUT+/OUT− as a matched parallel
+          │                                pair — common-mode rejection depends on
+       [10 nF]                             both picking up identical noise.
+          │
+         GND                               10 nF + 340 Ω ≈ 47 kHz — RF shunt only,
+   OUT− ──┬──╫ 100 nF ──► ES8388 RIN1      above the audio band.
+          │
+       [10 nF]
+          │
+         GND
+\end{Verbatim}
+
+\textbf{TX/RX switch — placement is critical.}
+
+\begin{Verbatim}
+              ┌──────────────┐
+  LOUT1 ──────┤ NO           │
+              │   TS5A23159  ├── COM ──╫ 1 µF ──► jack tip
+  LIN2  ──────┤ NC           │
+              └──────┬───────┘
+                     │ IN ── ESP32 GPIO
+\end{Verbatim}
+
+Switch sits on the \textbf{codec side} of the coupling capacitor. Both throws are at VMID (≈1.65 V),
+inside the switch's 0–3.3 V supply rails. On the jack side the signal is centred at 0 V and every
+negative half-cycle would clip.
+
+\textbf{RF match — C-L-C Pi, per Espressif.}
+
+\begin{Verbatim}
+  ESP32 LNA_IN ──┬──[ L series ]──┬────── PCB antenna
+                 │                │
+              [C shunt]        [C shunt]        Values tuned on measured S11.
+                 │                │             50 Ω controlled-impedance trace.
+                GND              GND
+\end{Verbatim}
+
+\section{Firmware dependencies}
+
+Hardware choices that constrain firmware, or vice versa.
+
+\footnotesize
+\begin{longtable}{@{}L{3.2cm} L{\dimexpr\linewidth-3.9cm}@{}}
+\toprule
+\textbf{Item} & \textbf{Note} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Item} & \textbf{Note} \\
+\midrule
+\endhead
+\textbf{Bluetooth Classic} & Only the original ESP32 has Classic radio hardware. A2DP sink + HFP come from ESP-IDF/ESP-ADF. Drives the entire MCU selection. \\
+\textbf{Pairing persistence} & Bluedroid writes bonding keys to \textbf{NVS in flash} automatically. Survives power-off with no battery. Requires an initialised NVS partition. \\
+\textbf{MCLK pin} & ESP32 can emit MCLK only on GPIO0/1/3. GPIO1/3 are the UART, so \textbf{GPIO0} — which is also the BOOT strapping pin. Safe: the codec's MCLK input is high-Z at reset. \\
+\textbf{ADC} & Use \textbf{ADC1 only} (battery sense). ADC2 is unusable while the radio is active. GPIO32–39 free. \\
+\textbf{Flash mode} & Either works: IO2/IO3 uncrossed on the schematic 2026-08-31 (delta \#4 applied), so QIO is now safe. DIO remains a fine default. \\
+\textbf{JTAG + GPIO12} & MTDI is the VDD_SDIO strapping pin. A debugger driving TDI high across reset selects 1.8 V and the 3.3 V flash fails. Fix: burn \texttt{XPD_SDIO_*} eFuses to force 3.3 V. \textbf{Irreversible.} \\
+\textbf{Codec I²C address} & 0x20 (\texttt{CE} low). ESP-ADF's ES8388 driver default. \\
+\textbf{I²S full duplex} & Required for HFP. Configure both TX and RX channels. \\
+\textbf{TX/RX switch} & \texttt{AUDIO_SW} (GPIO5) drives both TS5A23159 control inputs (IN1+IN2 tied — the two switches are the L/R channels of one select). \textbf{LOW = RX} (jack ← LOUT1/ROUT1), \textbf{HIGH = TX} (jack → LIN2/RIN2). GPIO5 is a strapping pin: boot default is HIGH (=TX); FW must set LOW for playback on init. \\
+\textbf{Charge enable} & \texttt{CHARGE_EN} (GPIO2) → charger \texttt{/CE}, active-low. \texttt{R32} holds it low = charging enabled at boot; FW drives HIGH to pause charging. GPIO2 is a strapping pin (must be low at boot) — the pulldown satisfies both. A reset re-enables charging (fail-safe); the NTC still guards temperature regardless. \\
+\textbf{Deep sleep} & If used for battery standby, populate the CAP2 RC network. \\
+\textbf{Charger limit sequencing} & Boot default is USB500 (§3.2). Firmware may raise to ILIM mode only after confirming a ≥1.5 A source. Drive \texttt{EN1} open-drain; leave both pins alone when \texttt{/PGOOD} is high-Z. \\
+\textbf{CC read} & \texttt{USB_CC1}/\texttt{USB_CC2} on \textbf{ADC1}. Read both, take the one in a valid band. An A-to-C cable always reports Default USB — do not treat that as a fault. \\
+\textbf{\texttt{/CHG} fault} & A ≈2 Hz flash is a latched fault (timer expiry or TS out of range), not "charging". Decode it; clear by toggling \texttt{CE} or the input. \\
+\textbf{SoC blindness} & \texttt{BAT_ADC} is meaningless while charging. Report charger state instead, and snap to 100 \% when \texttt{/CHG} releases. \\
+\textbf{Codec rail} & \texttt{AUDIO_VCC_EN} is pulled low, so LDO B is \textbf{off at reset}. Firmware must enable it before touching the codec on I²C/I²S, or the ESP32 will back-power the ES8388 through its ESD diodes. \\
+\textbf{CH340K gate} & Bridge is on a GPIO-controlled switch. Keep it off when USB is absent (≈10 mA of battery budget) and during any BC1.2 detection. \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\section{Deltas from Rev A (as built)}
+
+\footnotesize
+\begin{longtable}{@{}c L{\dimexpr0.5\linewidth-1cm} L{\dimexpr0.5\linewidth-1cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Change} & \textbf{Reason} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{\#} & \textbf{Change} & \textbf{Reason} \\
+\midrule
+\endhead
+1 & Codec rails 1.8 V → 3.3 V; delete 1.8 V LDO, add dedicated codec LDO & Logic-level incompatibility + supply noise \\
+2 & \texttt{CE} pulled to DGND & Was floating — indeterminate I²C address \\
+3 & Add 10 nF on ESP32 \texttt{CAP1} & Required by datasheet; was absent \\
+4 & Swap flash IO2/IO3 & Crossed; corrupts QIO reads \\
+5 & Delete mic bias network (R21/R22/R23/C43/C44); add RC on mic VDD & Electret circuit on a self-biased part \\
+6 & Mic → SPH8878LR5H-1 & ICS-40720 discontinued \\
+7 & LED resistors 1 kΩ → 330 Ω & ≈0.3 mA was invisible \\
+8 & TRRS → 3-pole TRS jack & 4th pole unused \\
+9 & Add TX input path + analog switch & TX mode now in scope \\
+10 & Add battery charger, NTC, cell connector, VBAT sense & Battery in scope \\
+11 & NCP1117 → low-dropout LDO in SOT-89 & 1.2 V dropout cannot run from a cell \\
+12 & Crystal load caps 18 pF → ≈15 pF, then trim & Over-loaded; ±10 ppm required \\
+13 & Charger input limit made firmware-selectable (\texttt{EN1}/\texttt{EN2} on GPIOs, 100 kΩ pulls) & Fixed strap cannot adapt to source capability; default USB500 boots on a flat cell \\
+14 & \texttt{/PGOOD}, \texttt{/CHG} pull-ups moved SYS → 3V3_A and routed to GPIOs & 4.4 V exceeds the ESP32 input rating; status was LED-only \\
+15 & Add \texttt{BAT_ADC} divider, CC1/CC2 sense taps & State of charge (REQ-PWR-10) and source detection \\
+16 & Gate the CH340K on a GPIO & ≈10 mA of battery budget with USB absent \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\textbf{Still open:} cell choice (2000 mAh pouch vs 3000 mAh 18650) and therefore charge time; whether
+to fit BC1.2 detection; ground-loop mitigation (transformers vs battery-only playback); crystal
+offset measurement; RF match tuning; BOM line consolidation.
+
+\textbf{Accepted risks:} CC pins carry no ESD protection (§3.4) — decided 2026-08-30, not mitigated
+in Rev B.
+
+\textbf{Micro-sheet status} (§3 describes the target). Tracking the 2026-08-31 micro-sheet review
+(\texttt{design-review-micro.md}) and the fixes applied since.
+
+\textit{Applied on the schematic (verified against netlist 2026-08-31):}
+\begin{itemize}[leftmargin=1.4em]
+\item ✅ \textbf{UART TX/RX crossover fixed} — \texttt{UART_RX} = \{ESP32 U0RXD, CH340 TXD\},
+  \texttt{UART_TX} = \{U0TXD, CH340 RXD\}. Board can now be flashed. (was S1)
+\item ✅ \textbf{Flash IO2/IO3 uncrossed} — SPIWP(GPIO9)→IO2, SPIHD(GPIO10)→IO3. QIO-safe now.
+  (delta \#4, was S1)
+\item ✅ \textbf{Digital rail unified} — micro \texttt{+3V3} renamed to \texttt{+3V3_SYS}, tied to the
+  LDO A output (U7.5). The stray \texttt{+3V3} symbol on the ESP32 \texttt{EN} pull-up (R11) was also
+  switched to \texttt{+3V3_SYS}, so \texttt{EN} is no longer floating.
+\item ✅ \textbf{CH340K load switch drawn} (delta \#16) — \texttt{Q2} AO3401A (SOT-23, LCSC C15127)
+  high-side P-FET: source \texttt{+3V3_SYS} → drain \texttt{CH340_VCC} → CH340 VCC/V3 + C19. Gate
+  \texttt{CH340_EN} on \textbf{GPIO21}, with \texttt{R40} 100 kΩ \textbf{pull-down = default-ON} (so
+  the ROM bootloader is powered for flashing with no firmware). Firmware drives GPIO21 \textbf{high to
+  disable} the bridge on battery. Note: when off, the bridge's UART/DTR/RTS pins can still back-feed
+  its dead VCC through clamp diodes — tristate the ESP32 UART pins when disabling, or accept the small
+  leakage.
+\item ✅ \textbf{Full ESP32 interface wired} (§3.8) — \texttt{EN1}/\texttt{EN2}/\texttt{/PGOOD}/%
+  \texttt{/CHG}/\texttt{BAT_ADC}/\texttt{USB_CC1}/\texttt{USB_CC2}/\texttt{USB_VBUS_SENSE}/%
+  \texttt{AUDIO_VCC_EN}/\texttt{CHARGE_EN} all land on GPIOs; all four analog senses on ADC1. The
+  TX/RX switch (\texttt{AUDIO_SW}, GPIO5) drives both TS5A23159 control inputs (delta \#9 now
+  controllable). Charge enable (\texttt{CHARGE_EN}, GPIO2) is now firmware-controllable.
+\end{itemize}
+
+\textit{Still to do on the micro sheet:}
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{Crystal load caps still 18 pF} (delta \#12 not applied; target ≈15 pF then trim).
+\item \textbf{Firmware LEDs D1/D3 still 1 kΩ} (delta \#7 hit the power LEDs only; blue ≈ 0.3 mA,
+  invisible).
+\item \textbf{\texttt{GPIO33} spare} — fit a no-connect flag so it doesn't ERC.
+\item \textbf{Schematic hygiene:} stale library-symbol caches, off-grid endpoints, annotation
+  errors — ERC cleanup due.
+\end{itemize}
+
+\textbf{Rev A→B deltas still unapplied:} \#7 (LED resistors — micro sheet only), \#12 (crystal caps).
+Deltas \#4, \#9, \#13–16 are now on the schematic.
+
+\section{Manufacturing}
+
+\textbf{JLCPCB}, 4-layer, \textbf{Economic PCBA} with the ESP32 excluded from assembly and
+hand-populated (it is the only Standard-Only part). All other parts verified Economic-tier.
+
+Constraints: single-sided placement (satisfied — nothing on the back is assembled), 0402 minimum
+passive, 0.4 mm minimum IC pitch.
+
+Build: 5 assembled + 5 bare. Target \$20 USD landed per unit.
+
+Hand assembly: 0.35 mm-pitch QFN requires a laser-cut stencil, plugged/capped via-in-pad on the
+thermal pad (open vias wick solder and degrade the RF ground), and ≈50–70 \% paste coverage on the
+exposed pad.
+
+\section{References}
+
+\textbf{Local} (\texttt{hw/datasheets/}, \texttt{hw/app notes/})
+\begin{itemize}[leftmargin=1.4em]
+\item ESP32 datasheet · ESP32 Hardware Design Guidelines · ESP32 Technical Reference Manual
+\item ES8388 datasheet rev 5.0 · ES8388 User Guide
+\item W25Q32JV datasheet rev G
+\item WCH CH340 datasheet v3B (\texttt{WCH-CH340-datasheet-v3B.pdf}) — TXD=output, RXD=input; V3→VCC at 3.3 V
+\item ESP32-LyraT v4.3 schematic — reference design for the codec section
+\item AN043 2.4 GHz PCB Antenna · Antennas for IoT
+\end{itemize}
+
+\textbf{External}
+\begin{itemize}[leftmargin=1.4em]
+\item \href{https://jlcpcb.com/capabilities/pcb-assembly-capabilities}{JLCPCB PCB assembly capabilities}
+\item \href{https://docs.espressif.com/projects/esp-adf/en/latest/api-reference/abstraction/es8388.html}{ESP-ADF ES8388 driver}
+\item \href{https://docs.espressif.com/projects/esptool/en/latest/esp32/espefuse/set-flash-voltage-cmd.html}{esptool — set flash voltage eFuses}
+\end{itemize}
+
+\textbf{Project}
+\begin{itemize}[leftmargin=1.4em]
+\item \texttt{requirements-design.md} — requirements, constraints, traceability
+\item \texttt{design-review-v1.md} — netlist audit and findings (initial)
+\item \texttt{design-review-micro.md} — micro-sheet review, 2026-08-31
+\item \texttt{battery-power-proposal.md} — battery architecture
+\item \texttt{mems-microphone-primer.md} — mic theory and selection
+\end{itemize}
+
+\section{Revision history}
+
+\footnotesize
+\begin{longtable}{@{}c c L{\dimexpr\linewidth-4.2cm}@{}}
+\toprule
+\textbf{Rev} & \textbf{Date} & \textbf{Change} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Rev} & \textbf{Date} & \textbf{Change} \\
+\midrule
+\endhead
+A & 2025-04-05 & As-built schematic, commit \texttt{369c5f9} \\
+B & 2026-08-24 & This document created. Scope decisions resolved; 12 deltas in §10 \\
+B & 2026-08-30 & §3 expanded to cover the full charger configuration: power-path loops, EN1/EN2 strapping, charge programming, source detection, safety timers, TS qualification, SoC and GPIO map. Deltas 13–16 \\
+B & 2026-08-30 & Power sheet complete: \texttt{R_ITERM}/\texttt{R_TMR} populated, LEDs to 330 Ω, ADC anti-droop caps and VBUS sense divider added. CC ESD recorded as an accepted risk \\
+B & 2026-08-31 & Micro-sheet review (\texttt{design-review-micro.md}): found UART TX/RX swap (S1) and confirmed flash IO2/IO3 still crossed; corrected the §9 "flash fixed" claim and the §3.8 GPIO map (added TX/RX switch, fixed the free-output count); expanded §10 with the undrawn micro↔power interface and unapplied deltas \\
+B & 2026-08-31 & Micro-sheet fixes landed: UART crossover, flash IO2/IO3, rail unified to \texttt{+3V3_SYS} (EN pull-up reconnected), and CH340K high-side load switch drawn (Q2 AO3401A + R40 100 kΩ pull-down, gate \texttt{CH340_EN} on GPIO21, default-ON). Netlist-verified. \\
+B & 2026-08-31 & Full ESP32 GPIO map committed (§3.8) with strapping-pin FW/HW implications: interface signals wired to the ESP32 (EN1/EN2, /PGOOD, /CHG, ADC senses, AUDIO_VCC_EN, CHARGE_EN→GPIO2), \texttt{AUDIO_SW}→GPIO5 driving both TS5A23159 inputs (LOW=RX, HIGH=TX). Verified TS5A23159 pinout against TI datasheet — COM=jack/NC=codec-out/NO=codec-in, both channels symmetric (a prior review note claiming asymmetry was wrong, now withdrawn). \\
+B & 2026-09-03 & Design overview converted from Markdown to LaTeX (Tectonic/XeTeX build) for easier manual editing. Content unchanged. \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\end{document}
