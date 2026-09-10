@@ -6,8 +6,10 @@
 # Not design data, and it changes every time the project is opened.
 *.kicad_prl
 
-# Editor backup files. KiCad writes <name>.kicad_sch-bak on save.
+# Editor backup files. KiCad writes <name>.kicad_sch-bak on save,
+# and <name>.bak in the symbol/footprint editors.
 *-bak
+*.bak
 
 # Lock files written while a project is open.
 *.lck
