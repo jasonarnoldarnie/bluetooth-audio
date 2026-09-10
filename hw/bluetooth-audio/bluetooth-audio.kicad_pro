@@ -646,6 +646,24 @@
           "label": "Description",
           "name": "Description",
           "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Manufacturer",
+          "name": "Manufacturer",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MPN",
+          "name": "MPN",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "LCSC",
+          "name": "LCSC",
+          "show": false
         }
       ],
       "filter_string": "",
@@ -704,7 +722,7 @@
         "uuid": "eafc8824-f117-40b2-99b0-597946d6c01d"
       }
     ],
-    "used_designators": "J2,R4-5,R17,R36-40,Q2,#PWR27-30,#PWR68,#PWR70,#PWR78,#PWR80,#PWR86,#PWR100-101,C51,C53,U5",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [

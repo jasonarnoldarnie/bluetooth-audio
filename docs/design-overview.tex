@@ -68,7 +68,7 @@
 
 % Document stamp (hook updates the date)
 \newcommand{\docrev}{Rev B (in design)}
-\newcommand{\docdate}{2026-09-03}
+\newcommand{\docdate}{2026-09-10}
 \newcommand{\docauthor}{Jason}
 
 \begin{document}
@@ -154,15 +154,15 @@ Bluetooth audio adaptor for a car AUX input. Powered from USB-C or an internal L
               ┌──────────────────────────┐
               │   ES8388 stereo codec    │
               └───▲──────────┬───────▲───┘
-        LIN1/RIN1 │  LOUT1/  │       │ LIN2/RIN2
+             LIN1 │  LOUT1/  │       │ LIN2/RIN2
                   │  ROUT1   ▼       │
                   │      ┌───────────┴───────┐
                   │      │  TS5A23159 SPDT   │  TX / RX select
                   │      └─────────┬─────────┘
-                  │                │ 1 µF AC coupling
+                  │                │ 47 µF coupling (jack side)
                   │                ▼
           on-board MEMS mic   3.5 mm TRS jack
-          (differential pair)
+          (ZTS6216 single-ended)
 \end{Verbatim}
 
 \textbf{Rails}
@@ -522,9 +522,9 @@ internal DAC for quality, and over a DAC-only part because HFP needs an ADC.
 Control & I²C, address \textbf{0x20} (\texttt{CE} pulled to DGND) \\
 Audio & I²S, codec as \textbf{slave}; full duplex for HFP \\
 Clocks & MCLK, SCLK, LRCK from ESP32 \\
-Output & LOUT1/ROUT1 → 1 µF → 10 Ω → analog switch → jack \\
-Input (TX) & Jack → switch → LIN2/RIN2 \\
-Input (mic) & Differential LIN1/RIN1 \\
+Output (RX) & LOUT1/ROUT1 → analog switch → 47 µF → 10 Ω → jack \\
+Input (TX) & Jack → 10 Ω → 47 µF → analog switch → LIN2/RIN2 \\
+Input (mic) & ZTS6216 → 100 nF C0G (C41) → LIN1 (+). Pseudo-diff ready: RIN1 (−) → 100 nF C0G (C42) → GND, enabled by fitting R41 (DNP) + \texttt{LINSEL=11} \\
 \bottomrule
 \end{tabularx}
 
@@ -536,18 +536,34 @@ different logic domain from the 3.3 V ESP32 — see §7.
 \textbf{Part} & \textbf{Function} & \textbf{Key spec} \\
 \midrule
 \textbf{ES8388} & Stereo codec & QFN-28, 0.4 mm; AVDD/HPVDD/DVDD/PVDD all 3V3 \\
-\textbf{SPH8878LR5H-1} (C3171733) & MEMS microphone & LGA-6, differential \textbf{or} single-ended, MSL 1 \\
-\textbf{TS5A23159DGSR} (C42751) & TX/RX path switch & Dual SPDT, 1 Ω R\textsubscript{on}, break-before-make \\
-3.5 mm TRS jack & Audio I/O & 3-pole \\
+\textbf{ZTS6216} (ZillTek) & MEMS microphone & LGA top-port, self-biased single-ended, 65 dB PSRR + EMI filter, SNR 65 dB(A), 1.5–3.6 V \\
+\textbf{TS5A23159DGS} (C42751) & TX/RX path switch & Dual SPDT, ~1 Ω R\textsubscript{on}, break-before-make \\
+\textbf{PJ-3537S} (C2689709) & 3.5 mm TRS jack & 3-pole (T/R/S) + detect switch \\
+\textbf{EEEFT1E470AR} (C336270) & Coupling caps C1/C21 & Panasonic 47 µF 25 V, D5×5.8 mm electrolytic \\
+\textbf{GRM31C5C1H104JA01L} (C97946) & Mic coupling C41/C42 & Murata 100 nF C0G 50 V 1206 — Class-1, non-microphonic (ZTS6216 requires it) \\
+\textbf{BAT54S} (C408389) & TX-input clamps D7/D8 & Dual series Schottky ×2; midpoint→LIN2/RIN2, ends→GND/AVDD \\
 \bottomrule
 \end{tabularx}
 
-\textbf{Output coupling.} 1 µF blocks the VMID bias. Into a ≈10 kΩ AUX load that is a ≈16 Hz corner.
-Use a case size large enough that Class-II dielectric distortion stays below the codec's own THD.
+\textbf{Output coupling.} 47 µF electrolytic (C1/C21) blocks the VMID bias. \textbf{One pair sits on
+the jack side of the switch and serves both directions} (RX out and TX in) — the switch stays on the
+codec side where both throws are at VMID, inside its 0–VCC range. Into a ≈10 kΩ AUX load that is a
+≈0.34 Hz corner. The \textbf{+ terminal faces the codec/VMID side}; R22/R23 (100 kΩ) bleed the jack
+side to 0 V to suppress insertion pops. The large value lengthens VMID settling (τ ≈ 2 s), so
+firmware mutes across power-up and TX/RX switching. \textbf{The mic coupling caps C41/C42 are C0G}
+(Murata C97946) — the ZTS6216 forbids Class-2 dielectrics near the mic; sizing in §8.
+
+\textbf{TX-input clamps.} D7/D8 (BAT54S dual series Schottky, one per channel) clamp LIN2/RIN2 to
+AVDD and GND, protecting the codec inputs and the electrolytic couplers from a source driven past
+the rails. Off at the VMID idle point (no DC loading); they arm only beyond ≈−0.3 V and AVDD+0.3 V,
+above full-scale, so normal audio is untouched. \textbf{TX input is line-level-only} (≤ ~1
+V\textsubscript{RMS}, PGA at 0 dB): the clamps protect the codec but do not prevent clipping, and no
+attenuator is fitted — cutting the level would only degrade the common quieter sources.
 
 \textbf{Ground loop.} Chassis ground (USB charger) and head-unit audio ground form a loop →
-alternator whine. Mitigations: run on battery with USB unplugged (free), or fit 1:1 isolation
-transformers in place of R7/R8. Both provisioned; footprints accept either.
+alternator whine. R7/R8 are plain 10 Ω series resistors — \textbf{no transformer footprint is
+provisioned} — so \textbf{battery-only playback (USB unplugged) is the ground-loop plan of record}.
+Transformer isolation, if ever wanted, is a footprint change on a future spin.
 
 \section{Microcontroller \& RF}
 
@@ -679,40 +695,67 @@ Codec at PVDD 1.8 V: VOH ≈ 1.8 V  →  lands between VIL and VIH = undefined
 Codec abs-max input = DVDD + 0.3 V = 2.1 V  →  3.3 V drive exceeds it
 \end{Verbatim}
 
-\textbf{Audio output coupling.} f = 1/(2π · 10 kΩ · 1 µF) ≈ 16 Hz.
+\textbf{Audio coupling-capacitor sizing.} Every audio path is AC-coupled around the codec's VMID
+(≈1.65 V) bias; each blocking cap forms a high-pass with the impedance it works into,
+f\textsubscript{−3dB} = 1/(2π R C). Two families:
+
+\emph{Jack DC-blocking caps — C1/C21, 47 µF.} One shared pair on the jack side of the TX/RX switch
+carries \textbf{both} directions, so it is sized for the \emph{lowest} impedance it ever sees:
+
+\begin{Verbatim}
+RX (codec → jack): load = car head-unit AUX/line input ~10–20 kΩ  (10 kΩ = worst case)
+                   f = 1/(2π · 10 kΩ · 47 µF) = 0.34 Hz
+TX (source → codec): load = ES8388 line input 20 kΩ (external source Z is low)
+                   f = 1/(2π · 20 kΩ · 47 µF) = 0.17 Hz
+   bleed R22/R23 = 100 kΩ ∥ load → negligible shift
+\end{Verbatim}
+
+The 10 kΩ AUX case binds; 47 µF puts even that at 0.34 Hz — no audible bass rolloff, with headroom
+for a head unit nearer 5 kΩ. (1 µF would be ≈16 Hz into 10 kΩ — audibly thin; hence the
+electrolytic.) + terminal to the codec/VMID side; slow settling → mute across mode switches.
+
+\emph{Mic DC-blocking caps — C41/C42, 100 nF C0G.} These work into the \textbf{ES8388 ADC/PGA input
+impedance of 20 kΩ} (datasheet §8.3, Analog Input):
+
+\begin{Verbatim}
+f = 1/(2π · 20 kΩ · 100 nF) = 79.6 Hz ≈ 80 Hz
+\end{Verbatim}
+
+80 Hz is well below the HFP voice band (300 Hz–3.4 kHz) — only ≈−0.3 dB at 300 Hz — so speech is
+unaffected, with margin if the PGA input impedance falls below 20 kΩ at gain. Both legs (C41 on +,
+C42 on −) use the \emph{same} 100 nF part so the pseudo-differential high-pass stays balanced.
+Dielectric is \textbf{C0G} (Murata C97946): Class-1 ceramic is non-microphonic and voltage-linear,
+as the ZTS6216 requires ("no Class-2 dielectrics near the microphone").
 
 \section{Conceptual circuits}
 
-\textbf{Microphone — differential, no external bias.} MEMS outputs are internally biased
-(0.66/0.70 V, 340/410 Ω). An electret-style bias resistor fights the internal amplifier and costs
-headroom.
+\textbf{Microphone — single-ended default, pseudo-differential-ready (ZTS6216).} The ZTS6216 has one
+internally self-biased output, 65 dB PSRR and an on-die RF/EMI filter, so even single-ended it is
+defensible next to the radio (the old differential rationale was for a −45 dB-PSRR part). The board
+also provisions a \textbf{pseudo-differential} option: the mic drives LIN1 (+) while a matched C0G
+cap references RIN1 (−) to ground, so the ES8388's differential ADC (\texttt{LINSEL=11}; default
+pair LINPUT1-RINPUT1) rejects common-mode supply/ground noise. SNR 65 dB(A) — adequate for HFP voice.
 
 \begin{Verbatim}
-   3V3_B ──[100 Ω]──┬────────── MIC VDD          RC filter: mic PSRR is only −45 dB
-                    │
-                 [1 µF]
-                    │
-                   GND
-
-   OUT+ ──┬──╫ 100 nF ──► ES8388 LIN1     Route OUT+/OUT− as a matched parallel
-          │                                pair — common-mode rejection depends on
-       [10 nF]                             both picking up identical noise.
-          │
-         GND                               10 nF + 340 Ω ≈ 47 kHz — RF shunt only,
-   OUT− ──┬──╫ 100 nF ──► ES8388 RIN1      above the audio band.
-          │
-       [10 nF]
+   AVDD ──┬── MIC VDD (pin 4)        C41, C42 = 100 nF C0G (Class-1, non-microphonic;
+   [100 nF‖10 µF] C43/C44             ZTS6216 forbids Class-2 near the mic). See §8 for sizing.
           │
          GND
+   mic OUT ──╫ C41 ─────────────► LIN1 (+)
+
+   GND ──╫ C42 ──[ R41 ]── RIN1 (−)   R41 (0 Ω) DNP → default single-ended (RIN1 open;
+                                       keep right ADC powered down). Fit R41 + set
+                                       LINSEL=11 → pseudo-differential. C54 = DNP
+                                       alternate position for C42 (near codec).
 \end{Verbatim}
 
 \textbf{TX/RX switch — placement is critical.}
 
 \begin{Verbatim}
               ┌──────────────┐
-  LOUT1 ──────┤ NO           │
-              │   TS5A23159  ├── COM ──╫ 1 µF ──► jack tip
-  LIN2  ──────┤ NC           │
+  LOUT1 ──────┤ NC (RX)      │
+              │   TS5A23159  ├── COM ──╫ 47 µF ──► jack tip
+  LIN2  ──────┤ NO (TX)      │
               └──────┬───────┘
                      │ IN ── ESP32 GPIO
 \end{Verbatim}
@@ -783,9 +826,9 @@ Hardware choices that constrain firmware, or vice versa.
 3 & Add 10 nF on ESP32 \texttt{CAP1} & Required by datasheet; was absent \\
 4 & Swap flash IO2/IO3 & Crossed; corrupts QIO reads \\
 5 & Delete mic bias network (R21/R22/R23/C43/C44); add RC on mic VDD & Electret circuit on a self-biased part \\
-6 & Mic → SPH8878LR5H-1 & ICS-40720 discontinued \\
+6 & Mic → ZTS6216 (self-biased single-ended, top-port) & ICS-40720 discontinued; ZTS6216's 65 dB PSRR + on-die EMI filter makes a single-ended connection viable next to the radio \\
 7 & LED resistors 1 kΩ → 330 Ω & ≈0.3 mA was invisible \\
-8 & TRRS → 3-pole TRS jack & 4th pole unused \\
+8 & TRRS → 3-pole TRS jack (PJ-3537S, T/R/S + detect switch) & 4th pole unused \\
 9 & Add TX input path + analog switch & TX mode now in scope \\
 10 & Add battery charger, NTC, cell connector, VBAT sense & Battery in scope \\
 11 & NCP1117 → low-dropout LDO in SOT-89 & 1.2 V dropout cannot run from a cell \\
@@ -794,6 +837,9 @@ Hardware choices that constrain firmware, or vice versa.
 14 & \texttt{/PGOOD}, \texttt{/CHG} pull-ups moved SYS → 3V3_A and routed to GPIOs & 4.4 V exceeds the ESP32 input rating; status was LED-only \\
 15 & Add \texttt{BAT_ADC} divider, CC1/CC2 sense taps & State of charge (REQ-PWR-10) and source detection \\
 16 & Gate the CH340K on a GPIO & ≈10 mA of battery budget with USB absent \\
+17 & Output coupling 1 µF MLCC → 47 µF electrolytic (C1/C21, Panasonic C336270) on the jack side; add 100 kΩ jack-side bleed (R22/R23) & Deep bass margin, one shared bidirectional cap, pop suppression \\
+18 & Add TX-input clamps D7/D8 (2× BAT54S, C408389) on LIN2/RIN2 to AVDD/GND & Protect codec inputs / electrolytic couplers from an over-range TX source \\
+19 & Mic coupling → 100 nF C0G (C41/C42, Murata C97946, 1206); provision pseudo-diff (R41 0 Ω + C54 alt, both DNP) & ZTS6216 forbids Class-2 near the mic; option to reject common-mode noise later \\
 \bottomrule
 \end{longtable}
 \normalsize
@@ -842,7 +888,38 @@ in Rev B.
 \end{itemize}
 
 \textbf{Rev A→B deltas still unapplied:} \#7 (LED resistors — micro sheet only), \#12 (crystal caps).
-Deltas \#4, \#9, \#13–16 are now on the schematic.
+Deltas \#4, \#9, \#13–17 are now on the schematic.
+
+\textbf{Audio-sheet status} (§6 describes the target). Tracking the 2026-09-07 audio review
+(\texttt{design-review-audio.md}), re-audited from a fresh netlist 2026-09-08.
+
+\textit{Applied on the schematic (verified against netlist 2026-09-08):}
+\begin{itemize}[leftmargin=1.4em]
+\item ✅ \textbf{I²C pull-ups moved to +3V3\_AUDIO}, dropped to 1 kΩ (R19/R20) — they die with the
+  codec rail, so gating \texttt{AUDIO\_VCC\_EN} no longer back-powers the ES8388. (was S2)
+\item ✅ \textbf{L/R un-swapped} — COM1→ROUT1/RIN2 (Right)→Ring, COM2→LOUT1/LIN2 (Left)→Tip, matching
+  J1's \texttt{TIP\_LEFT}/\texttt{RING\_RIGHT}. Standard stereo orientation in both RX and TX. (was S2)
+\item ✅ \textbf{Jack → PJ-3537S 3-pole TRS} with detect switch (delta \#8). (was S3)
+\item ✅ \textbf{47 µF electrolytic couplers} (C1/C21) on the jack side of the switch, correct
+  polarity (+ to VMID side), with 100 kΩ jack-side bleed (R22/R23) (delta \#17).
+\item ✅ \textbf{TX-input clamps} D7/D8 (2× BAT54S, C408389) — series-clamp geometry verified:
+  common→signal, anode→GND, cathode→AVDD; off at VMID, no DC loading (delta \#18).
+\item ✅ \textbf{Mic coupling → 100 nF C0G} (C41/C42, Murata C97946, 1206), sized in §8; pseudo-diff
+  option provisioned with R41 (0 Ω) and C54 both DNP (delta \#19, \#6).
+\end{itemize}
+
+\textit{Open / notes on the audio sheet:}
+\begin{itemize}[leftmargin=1.4em]
+\item ✅ \textbf{TX input level — decided line-level-only} (2026-09-08). Expect ≤ ~1 V\textsubscript{RMS}
+  with the PGA at 0 dB; ES8388 full-scale in = AVDD/3.3 ≈ 1.0 V\textsubscript{RMS}. No attenuator — it
+  would halve the common quieter sources (0.316 V\textsubscript{RMS} line-out → 0.16 V) and cost SNR;
+  the BAT54S clamps are damage protection only, so a hotter source clips softly, not a fault. (A7 closed)
+\item \textbf{RIN1 floats in the default build} — with R41 DNP, the mic − reference is unconnected.
+  Benign as long as firmware keeps the right ADC powered down; fitting R41 (which also enables
+  pseudo-diff) removes it. Deliberate provisioning choice, not a defect.
+\item \textbf{Firmware mute} across power-up and TX/RX switching — the 47 µF couplers give slow
+  ($\sim$1–5 s) VMID settling. (A8)
+\end{itemize}
 
 \section{Manufacturing}
 
@@ -906,6 +983,8 @@ B & 2026-08-31 & Micro-sheet review (\texttt{design-review-micro.md}): found UAR
 B & 2026-08-31 & Micro-sheet fixes landed: UART crossover, flash IO2/IO3, rail unified to \texttt{+3V3_SYS} (EN pull-up reconnected), and CH340K high-side load switch drawn (Q2 AO3401A + R40 100 kΩ pull-down, gate \texttt{CH340_EN} on GPIO21, default-ON). Netlist-verified. \\
 B & 2026-08-31 & Full ESP32 GPIO map committed (§3.8) with strapping-pin FW/HW implications: interface signals wired to the ESP32 (EN1/EN2, /PGOOD, /CHG, ADC senses, AUDIO_VCC_EN, CHARGE_EN→GPIO2), \texttt{AUDIO_SW}→GPIO5 driving both TS5A23159 inputs (LOW=RX, HIGH=TX). Verified TS5A23159 pinout against TI datasheet — COM=jack/NC=codec-out/NO=codec-in, both channels symmetric (a prior review note claiming asymmetry was wrong, now withdrawn). \\
 B & 2026-09-03 & Design overview converted from Markdown to LaTeX (Tectonic/XeTeX build) for easier manual editing. Content unchanged. \\
+B & 2026-09-07 & Audio sheet re-reviewed from a fresh netlist (\texttt{design-review-audio.md}). Folded confirmed audio decisions into §2/§6/§8/§9/§10: single-ended ZTS6216 mic (was differential SPH8878), 47 µF electrolytic jack-side couplers C1/C21 + R22/R23 bleed (was 1 µF MLCC), PJ-3537S TRS jack, L/R and I²C-pull-up-rail fixes. Corrected the stale "isolation-transformer footprints provisioned" claim — R7/R8 are plain 10 Ω, battery-only is the ground-loop plan. Also recorded the earlier withdrawal of the ES8388 OUT1-vs-OUT2 line/headphone distinction (no such split in the datasheet). \\
+B & 2026-09-08 & Audio caps + clamps finalized against the netlist: TX-input clamps to 2× BAT54S (D7/D8, common→signal / anode→GND / cathode→AVDD); mic DC-blocking caps to 100 nF C0G (Murata C97946, 1206) with a provisioned pseudo-differential option (R41 0 Ω + C54 alt, both DNP). Added §8 coupling-cap sizing calculations — jack couplers vs the car-AUX load (0.34 Hz into 10 kΩ) and mic caps vs the ES8388 20 kΩ ADC input (80 Hz). I²C pull-ups noted at 1 kΩ. TX input level decided \textbf{line-level-only} (PGA 0 dB, no attenuator; clamps = damage protection) — A7 closed. \\
 \bottomrule
 \end{longtable}
 \normalsize

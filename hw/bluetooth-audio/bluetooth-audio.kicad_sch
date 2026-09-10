@@ -363,6 +363,16 @@
 				(justify right)
 			)
 		)
+		(pin "JACK_DET" input
+			(at 124.46 110.49 0)
+			(uuid "042e2346-dc28-4225-9bd5-40519febe71c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d"

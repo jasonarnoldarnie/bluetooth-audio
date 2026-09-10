@@ -3761,12 +3761,6 @@
 		(uuid "623f34f4-7586-4213-9c91-6ab472454519")
 	)
 	(junction
-		(at 130.81 31.75)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "63619909-be9f-4666-8d7f-e5799639d1f1")
-	)
-	(junction
 		(at 139.7 160.02)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -7930,7 +7924,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "2b86e059-cf87-4378-a650-471c824ac475")
-		(property "Reference" "R_TMR"
+		(property "Reference" "R_TMR1"
 			(at 96.774 132.334 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7992,7 +7986,7 @@
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/541dab54-ea50-443b-9935-4ff5142dd0fa"
-					(reference "R_TMR")
+					(reference "R_TMR1")
 					(unit 1)
 				)
 			)
@@ -8261,7 +8255,7 @@
 		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "3b7a80ab-785f-4f48-b0a7-cb49736a21c5")
-		(property "Reference" "R_NTC_LIN"
+		(property "Reference" "R_NTC_LIN1"
 			(at 54.61 114.2999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8325,7 +8319,7 @@
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/541dab54-ea50-443b-9935-4ff5142dd0fa"
-					(reference "R_NTC_LIN")
+					(reference "R_NTC_LIN1")
 					(unit 1)
 				)
 			)
@@ -9804,7 +9798,7 @@
 				)
 			)
 		)
-		(property "Value" "47k"
+		(property "Value" "100k"
 			(at 123.19 39.878 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10477,7 +10471,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8033e64a-7a27-41be-8c5c-2094b17228fd")
-		(property "Reference" "R_ITERM"
+		(property "Reference" "R_ITERM1"
 			(at 96.52 116.84 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10539,7 +10533,7 @@
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/541dab54-ea50-443b-9935-4ff5142dd0fa"
-					(reference "R_ITERM")
+					(reference "R_ITERM1")
 					(unit 1)
 				)
 			)
@@ -10557,7 +10551,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "8087367b-ec74-413b-bd99-dbad88b0007e")
-		(property "Reference" "R_ILIM"
+		(property "Reference" "R_ILIM1"
 			(at 97.79 167.6399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10621,7 +10615,7 @@
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/541dab54-ea50-443b-9935-4ff5142dd0fa"
-					(reference "R_ILIM")
+					(reference "R_ILIM1")
 					(unit 1)
 				)
 			)
@@ -11864,7 +11858,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c42a12dc-1589-4013-b5c6-486be0d0dc14")
-		(property "Reference" "R_ISET"
+		(property "Reference" "R_ISET1"
 			(at 106.68 167.6399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11928,7 +11922,7 @@
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/541dab54-ea50-443b-9935-4ff5142dd0fa"
-					(reference "R_ISET")
+					(reference "R_ISET1")
 					(unit 1)
 				)
 			)

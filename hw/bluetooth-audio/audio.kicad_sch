@@ -1017,30 +1017,39 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Connector_Audio:AudioJack4_Ground"
+		(symbol "Device:C_Polarized_US"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "J"
-				(at 0 8.89 0)
+			(property "Reference" "C"
+				(at 0.635 2.54 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Value" "AudioJack4_Ground"
-				(at 0 6.35 0)
+			(property "Value" "C_Polarized_US"
+				(at 0.635 -2.54 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
 			(property "Footprint" ""
@@ -1065,7 +1074,7 @@
 					)
 				)
 			)
-			(property "Description" "Audio Jack, 4 Poles (TRRS), Grounded Sleeve"
+			(property "Description" "Polarized capacitor, US symbol"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1076,7 +1085,7 @@
 					)
 				)
 			)
-			(property "ki_keywords" "audio jack receptacle stereo headphones TRRS connector"
+			(property "ki_keywords" "cap capacitor"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1087,7 +1096,7 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "Jack*"
+			(property "ki_fp_filters" "CP_*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1098,24 +1107,13 @@
 					)
 				)
 			)
-			(symbol "AudioJack4_Ground_0_1"
-				(rectangle
-					(start -6.35 -7.62)
-					(end -7.62 -5.08)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
+			(symbol "C_Polarized_US_0_1"
 				(polyline
 					(pts
-						(xy -5.715 -5.08) (xy -5.08 -5.715) (xy -4.445 -5.08) (xy -4.445 2.54) (xy 2.54 2.54)
+						(xy -2.032 0.762) (xy 2.032 0.762)
 					)
 					(stroke
-						(width 0.254)
+						(width 0.508)
 						(type default)
 					)
 					(fill
@@ -1124,10 +1122,10 @@
 				)
 				(polyline
 					(pts
-						(xy -1.905 -5.08) (xy -1.27 -5.715) (xy -0.635 -5.08) (xy -0.635 -2.54) (xy 2.54 -2.54)
+						(xy -1.778 2.286) (xy -0.762 2.286)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -1136,33 +1134,22 @@
 				)
 				(polyline
 					(pts
-						(xy 0 -5.08) (xy 0.635 -5.715) (xy 1.27 -5.08) (xy 2.54 -5.08)
+						(xy -1.27 1.778) (xy -1.27 2.794)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
 						(type none)
 					)
 				)
-				(rectangle
-					(start 2.54 3.81)
-					(end -6.35 -7.62)
+				(arc
+					(start -2.032 -1.27)
+					(mid 0 -0.5572)
+					(end 2.032 -1.27)
 					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 0) (xy -2.54 0) (xy -2.54 -5.08) (xy -3.175 -5.715) (xy -3.81 -5.08)
-					)
-					(stroke
-						(width 0.254)
+						(width 0.508)
 						(type default)
 					)
 					(fill
@@ -1170,10 +1157,10 @@
 					)
 				)
 			)
-			(symbol "AudioJack4_Ground_1_1"
+			(symbol "C_Polarized_US_1_1"
 				(pin passive line
-					(at 0 -10.16 90)
-					(length 2.54)
+					(at 0 3.81 270)
+					(length 2.794)
 					(name ""
 						(effects
 							(font
@@ -1181,7 +1168,7 @@
 							)
 						)
 					)
-					(number "G"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1190,8 +1177,8 @@
 					)
 				)
 				(pin passive line
-					(at 5.08 -2.54 180)
-					(length 2.54)
+					(at 0 -3.81 90)
+					(length 3.302)
 					(name ""
 						(effects
 							(font
@@ -1199,61 +1186,7 @@
 							)
 						)
 					)
-					(number "R1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 0 180)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "R2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 2.54 180)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "S"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 -5.08 180)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "T"
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1403,6 +1336,224 @@
 					(at 0 -2.54 90)
 					(length 2.032)
 					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:D_Schottky_Dual_Series_AKC_Split"
+			(pin_names
+				(offset 0.762)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "D_Schottky_Dual_Series_AKC_Split"
+				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -2.54 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at -2.54 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Dual Schottky diode, anode/cathode/center"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_locked" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "D_Schottky_Dual_Series_AKC_Split_0_1"
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "D_Schottky_Dual_Series_AKC_Split_1_1"
+				(polyline
+					(pts
+						(xy -1.27 1.27) (xy 1.27 0) (xy -1.27 -1.27) (xy -1.27 1.27) (xy -1.27 1.27) (xy -1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.778 1.016) (xy 1.778 1.27) (xy 1.27 1.27) (xy 1.27 -1.27) (xy 0.762 -1.27) (xy 0.762 -1.016)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "D_Schottky_Dual_Series_AKC_Split_2_1"
+				(polyline
+					(pts
+						(xy -1.778 1.016) (xy -1.778 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.762 -1.27) (xy -0.762 -1.016)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 0) (xy 1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27) (xy 1.27 1.27) (xy 1.27 1.27) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2159,34 +2310,39 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "custom_symbols:ICS-40720"
+		(symbol "custom_symbols:PJ-3537S-SMT"
+			(pin_names
+				(offset 1.016)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "MK"
-				(at 5.08 6.35 0)
+			(property "Reference" "J"
+				(at -14.224 -7.874 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Value" "ICS-40720"
-				(at 11.43 -6.35 0)
+			(property "Value" "PJ-3537S-SMT"
+				(at -1.016 -8.128 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Footprint" "custom_footprints:ICS40720"
-				(at 0 19.05 0)
+			(property "Footprint" "custom_footprints:PJ-3537S-SMT"
+				(at 0 -11.43 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -2196,7 +2352,29 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2401291126_TDK-InvenSense-ICS-40720_C3171779.pdf"
+			(property "Datasheet" "https://www.lcsc.com/datasheet/C2689709.pdf"
+				(at 0 -12.7 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "3.5mm 3-pole (TRS/stereo) audio jack, SMD, side-entry. Tip=L, Ring=R, Sleeve=GND. Pins 3/4 are internal normally-closed detect switches (leave unconnected for a basic jack)."
+				(at 0 -15.24 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "XKB Connection"
 				(at 0 -17.78 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2207,8 +2385,8 @@
 					)
 				)
 			)
-			(property "Description" "Analog Differential Omni-directional -38dB 70dB MEMS Microphones"
-				(at -0.762 -21.336 0)
+			(property "MPN" "PJ-3537S-SMT"
+				(at 0 -20.32 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -2218,17 +2396,18 @@
 					)
 				)
 			)
-			(property "Supplier Part Number" "C3171779"
-				(at 10.922 -9.144 0)
+			(property "LCSC" "C2689709"
+				(at 0 -22.86 0)
 				(show_name no)
 				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "ki_keywords" "Microphone MEMS analog differential"
+			(property "ki_keywords" "audio jack 3.5mm stereo TRS headphone"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2239,7 +2418,7 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "Infineon*PG*LLGA*"
+			(property "ki_fp_filters" "PJ-3537S*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2250,45 +2429,107 @@
 					)
 				)
 			)
-			(symbol "ICS-40720_1_1"
+			(symbol "PJ-3537S-SMT_0_1"
 				(rectangle
-					(start -7.62 5.08)
-					(end 7.62 -5.08)
+					(start -14.605 6.35)
+					(end 13.97 -6.35)
 					(stroke
 						(width 0.254)
-						(type default)
+						(type solid)
 					)
 					(fill
 						(type background)
 					)
 				)
+				(rectangle
+					(start -12.7 2.54)
+					(end -10.16 -2.54)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
 				(polyline
 					(pts
-						(xy -5.08 1.27) (xy -5.08 -1.27)
+						(xy -11.43 2.54) (xy -11.43 5.08) (xy 1.27 5.08)
 					)
 					(stroke
-						(width 0.381)
+						(width 0)
 						(type default)
 					)
 					(fill
 						(type none)
 					)
 				)
-				(circle
-					(center -3.81 0)
-					(radius 1.27)
+				(polyline
+					(pts
+						(xy -4.445 -1.905) (xy -3.81 -2.54) (xy -3.175 -1.905) (xy -4.445 -1.905)
+					)
 					(stroke
-						(width 0.254)
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 2.54) (xy -6.35 2.54) (xy -7.62 1.27) (xy -8.89 2.54)
+					)
+					(stroke
+						(width 0)
 						(type default)
 					)
 					(fill
 						(type none)
 					)
 				)
-				(pin power_in line
-					(at 0 7.62 270)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -3.81 0) (xy -3.81 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -2.54) (xy -5.08 -2.54) (xy -6.35 -1.27) (xy -7.62 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -5.08) (xy -10.16 -5.08) (xy -11.43 -3.81) (xy -12.7 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "PJ-3537S-SMT_1_1"
+				(pin passive line
+					(at 16.51 5.08 180)
 					(length 2.54)
-					(name "V_{DD}"
+					(name "SLEEVE"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2303,10 +2544,10 @@
 						)
 					)
 				)
-				(pin output line
-					(at 10.16 0 180)
+				(pin passive line
+					(at 16.51 -5.08 180)
 					(length 2.54)
-					(name "OUT-"
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2321,10 +2562,271 @@
 						)
 					)
 				)
-				(pin output line
-					(at 10.16 2.54 180)
+				(pin passive line
+					(at 16.51 2.54 180)
 					(length 2.54)
-					(name "OUT+"
+					(name "RING_RIGHT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 16.51 -2.54 180)
+					(length 2.54)
+					(name "TIP_LEFT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 16.51 0 180)
+					(length 2.54)
+					(name "SW_NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "custom_symbols:ZTS6216"
+			(pin_names
+				(offset 0.762)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "MK"
+				(at -3.81 5.588 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "ZTS6216"
+				(at 2.54 -10.922 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "custom_footprints:ZTS6216"
+				(at -1.016 16.51 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://file1.elecfans.com/web2/M00/C3/0A/wKgaomXgKHiAc_KRAAtAFVHhhXM290.pdf"
+				(at -1.016 11.938 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Analog output omnidirectional MEMS microphone, top-port, 65 dB(A) SNR, -38 dBV/Pa, 1.5-3.6 V, SMD-4P 2.75x1.85mm"
+				(at -0.762 7.62 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "ZILLTEK"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "ZTS6216"
+				(at -0.254 14.224 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC" "C481302"
+				(at 0 9.398 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "microphone MEMS analog top-port omnidirectional Zilltek"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "ZTS6216*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "ZTS6216_0_1"
+				(rectangle
+					(start -5.08 3.81)
+					(end 5.08 -8.89)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.016 1.27) (xy 1.016 1.27)
+					)
+					(stroke
+						(width 0.2032)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 1.27)
+					(radius 1.778)
+					(stroke
+						(width 0.2032)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.254) (xy 0 2.286)
+					)
+					(stroke
+						(width 0.2032)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "ZTS6216_1_1"
+				(pin output line
+					(at 7.62 -2.54 180)
+					(length 2.54)
+					(name "OUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -1.27 -11.43 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 1.27 -11.43 90)
+					(length 2.54)
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2340,9 +2842,9 @@
 					)
 				)
 				(pin power_in line
-					(at 0 -7.62 90)
+					(at -7.62 -2.54 0)
 					(length 2.54)
-					(name "GND"
+					(name "VDD"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2617,16 +3119,15 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "TODO replace with 3 pole\n"
+	(text "Anti-thump bleed\nresistors\n"
 		(exclude_from_sim no)
-		(at 254.762 164.084 0)
+		(at 215.9 161.798 0)
 		(effects
 			(font
 				(size 1.27 1.27)
-				(color 255 0 0 1)
 			)
 		)
-		(uuid "1994eaee-3b4f-454f-a423-8f577ce8b2e6")
+		(uuid "36ad8a2b-c61d-43c5-9784-5aa5ed6dcaf8")
 	)
 	(text "Digital Serial Data Input\n"
 		(exclude_from_sim no)
@@ -2638,6 +3139,17 @@
 		)
 		(uuid "480a0c2b-84f3-4a8d-94c6-fa34b49fcc43")
 	)
+	(text "Change dielectric\n"
+		(exclude_from_sim no)
+		(at 186.182 69.85 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(color 194 0 0 1)
+			)
+		)
+		(uuid "49c61b06-f824-494c-85c8-d699b4c265da")
+	)
 	(text "Left / Right clock (Word select / WS) \n"
 		(exclude_from_sim no)
 		(at 85.344 81.28 0)
@@ -2647,6 +3159,27 @@
 			)
 		)
 		(uuid "598133ef-585a-42ff-b61b-62c4b9ebfebb")
+	)
+	(text "Change dielectric\n"
+		(exclude_from_sim no)
+		(at 184.658 80.264 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(color 194 0 0 1)
+			)
+		)
+		(uuid "9fdcfc18-fee9-4ca4-88eb-97f6d7ed4f79")
+	)
+	(text "Populate R41 + either C42/C54 \nto configure pseudo-differential mic"
+		(exclude_from_sim no)
+		(at 88.392 165.862 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "a03eab3f-9373-459b-a039-c8355dc7761f")
 	)
 	(text "Analog Serial Data Output\n"
 		(exclude_from_sim no)
@@ -2668,16 +3201,6 @@
 		)
 		(uuid "c5fee446-4295-4cc1-8291-293219a238f4")
 	)
-	(text "Separation between\ndigital and audio VCC\nTODO confirm from Datasheet"
-		(exclude_from_sim no)
-		(at 64.77 34.544 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "c75e032e-5d19-41ad-be6a-80bb28d9434b")
-	)
 	(text "Serial clock / Bit clock (BCLK)"
 		(exclude_from_sim no)
 		(at 87.63 78.74 0)
@@ -2688,10 +3211,10 @@
 		)
 		(uuid "e62dcdca-601f-45b0-9cdd-029a5dbbbeaf")
 	)
-	(text_box "DIFFERENTIAL MIC\n"
+	(text_box "SINGLE-ENDED MIC\n"
 		(exclude_from_sim no)
-		(at 28.194 117.602 0)
-		(size 120.65 60.198)
+		(at 17.78 121.412 0)
+		(size 101.6 60.198)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width 0)
@@ -2710,8 +3233,8 @@
 	)
 	(text_box "HEADPHONE JACK\n"
 		(exclude_from_sim no)
-		(at 152.4 119.38 0)
-		(size 117.602 43.942)
+		(at 121.92 118.11 0)
+		(size 161.29 46.99)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width 0)
@@ -2730,8 +3253,8 @@
 	)
 	(text_box "AUDIO CODEC\n"
 		(exclude_from_sim no)
-		(at 20.32 25.654 0)
-		(size 245.618 89.154)
+		(at 19.05 16.51 0)
+		(size 255.27 101.6)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width 0)
@@ -2749,22 +3272,28 @@
 		(uuid "f1f878e8-f4e0-4dad-a38f-6fc748252c34")
 	)
 	(junction
-		(at 40.64 41.91)
+		(at 44.45 30.48)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "035a7332-3baa-48de-98a9-60ab64307907")
 	)
 	(junction
-		(at 100.33 49.53)
+		(at 203.2 147.32)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "051889f1-aede-442b-a5e1-8cb99b5591dd")
+	)
+	(junction
+		(at 62.23 102.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0c1d4098-f8a0-460a-b7cb-a51c7c082100")
+	)
+	(junction
+		(at 92.71 49.53)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "0e3f9ecb-d8df-428d-80b8-82ca1f764311")
-	)
-	(junction
-		(at 99.06 100.33)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "114d4d07-ba52-4881-b0ea-8ffd6f28286b")
 	)
 	(junction
 		(at 237.49 85.09)
@@ -2773,22 +3302,34 @@
 		(uuid "19fc6af4-037c-4d89-a722-4a00357b87db")
 	)
 	(junction
+		(at 57.15 100.33)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1dbf0ccb-4de2-40af-8dcf-ed01710085bd")
+	)
+	(junction
 		(at 166.37 59.69)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "261800bb-0c87-48b7-8f3d-87829d08289e")
 	)
 	(junction
-		(at 36.83 41.91)
+		(at 31.75 148.59)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "26a532a9-ef59-4ae1-9eeb-af1484bb1670")
+	)
+	(junction
+		(at 115.57 66.04)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2a626be9-1d2c-422f-b73e-cca8186b00d2")
+	)
+	(junction
+		(at 40.64 30.48)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "31f19b57-950f-4e97-bc59-7e9db45f6c6c")
-	)
-	(junction
-		(at 52.07 127)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3d1f554b-801a-4244-9e7d-c6e8ba54a667")
 	)
 	(junction
 		(at 187.96 90.17)
@@ -2797,52 +3338,58 @@
 		(uuid "3f210294-e207-4433-8411-774e575fbdad")
 	)
 	(junction
-		(at 77.47 127)
+		(at 121.92 52.07)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "476163cb-d3d7-423c-acb2-44ac8f923f28")
+		(uuid "446146fd-e5e4-43cc-9858-d536b6f7b050")
 	)
 	(junction
-		(at 66.04 127)
+		(at 59.69 100.33)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "4b4b4df1-a5bb-4625-b6ac-47e4798c2d17")
+		(uuid "44b916bc-37f9-4bde-8514-85238e822a54")
 	)
 	(junction
-		(at 83.82 97.79)
+		(at 194.31 152.4)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "53eee66d-3545-4be9-a00a-bb6e0b6da45b")
+		(uuid "54f5ea1a-1530-4e81-888e-65f8698217dd")
 	)
 	(junction
-		(at 50.8 41.91)
+		(at 57.15 160.02)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "57acf272-41aa-407c-a958-8c8d1ec84b86")
+		(uuid "5ed117f5-64bd-4cd4-a03c-c13cc6bf33b8")
 	)
 	(junction
-		(at 168.91 147.32)
+		(at 138.43 147.32)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5f6973de-6f4c-45d3-8fde-b9c043c81121")
 	)
 	(junction
-		(at 88.9 151.13)
+		(at 69.85 30.48)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "61419227-7a8d-4ba4-9d45-ee8ee7f4bbce")
+		(uuid "6595df71-53ff-4389-bcf1-85ec83dd17c0")
 	)
 	(junction
-		(at 88.9 162.56)
+		(at 121.92 68.58)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "6290610e-6b43-4435-ab49-af28e4be1698")
+		(uuid "6ac4d3ac-1ec5-45e8-977f-f70bd90e7b39")
 	)
 	(junction
-		(at 66.04 148.59)
+		(at 64.77 102.87)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "714fedd5-ae0a-460a-a8cd-d153d29186bc")
+		(uuid "733b38a0-75b9-406f-af16-04865df83ee9")
+	)
+	(junction
+		(at 127 102.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7949d3f6-1d93-4e3d-ad45-6dd256d3c68c")
 	)
 	(junction
 		(at 208.28 49.53)
@@ -2851,19 +3398,31 @@
 		(uuid "7a228b34-8a01-45f7-b932-6c22ba51c787")
 	)
 	(junction
-		(at 80.01 151.13)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "86e63fe7-94ec-4477-8ee3-29a644c86d70")
-	)
-	(junction
-		(at 209.55 130.81)
+		(at 177.8 129.54)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "86ed75f8-6b0b-4735-9fa8-f51b5a511205")
 	)
 	(junction
-		(at 88.9 134.62)
+		(at 107.95 158.75)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "916fab71-b6bd-4db2-96a7-6d1e7ee9dd86")
+	)
+	(junction
+		(at 57.15 165.1)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "91d5b906-c585-477c-b668-5dc720ac7554")
+	)
+	(junction
+		(at 59.69 114.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9b8c3d9c-8eef-49c2-88ef-5cb1c652ee4e")
+	)
+	(junction
+		(at 43.18 156.21)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a991d094-0425-4526-b815-ac9725d3474a")
@@ -2881,18 +3440,46 @@
 		(uuid "d00d15af-60d5-48a4-8a5b-320a072b759b")
 	)
 	(junction
-		(at 63.5 41.91)
+		(at 114.3 100.33)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "dc374a37-c8ec-423b-ab53-5811138239ab")
+		(uuid "d13e23a4-addd-421b-bc90-a2a17bbd240b")
+	)
+	(junction
+		(at 43.18 148.59)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ebb5c585-5450-4c3f-8d72-3273b6bd81b9")
+	)
+	(junction
+		(at 64.77 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ee3dee87-2d05-42e6-8126-215793a2b7b7")
+	)
+	(junction
+		(at 115.57 52.07)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fa29783a-e130-474a-a5d8-78a9ffd28b8f")
 	)
 	(no_connect
-		(at 252.73 144.78)
-		(uuid "1889a8cf-5ba7-40f5-8ca3-4a3551779c30")
+		(at 233.68 149.86)
+		(uuid "de6cfe3e-ef39-4dac-9d77-2a0f8bd2642c")
 	)
 	(wire
 		(pts
-			(xy 168.91 161.29) (xy 187.96 161.29)
+			(xy 107.95 158.75) (xy 107.95 166.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "00081b5a-a3a2-4235-a4b9-8effc8fc6db8")
+	)
+	(wire
+		(pts
+			(xy 138.43 160.02) (xy 157.48 160.02)
 		)
 		(stroke
 			(width 0)
@@ -2902,13 +3489,13 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 100.33) (xy 135.89 100.33)
+			(xy 203.2 147.32) (xy 203.2 154.94)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "02dedce5-c555-4b7f-a08f-1f02def47dc4")
+		(uuid "011b3f24-4f53-490f-a69f-9be7a35897b4")
 	)
 	(wire
 		(pts
@@ -2932,7 +3519,37 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 100.33) (xy 116.84 100.33)
+			(xy 67.31 158.75) (xy 67.31 165.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "07aef4f5-6fce-4013-a330-445011338546")
+	)
+	(wire
+		(pts
+			(xy 64.77 97.79) (xy 64.77 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "07d5d8f6-4739-4340-8739-f8ba0a6de671")
+	)
+	(wire
+		(pts
+			(xy 125.73 113.03) (xy 127 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "08c491b5-5a2e-4497-a821-493cc3e74efe")
+	)
+	(wire
+		(pts
+			(xy 129.54 100.33) (xy 135.89 100.33)
 		)
 		(stroke
 			(width 0)
@@ -2942,27 +3559,27 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 151.13) (xy 88.9 153.67)
+			(xy 62.23 102.87) (xy 64.77 102.87)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0fce0fa6-cc59-4ffa-8b0e-8a28f0d39692")
+		(uuid "0fd65637-6ee6-4d2e-ba65-cb9fdcbc4904")
 	)
 	(wire
 		(pts
-			(xy 217.17 147.32) (xy 224.79 147.32)
+			(xy 57.15 114.3) (xy 59.69 114.3)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "11c8ecf3-3c78-4417-b24c-083684dea77a")
+		(uuid "1320bbcf-76a6-4335-9dc4-af993fe2009f")
 	)
 	(wire
 		(pts
-			(xy 111.76 52.07) (xy 111.76 53.34)
+			(xy 104.14 52.07) (xy 104.14 53.34)
 		)
 		(stroke
 			(width 0)
@@ -2972,7 +3589,17 @@
 	)
 	(wire
 		(pts
-			(xy 209.55 124.46) (xy 209.55 130.81)
+			(xy 57.15 114.3) (xy 57.15 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "19142613-3ba4-4708-a6ac-c86f7ba7d7f6")
+	)
+	(wire
+		(pts
+			(xy 177.8 123.19) (xy 177.8 129.54)
 		)
 		(stroke
 			(width 0)
@@ -2992,13 +3619,13 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 148.59) (xy 66.04 153.67)
+			(xy 69.85 30.48) (xy 69.85 36.83)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "1f1e889a-9e8c-4855-b56f-b02adf4d581d")
+		(uuid "2207eff1-4e01-48dc-acdf-57082d40fecf")
 	)
 	(wire
 		(pts
@@ -3012,13 +3639,13 @@
 	)
 	(wire
 		(pts
-			(xy 73.66 97.79) (xy 83.82 97.79)
+			(xy 57.15 100.33) (xy 59.69 100.33)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "25154aa9-07ba-44e0-819c-e5a5065ee64b")
+		(uuid "27eedca2-55b5-4dbb-bbfb-405d7d4d66ea")
 	)
 	(wire
 		(pts
@@ -3032,7 +3659,47 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 49.53) (xy 100.33 53.34)
+			(xy 203.2 147.32) (xy 214.63 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "292f677e-d843-4a99-9214-c64d4635630c")
+	)
+	(wire
+		(pts
+			(xy 185.42 152.4) (xy 194.31 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2c4db6a4-75d2-4397-90fc-ad2375c0ade0")
+	)
+	(wire
+		(pts
+			(xy 57.15 160.02) (xy 57.15 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2c81e8ba-dfe9-4546-96bc-63cf9ad7441a")
+	)
+	(wire
+		(pts
+			(xy 127 102.87) (xy 129.54 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2e1f8f16-04de-4057-b15c-9389e7b4a7b3")
+	)
+	(wire
+		(pts
+			(xy 92.71 49.53) (xy 92.71 53.34)
 		)
 		(stroke
 			(width 0)
@@ -3042,17 +3709,7 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 151.13) (xy 127 151.13)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "30dc44a5-ca6a-4a63-9a19-eb6d6df229dc")
-	)
-	(wire
-		(pts
-			(xy 229.87 147.32) (xy 252.73 147.32)
+			(xy 219.71 147.32) (xy 233.68 147.32)
 		)
 		(stroke
 			(width 0)
@@ -3062,17 +3719,17 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 151.13) (xy 80.01 151.13)
+			(xy 114.3 100.33) (xy 114.3 113.03)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3570a0a9-f1b9-4da9-b3d9-4b37ea1e54f6")
+		(uuid "344bfb5c-56e4-4e75-ba29-0d94fd05bec7")
 	)
 	(wire
 		(pts
-			(xy 88.9 134.62) (xy 77.47 134.62)
+			(xy 43.18 156.21) (xy 31.75 156.21)
 		)
 		(stroke
 			(width 0)
@@ -3082,33 +3739,33 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 158.75) (xy 80.01 162.56)
+			(xy 64.77 88.9) (xy 73.66 88.9)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3d5c1200-aa11-4ca1-befd-7eac3ff5609a")
+		(uuid "3b9d50ba-3650-417e-a022-53ebb84f322c")
 	)
 	(wire
 		(pts
-			(xy 34.29 41.91) (xy 36.83 41.91)
+			(xy 59.69 97.79) (xy 59.69 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3c364f45-ecba-460b-bbeb-391d439f0cdb")
+	)
+	(wire
+		(pts
+			(xy 38.1 30.48) (xy 40.64 30.48)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "3db8bc64-67d8-45ee-982b-6fe189a09c08")
-	)
-	(wire
-		(pts
-			(xy 63.5 41.91) (xy 63.5 49.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "40daa452-d1db-445d-bc0e-63918e12f79e")
 	)
 	(wire
 		(pts
@@ -3129,6 +3786,16 @@
 			(type default)
 		)
 		(uuid "4372ed9b-1b93-4326-b81b-bc589e24fcf3")
+	)
+	(wire
+		(pts
+			(xy 107.95 158.75) (xy 118.11 158.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "445dcdc1-46ac-465d-8df4-349801ab7274")
 	)
 	(wire
 		(pts
@@ -3172,6 +3839,16 @@
 	)
 	(wire
 		(pts
+			(xy 66.04 148.59) (xy 73.66 148.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4abf4483-a708-4d41-9219-d38be2f1579f")
+	)
+	(wire
+		(pts
 			(xy 166.37 59.69) (xy 172.72 59.69)
 		)
 		(stroke
@@ -3192,13 +3869,13 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 165.1) (xy 66.04 158.75)
+			(xy 59.69 157.48) (xy 59.69 160.02)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "4c571242-ab42-4598-ac69-5319b7fe1cc5")
+		(uuid "4c6f5b81-f547-4bbb-b5ae-9de8828c3c37")
 	)
 	(wire
 		(pts
@@ -3212,43 +3889,33 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 148.59) (xy 62.23 148.59)
+			(xy 165.1 152.4) (xy 177.8 152.4)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "4f0eaeff-fda2-4253-a6b9-453d1b1a1be0")
+		(uuid "4f756ff4-a0e2-4534-be83-f10d4971980f")
 	)
 	(wire
 		(pts
-			(xy 73.66 49.53) (xy 73.66 41.91)
+			(xy 104.14 92.71) (xy 135.89 92.71)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "4f5288e1-d158-42b1-b852-bed7a3c5444c")
+		(uuid "4fcb509d-d675-4fa8-a279-007594fa5bfd")
 	)
 	(wire
 		(pts
-			(xy 91.44 49.53) (xy 100.33 49.53)
+			(xy 83.82 49.53) (xy 92.71 49.53)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "505c3415-1528-4cd1-a12c-23352c551926")
-	)
-	(wire
-		(pts
-			(xy 60.96 127) (xy 66.04 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "50e744ab-26ed-4c7e-93e6-c7d953f2c667")
 	)
 	(wire
 		(pts
@@ -3302,13 +3969,33 @@
 	)
 	(wire
 		(pts
-			(xy 217.17 153.67) (xy 224.79 153.67)
+			(xy 185.42 147.32) (xy 203.2 147.32)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "543d2519-ba17-4449-8294-af88ad582f59")
+		(uuid "55024763-b614-4d21-b6e5-ae30e9e286e8")
+	)
+	(wire
+		(pts
+			(xy 59.69 100.33) (xy 114.3 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5628cd09-b8f8-4de4-a03a-ded9e36929aa")
+	)
+	(wire
+		(pts
+			(xy 229.87 156.21) (xy 229.87 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5859880d-b0a7-452b-acc9-7306b72f669a")
 	)
 	(wire
 		(pts
@@ -3322,13 +4009,33 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 133.35) (xy 77.47 134.62)
+			(xy 48.26 102.87) (xy 62.23 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5bb202c1-8daf-460f-b921-3702e0563109")
+	)
+	(wire
+		(pts
+			(xy 31.75 154.94) (xy 31.75 156.21)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "5da5538d-cb54-456e-b655-45a319871acd")
+	)
+	(wire
+		(pts
+			(xy 59.69 114.3) (xy 62.23 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5f2512fc-da0b-4d86-8b2e-2d0fc2a4aa8d")
 	)
 	(wire
 		(pts
@@ -3342,7 +4049,27 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 138.43) (xy 180.34 138.43)
+			(xy 95.25 158.75) (xy 107.95 158.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6141a20f-5c5e-44db-b6f8-defa75540df0")
+	)
+	(wire
+		(pts
+			(xy 104.14 95.25) (xy 135.89 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "624780c0-719a-4a2e-886d-f2fca111f9a4")
+	)
+	(wire
+		(pts
+			(xy 140.97 138.43) (xy 149.86 138.43)
 		)
 		(stroke
 			(width 0)
@@ -3362,6 +4089,16 @@
 	)
 	(wire
 		(pts
+			(xy 64.77 102.87) (xy 127 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "62fb372b-acb2-437f-b2a2-70a8704250eb")
+	)
+	(wire
+		(pts
 			(xy 163.83 49.53) (xy 208.28 49.53)
 		)
 		(stroke
@@ -3372,17 +4109,7 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 111.76) (xy 96.52 111.76)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "644dfda6-a0be-40d9-a935-5d32ed1a0d18")
-	)
-	(wire
-		(pts
-			(xy 36.83 41.91) (xy 40.64 41.91)
+			(xy 40.64 30.48) (xy 44.45 30.48)
 		)
 		(stroke
 			(width 0)
@@ -3392,13 +4119,13 @@
 	)
 	(wire
 		(pts
-			(xy 243.84 153.67) (xy 243.84 149.86)
+			(xy 59.69 114.3) (xy 59.69 115.57)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "65e8cb10-3d70-48ab-852a-5a42d21068a3")
+		(uuid "675f75b6-ca25-4343-9e2f-c79019d1646d")
 	)
 	(wire
 		(pts
@@ -3412,37 +4139,37 @@
 	)
 	(wire
 		(pts
-			(xy 73.66 100.33) (xy 99.06 100.33)
+			(xy 59.69 160.02) (xy 57.15 160.02)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "6a0f7b1a-bae1-42ac-9880-ab9b92170ea6")
+		(uuid "68f64bc6-9176-466d-a4d3-27463685f806")
 	)
 	(wire
 		(pts
-			(xy 66.04 142.24) (xy 66.04 148.59)
+			(xy 57.15 100.33) (xy 57.15 105.41)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "6a61b810-e054-4568-a7a3-8fd143c6f472")
+		(uuid "6a6ecb03-b220-4374-8a30-ff61f87cccff")
 	)
 	(wire
 		(pts
-			(xy 66.04 127) (xy 77.47 127)
+			(xy 64.77 88.9) (xy 64.77 90.17)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "6d52ebe1-9483-4147-adee-90db4690ab17")
+		(uuid "7217d7b5-d07c-4338-9a8e-337cca50d331")
 	)
 	(wire
 		(pts
-			(xy 101.6 148.59) (xy 127 148.59)
+			(xy 78.74 148.59) (xy 92.71 148.59)
 		)
 		(stroke
 			(width 0)
@@ -3452,7 +4179,7 @@
 	)
 	(wire
 		(pts
-			(xy 201.93 147.32) (xy 201.93 135.89)
+			(xy 171.45 147.32) (xy 171.45 135.89)
 		)
 		(stroke
 			(width 0)
@@ -3462,13 +4189,13 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 127) (xy 66.04 137.16)
+			(xy 80.01 41.91) (xy 80.01 49.53)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "79934740-aaaa-4c99-9b22-9516ce43ff4e")
+		(uuid "799447a1-baea-4f8a-a28f-c82eb71e1b39")
 	)
 	(wire
 		(pts
@@ -3482,7 +4209,7 @@
 	)
 	(wire
 		(pts
-			(xy 113.03 68.58) (xy 135.89 68.58)
+			(xy 111.76 68.58) (xy 121.92 68.58)
 		)
 		(stroke
 			(width 0)
@@ -3492,17 +4219,17 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 151.13) (xy 105.41 151.13)
+			(xy 62.23 114.3) (xy 62.23 113.03)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "80b6b5bc-b1e2-4c50-9f54-556cd9c221d6")
+		(uuid "7c43cc7e-ea74-4d6c-9a5d-e6b9f571299d")
 	)
 	(wire
 		(pts
-			(xy 168.91 147.32) (xy 168.91 161.29)
+			(xy 138.43 147.32) (xy 138.43 160.02)
 		)
 		(stroke
 			(width 0)
@@ -3512,13 +4239,13 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 151.13) (xy 88.9 151.13)
+			(xy 76.2 158.75) (xy 90.17 158.75)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "81bca5a8-e4f9-4619-b037-45830f227bf1")
+		(uuid "8160a704-71e2-4f22-a292-1b0cc6734ca6")
 	)
 	(wire
 		(pts
@@ -3532,7 +4259,7 @@
 	)
 	(wire
 		(pts
-			(xy 83.82 97.79) (xy 106.68 97.79)
+			(xy 114.3 97.79) (xy 135.89 97.79)
 		)
 		(stroke
 			(width 0)
@@ -3572,17 +4299,27 @@
 	)
 	(wire
 		(pts
-			(xy 195.58 153.67) (xy 212.09 153.67)
+			(xy 59.69 88.9) (xy 64.77 88.9)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "858b2b5b-99a4-4976-b1c4-6e7d52710760")
+		(uuid "85fa9a47-7057-4453-b931-699e44915086")
 	)
 	(wire
 		(pts
-			(xy 36.83 41.91) (xy 36.83 39.37)
+			(xy 115.57 52.07) (xy 104.14 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8618e5be-fac3-4443-8618-f8a8aea59b8a")
+	)
+	(wire
+		(pts
+			(xy 40.64 30.48) (xy 40.64 27.94)
 		)
 		(stroke
 			(width 0)
@@ -3592,27 +4329,47 @@
 	)
 	(wire
 		(pts
-			(xy 63.5 41.91) (xy 73.66 41.91)
+			(xy 43.18 148.59) (xy 50.8 148.59)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "884ed20d-2ce1-4fae-8477-8e32cb3b212d")
+		(uuid "876f3dc5-e518-431e-87a6-b4c960777777")
 	)
 	(wire
 		(pts
-			(xy 171.45 151.13) (xy 180.34 151.13)
+			(xy 80.01 36.83) (xy 80.01 30.48)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "8d8c0f10-e629-4d37-8fed-268fe485c1ed")
+		(uuid "87e4cd35-f7d5-4ffa-bc74-f1fa6092709d")
 	)
 	(wire
 		(pts
-			(xy 88.9 133.35) (xy 88.9 134.62)
+			(xy 69.85 30.48) (xy 80.01 30.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b287bb7-7742-42b0-8a93-0bfe58268dcd")
+	)
+	(wire
+		(pts
+			(xy 229.87 154.94) (xy 233.68 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8c9c11c8-7d34-481f-825c-d9aa68a61815")
+	)
+	(wire
+		(pts
+			(xy 43.18 154.94) (xy 43.18 156.21)
 		)
 		(stroke
 			(width 0)
@@ -3622,17 +4379,27 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 143.51) (xy 52.07 127)
+			(xy 194.31 152.4) (xy 194.31 154.94)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "90640903-dbb2-40bd-9ead-77a93bd41b38")
+		(uuid "90a45169-5c15-4441-9354-84b52233ee9e")
 	)
 	(wire
 		(pts
-			(xy 83.82 97.79) (xy 83.82 111.76)
+			(xy 171.45 147.32) (xy 177.8 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9216d074-6c16-4a67-a886-46a5d964ea7e")
+	)
+	(wire
+		(pts
+			(xy 114.3 97.79) (xy 114.3 100.33)
 		)
 		(stroke
 			(width 0)
@@ -3662,7 +4429,7 @@
 	)
 	(wire
 		(pts
-			(xy 229.87 153.67) (xy 243.84 153.67)
+			(xy 219.71 152.4) (xy 233.68 152.4)
 		)
 		(stroke
 			(width 0)
@@ -3672,7 +4439,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 143.51) (xy 187.96 143.51)
+			(xy 138.43 143.51) (xy 157.48 143.51)
 		)
 		(stroke
 			(width 0)
@@ -3692,6 +4459,16 @@
 	)
 	(wire
 		(pts
+			(xy 48.26 100.33) (xy 57.15 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9f647759-c1c0-491b-881a-a1e535041b84")
+	)
+	(wire
+		(pts
 			(xy 113.03 81.28) (xy 135.89 81.28)
 		)
 		(stroke
@@ -3702,7 +4479,7 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 133.35) (xy 180.34 133.35)
+			(xy 140.97 133.35) (xy 149.86 133.35)
 		)
 		(stroke
 			(width 0)
@@ -3722,7 +4499,17 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 49.53) (xy 135.89 49.53)
+			(xy 115.57 52.07) (xy 135.89 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a7e98679-a27a-4d1b-88fc-95149056ee73")
+	)
+	(wire
+		(pts
+			(xy 92.71 49.53) (xy 135.89 49.53)
 		)
 		(stroke
 			(width 0)
@@ -3732,7 +4519,7 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 128.27) (xy 88.9 127)
+			(xy 43.18 149.86) (xy 43.18 148.59)
 		)
 		(stroke
 			(width 0)
@@ -3742,13 +4529,13 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 153.67) (xy 80.01 151.13)
+			(xy 69.85 27.94) (xy 69.85 30.48)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b577058b-bff4-4136-a423-4911f9cb01e8")
+		(uuid "b434f8f6-0869-4c94-beb9-6ac6283ecb4f")
 	)
 	(wire
 		(pts
@@ -3762,23 +4549,13 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 124.46) (xy 209.55 124.46)
+			(xy 171.45 123.19) (xy 177.8 123.19)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "bd29836e-fc40-46ee-929f-98616e9a5bfb")
-	)
-	(wire
-		(pts
-			(xy 88.9 162.56) (xy 88.9 165.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "be977aa0-9446-48eb-99bb-03e7be371c89")
 	)
 	(wire
 		(pts
@@ -3792,17 +4569,17 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 127) (xy 55.88 127)
+			(xy 67.31 165.1) (xy 57.15 165.1)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "bf9c3d65-bc5d-44a0-a835-a0998d59b93e")
+		(uuid "bfdf1d37-08eb-4c34-8a5c-2b9b8d901934")
 	)
 	(wire
 		(pts
-			(xy 77.47 127) (xy 88.9 127)
+			(xy 31.75 148.59) (xy 43.18 148.59)
 		)
 		(stroke
 			(width 0)
@@ -3812,7 +4589,17 @@
 	)
 	(wire
 		(pts
-			(xy 40.64 127) (xy 52.07 127)
+			(xy 121.92 52.07) (xy 121.92 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c0ad8324-8f01-4729-9dda-d1f37633181a")
+	)
+	(wire
+		(pts
+			(xy 25.4 148.59) (xy 31.75 148.59)
 		)
 		(stroke
 			(width 0)
@@ -3822,7 +4609,7 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 100.33) (xy 99.06 111.76)
+			(xy 129.54 100.33) (xy 129.54 102.87)
 		)
 		(stroke
 			(width 0)
@@ -3852,7 +4639,17 @@
 	)
 	(wire
 		(pts
-			(xy 113.03 66.04) (xy 135.89 66.04)
+			(xy 115.57 52.07) (xy 115.57 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c543ef75-1d58-4e80-b971-78c7c3bf379c")
+	)
+	(wire
+		(pts
+			(xy 111.76 66.04) (xy 115.57 66.04)
 		)
 		(stroke
 			(width 0)
@@ -3862,7 +4659,7 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 147.32) (xy 168.91 147.32)
+			(xy 137.16 147.32) (xy 138.43 147.32)
 		)
 		(stroke
 			(width 0)
@@ -3872,7 +4669,17 @@
 	)
 	(wire
 		(pts
-			(xy 209.55 130.81) (xy 215.9 130.81)
+			(xy 59.69 88.9) (xy 59.69 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c8523ee5-c1db-44c3-8491-b471d8a530bd")
+	)
+	(wire
+		(pts
+			(xy 177.8 129.54) (xy 184.15 129.54)
 		)
 		(stroke
 			(width 0)
@@ -3882,7 +4689,17 @@
 	)
 	(wire
 		(pts
-			(xy 91.44 49.53) (xy 91.44 53.34)
+			(xy 69.85 41.91) (xy 69.85 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cbfd955c-078e-4516-a2c9-80085311d031")
+	)
+	(wire
+		(pts
+			(xy 83.82 49.53) (xy 83.82 53.34)
 		)
 		(stroke
 			(width 0)
@@ -3892,7 +4709,7 @@
 	)
 	(wire
 		(pts
-			(xy 40.64 49.53) (xy 40.64 41.91)
+			(xy 44.45 38.1) (xy 44.45 30.48)
 		)
 		(stroke
 			(width 0)
@@ -3902,7 +4719,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 143.51) (xy 168.91 147.32)
+			(xy 138.43 143.51) (xy 138.43 147.32)
 		)
 		(stroke
 			(width 0)
@@ -3942,13 +4759,33 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 166.37) (xy 119.38 166.37)
+			(xy 194.31 152.4) (xy 214.63 152.4)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d22f7742-c5a3-4a14-8108-8853ead39632")
+		(uuid "d2639d2d-d17d-4659-a23d-e7230d3973dc")
+	)
+	(wire
+		(pts
+			(xy 121.92 62.23) (xy 121.92 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d56f7816-2228-4b78-b402-0fe8686d1db0")
+	)
+	(wire
+		(pts
+			(xy 140.97 149.86) (xy 149.86 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d5ec8a02-ccd7-4fa4-9d16-d92acddfcc9d")
 	)
 	(wire
 		(pts
@@ -3962,7 +4799,7 @@
 	)
 	(wire
 		(pts
-			(xy 50.8 49.53) (xy 50.8 41.91)
+			(xy 54.61 38.1) (xy 54.61 30.48)
 		)
 		(stroke
 			(width 0)
@@ -3972,7 +4809,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 127) (xy 77.47 128.27)
+			(xy 31.75 148.59) (xy 31.75 149.86)
 		)
 		(stroke
 			(width 0)
@@ -3982,47 +4819,17 @@
 	)
 	(wire
 		(pts
-			(xy 212.09 147.32) (xy 201.93 147.32)
+			(xy 115.57 66.04) (xy 135.89 66.04)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ddc3e1d4-af2e-4984-b392-b0ca8802d1b0")
+		(uuid "deed4451-dbbc-4dfa-be89-2e50000eda0b")
 	)
 	(wire
 		(pts
-			(xy 135.89 52.07) (xy 111.76 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "df88499e-e5fd-493d-ac35-156f9f0447c9")
-	)
-	(wire
-		(pts
-			(xy 243.84 149.86) (xy 252.73 149.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e09ec5ac-e5fa-4d46-9472-3190e59f5e0c")
-	)
-	(wire
-		(pts
-			(xy 129.54 166.37) (xy 138.43 166.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e20bc74f-7503-4200-8f49-a8f9a1b5e1e1")
-	)
-	(wire
-		(pts
-			(xy 86.36 111.76) (xy 83.82 111.76)
+			(xy 115.57 113.03) (xy 114.3 113.03)
 		)
 		(stroke
 			(width 0)
@@ -4032,7 +4839,7 @@
 	)
 	(wire
 		(pts
-			(xy 248.92 142.24) (xy 252.73 142.24)
+			(xy 231.14 144.78) (xy 233.68 144.78)
 		)
 		(stroke
 			(width 0)
@@ -4072,17 +4879,7 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 92.71) (xy 135.89 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ea6f70a0-96fc-4ef4-81fe-4c40aa7c4fbb")
-	)
-	(wire
-		(pts
-			(xy 201.93 135.89) (xy 195.58 135.89)
+			(xy 171.45 135.89) (xy 165.1 135.89)
 		)
 		(stroke
 			(width 0)
@@ -4092,7 +4889,17 @@
 	)
 	(wire
 		(pts
-			(xy 40.64 41.91) (xy 50.8 41.91)
+			(xy 140.97 154.94) (xy 149.86 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eb37d61e-44a4-4b29-b890-ca933cd9bccc")
+	)
+	(wire
+		(pts
+			(xy 44.45 30.48) (xy 54.61 30.48)
 		)
 		(stroke
 			(width 0)
@@ -4112,37 +4919,27 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 156.21) (xy 180.34 156.21)
+			(xy 107.95 171.45) (xy 107.95 175.26)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "eda9d503-a9a3-4881-80f7-d720e46941a6")
+		(uuid "ed4a2233-5883-4d1b-8123-2cb09492bf69")
 	)
 	(wire
 		(pts
-			(xy 80.01 162.56) (xy 88.9 162.56)
+			(xy 57.15 165.1) (xy 57.15 160.02)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ee479f61-4ee8-4a21-9094-fa4155314352")
+		(uuid "eddf6d5d-c227-49b5-945a-b1da82a31a70")
 	)
 	(wire
 		(pts
-			(xy 50.8 41.91) (xy 54.61 41.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ee8af202-bd79-457c-be13-ee07cca9a269")
-	)
-	(wire
-		(pts
-			(xy 52.07 165.1) (xy 52.07 158.75)
+			(xy 57.15 170.18) (xy 57.15 165.1)
 		)
 		(stroke
 			(width 0)
@@ -4152,33 +4949,43 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 95.25) (xy 135.89 95.25)
+			(xy 71.12 158.75) (xy 67.31 158.75)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f3ca146e-786d-47da-9d76-8e9e9a6efbbb")
+		(uuid "f346ef54-3ac9-4600-a06b-eb6017b1b753")
 	)
 	(wire
 		(pts
-			(xy 96.52 148.59) (xy 66.04 148.59)
+			(xy 62.23 105.41) (xy 62.23 102.87)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f477e8a9-cebd-4e07-9126-848ebd4f4714")
+		(uuid "f380d9a6-ce30-4a0b-b9cd-c818a3aefda9")
 	)
 	(wire
 		(pts
-			(xy 59.69 41.91) (xy 63.5 41.91)
+			(xy 127 102.87) (xy 127 113.03)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "fae04283-c8e2-477a-a78a-3f431c76cd37")
+		(uuid "f8aaaf39-0b14-4fcf-a6c4-08ab570bfaa9")
+	)
+	(wire
+		(pts
+			(xy 115.57 62.23) (xy 115.57 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fa265e0c-9a3d-4f19-92fa-684c42b68397")
 	)
 	(wire
 		(pts
@@ -4192,33 +4999,23 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 137.16) (xy 88.9 134.62)
+			(xy 121.92 68.58) (xy 135.89 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fbd2e963-8254-49fc-bf25-08f961b337c3")
+	)
+	(wire
+		(pts
+			(xy 43.18 158.75) (xy 43.18 156.21)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "fca27d63-572f-4821-b6ba-14c67a73a9d5")
-	)
-	(wire
-		(pts
-			(xy 111.76 97.79) (xy 135.89 97.79)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fe1eb864-f2d2-4f2d-8a4a-bc7a2c4a481b")
-	)
-	(wire
-		(pts
-			(xy 88.9 158.75) (xy 88.9 162.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fe3cc1f7-3202-4a40-853a-4769e68f0348")
 	)
 	(wire
 		(pts
@@ -4231,7 +5028,7 @@
 		(uuid "ff95f0f1-201e-4824-a622-3118ddcdd132")
 	)
 	(label "AVDD"
-		(at 40.64 127 0)
+		(at 25.4 148.59 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4241,7 +5038,7 @@
 		(uuid "01c93527-a2c6-4789-b6bb-b61c08ae1566")
 	)
 	(label "DVDD"
-		(at 40.64 44.45 270)
+		(at 44.45 33.02 270)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4250,25 +5047,25 @@
 		)
 		(uuid "0732747e-0a5e-4bb4-9677-fd37da1079bd")
 	)
-	(label "LOUT1"
-		(at 171.45 133.35 0)
+	(label "RIN2"
+		(at 140.97 138.43 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "098c2666-3015-4b95-bf0e-5135d53471fa")
+		(uuid "0a4f09c7-a553-4526-9fd9-9257f1b8fd8c")
 	)
-	(label "MIC-"
-		(at 121.92 95.25 0)
+	(label "AVDD"
+		(at 73.66 88.9 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
-		(uuid "14be51e5-b311-4e5c-bd5d-6cad0507e19f")
+		(uuid "10d218a2-8435-4849-87aa-c7a2d44f5db9")
 	)
 	(label "ROUT1"
 		(at 175.26 69.85 180)
@@ -4281,7 +5078,7 @@
 		(uuid "2016056c-07b7-4e64-b8ee-cdee5e2af510")
 	)
 	(label "PVDD"
-		(at 50.8 49.53 90)
+		(at 54.61 38.1 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4290,18 +5087,28 @@
 		)
 		(uuid "28f6c69d-16ed-4305-a017-2c2dc2c7807a")
 	)
-	(label "LIN2"
-		(at 171.45 138.43 0)
+	(label "MIC_P"
+		(at 104.14 92.71 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "2d21b302-177b-44e6-ae1a-7723c8327045")
+		(uuid "2db115e1-cb9a-4c76-883b-0514c6ad5dd4")
 	)
-	(label "MIC+"
-		(at 127 148.59 180)
+	(label "MIC_N_UC"
+		(at 118.11 158.75 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "33b6f88e-485a-4b43-94fb-9c63e3dc1a6d")
+	)
+	(label "MIC_P"
+		(at 92.71 148.59 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4310,28 +5117,18 @@
 		)
 		(uuid "4290a682-235c-4ed0-9362-19d5f5e81a4c")
 	)
-	(label "MIC-"
-		(at 127 151.13 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "466f736d-9ed7-4566-bfcd-40f4f5ea3fd8")
-	)
-	(label "MIC+"
-		(at 110.49 166.37 0)
+	(label "MIC_N"
+		(at 81.28 158.75 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "47c7b4a4-be59-491a-99d6-c979ef4b95ad")
+		(uuid "449182d1-e7ee-4893-9709-b8e495aff7c8")
 	)
 	(label "RIN2"
-		(at 73.66 100.33 0)
+		(at 48.26 102.87 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4339,16 +5136,6 @@
 			(justify left bottom)
 		)
 		(uuid "5d6c3f61-d291-47ab-abca-ed1e3071ee8e")
-	)
-	(label "MIC-"
-		(at 138.43 166.37 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "5febda05-5615-45ae-9a4a-02e4c708c6ee")
 	)
 	(label "AVDD"
 		(at 170.18 52.07 0)
@@ -4361,7 +5148,7 @@
 		(uuid "61553fd2-aa6d-4ca4-9f91-a8df508ad0b3")
 	)
 	(label "PVDD"
-		(at 127 52.07 0)
+		(at 124.46 52.07 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4371,7 +5158,7 @@
 		(uuid "6bcc5926-5b09-4adc-b8ee-a6ea57f2b972")
 	)
 	(label "DVDD"
-		(at 127 49.53 0)
+		(at 124.46 49.53 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4391,7 +5178,7 @@
 		(uuid "8be674ca-5bda-46cb-940e-fc67c2ed8e42")
 	)
 	(label "LIN2"
-		(at 73.66 97.79 0)
+		(at 48.26 100.33 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4400,25 +5187,25 @@
 		)
 		(uuid "8f4cfe46-42cf-4b99-8023-c55b44bd2926")
 	)
-	(label "AVDD"
-		(at 73.66 49.53 90)
+	(label "LOUT1"
+		(at 140.97 149.86 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "9dbaebfd-83ca-4734-b8ee-35f0a37057ae")
+		(uuid "a13e3651-aec3-4024-b5b9-5ca2fb7d6cec")
 	)
-	(label "HPVDD"
-		(at 63.5 43.18 270)
+	(label "LIN2"
+		(at 140.97 154.94 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
-		(uuid "b139f805-30c5-40e5-ba02-4eb832eddd27")
+		(uuid "ae9a640a-9395-4a7d-8fc2-00d71a57a8e8")
 	)
 	(label "LOUT1"
 		(at 175.26 67.31 180)
@@ -4430,18 +5217,18 @@
 		)
 		(uuid "b28b6bd8-d505-4846-bcd2-e5c809d58389")
 	)
-	(label "RIN2"
-		(at 171.45 156.21 0)
+	(label "HPVDD"
+		(at 69.85 43.18 270)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
-		(uuid "bdcd50a6-79d3-4c2c-a6d1-c83cff9b5411")
+		(uuid "c104cd4c-552d-488f-b440-0353f64ef102")
 	)
 	(label "AVDD"
-		(at 203.2 124.46 0)
+		(at 171.45 123.19 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4460,15 +5247,15 @@
 		)
 		(uuid "c620d822-245a-485f-9ebf-90260bc53ec1")
 	)
-	(label "MIC+"
-		(at 121.92 92.71 0)
+	(label "ROUT1"
+		(at 140.97 133.35 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "c811424c-8fbb-40f1-8642-a9ae127c62b6")
+		(uuid "d44bcdfb-61db-4c2c-b829-391796528c17")
 	)
 	(label "HPVDD"
 		(at 170.18 49.53 0)
@@ -4480,15 +5267,25 @@
 		)
 		(uuid "e1ae8609-0d3f-411a-8f96-cf13543ad48e")
 	)
-	(label "ROUT1"
-		(at 171.45 151.13 0)
+	(label "MIC_N_UC"
+		(at 104.14 95.25 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "f8bea77d-f1fe-4451-ae4d-41625aea3fb5")
+		(uuid "edd94dc1-02a3-459b-9fd1-7e34b08e33e8")
+	)
+	(label "AVDD"
+		(at 80.01 49.53 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f436aeaf-92a5-407f-a553-391c52d96eb8")
 	)
 	(hierarchical_label "LRCK"
 		(shape input)
@@ -4514,7 +5311,7 @@
 	)
 	(hierarchical_label "I2C_CLK"
 		(shape input)
-		(at 113.03 66.04 180)
+		(at 111.76 66.04 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4525,7 +5322,7 @@
 	)
 	(hierarchical_label "+3V3_AUDIO"
 		(shape input)
-		(at 34.29 41.91 180)
+		(at 38.1 30.48 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4547,7 +5344,7 @@
 	)
 	(hierarchical_label "I2C_DATA"
 		(shape input)
-		(at 113.03 68.58 180)
+		(at 111.76 68.58 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4569,7 +5366,7 @@
 	)
 	(hierarchical_label "AUDIO_SW"
 		(shape input)
-		(at 167.64 147.32 180)
+		(at 137.16 147.32 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4758,7 +5555,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 241.3 130.81 90)
+		(at 209.55 129.54 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4768,7 +5565,7 @@
 		(dnp no)
 		(uuid "083cb0c9-cbb9-4e1b-9116-458a6f694497")
 		(property "Reference" "#PWR075"
-			(at 247.65 130.81 0)
+			(at 215.9 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4779,7 +5576,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 245.11 130.81 0)
+			(at 213.36 129.54 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4789,7 +5586,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 241.3 130.81 0)
+			(at 209.55 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4800,7 +5597,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 241.3 130.81 0)
+			(at 209.55 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4811,7 +5608,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 241.3 130.81 0)
+			(at 209.55 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4835,7 +5632,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 257.81 154.94 0)
+		(at 59.69 115.57 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4843,9 +5640,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "176b7516-31fc-4146-b668-9a8ddcbb3399")
-		(property "Reference" "#PWR053"
-			(at 257.81 161.29 0)
+		(uuid "11451ecb-a48f-482f-9921-f6458a70523b")
+		(property "Reference" "#PWR0103"
+			(at 59.69 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4856,7 +5653,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 257.81 158.75 0)
+			(at 59.69 119.38 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4866,7 +5663,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 257.81 154.94 0)
+			(at 59.69 115.57 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4877,7 +5674,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 257.81 154.94 0)
+			(at 59.69 115.57 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4888,7 +5685,84 @@
 			)
 		)
 		(property "Description" ""
-			(at 257.81 154.94 0)
+			(at 59.69 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4911b9e8-9e1a-485d-9db7-a908796494bb")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "#PWR0103")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 229.87 156.21 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "176b7516-31fc-4146-b668-9a8ddcbb3399")
+		(property "Reference" "#PWR053"
+			(at 229.87 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 229.87 160.02 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 229.87 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 229.87 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 229.87 156.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4911,8 +5785,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
-		(at 209.55 133.35 0)
+		(lib_id "power:GND")
+		(at 203.2 160.02 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4920,32 +5794,30 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "1ba50de7-315c-470d-a786-43c09fae555e")
-		(property "Reference" "C46"
-			(at 212.09 132.0863 0)
+		(uuid "1a375ded-20e1-48b6-9106-cab5e80ca1eb")
+		(property "Reference" "#PWR057"
+			(at 203.2 166.37 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
-		(property "Value" "100nF"
-			(at 212.09 134.6263 0)
+		(property "Value" "GND"
+			(at 203.2 163.83 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 209.55 133.35 0)
+		(property "Footprint" ""
+			(at 203.2 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4956,7 +5828,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 209.55 133.35 0)
+			(at 203.2 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4967,7 +5839,86 @@
 			)
 		)
 		(property "Description" ""
-			(at 209.55 133.35 0)
+			(at 203.2 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2467fe7b-bf86-45b6-8453-4821b20fb169")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "#PWR057")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 177.8 132.08 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1ba50de7-315c-470d-a786-43c09fae555e")
+		(property "Reference" "C46"
+			(at 180.34 130.8163 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 180.34 133.3563 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 177.8 132.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 132.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 177.8 132.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4993,8 +5944,9 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 57.15 41.91 90)
+		(lib_id "custom_symbols:PJ-3537S-SMT")
+		(at 250.19 149.86 0)
+		(mirror y)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5002,29 +5954,32 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "1de63de6-e871-4edb-922f-a1d15e68f379")
-		(property "Reference" "R16"
-			(at 53.34 40.64 90)
+		(fields_autoplaced yes)
+		(uuid "1dd00de6-ab20-4c16-ba87-c77af7231558")
+		(property "Reference" "J1"
+			(at 266.7 148.5899 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
-		(property "Value" "10R"
-			(at 57.404 39.624 90)
+		(property "Value" "PJ-3537S-SMT"
+			(at 266.7 151.1299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 57.15 41.91 0)
+		(property "Footprint" "custom_footprints:PJ-3537S-SMT"
+			(at 250.19 161.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5034,8 +5989,8 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
-			(at 57.15 41.91 0)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C2689709.pdf"
+			(at 250.19 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5045,8 +6000,8 @@
 				)
 			)
 		)
-		(property "Description" ""
-			(at 57.15 41.91 0)
+		(property "Description" "3.5mm 3-pole (TRS/stereo) audio jack, SMD, side-entry. Tip=L, Ring=R, Sleeve=GND. Pins 3/4 are internal normally-closed detect switches (leave unconnected for a basic jack)."
+			(at 250.19 165.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5056,16 +6011,58 @@
 				)
 			)
 		)
-		(pin "1"
-			(uuid "983cd39c-e423-4e78-b328-914f46d956d8")
+		(property "Manufacturer" "XKB Connection"
+			(at 250.19 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "PJ-3537S-SMT"
+			(at 250.19 170.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2689709"
+			(at 250.19 172.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(pin "2"
-			(uuid "83dfd6e2-8ed4-4c63-b45b-309ae28ad99d")
+			(uuid "0a7c6d87-3ac0-4df8-9c4b-b449d5f6e488")
+		)
+		(pin "3"
+			(uuid "d363c7ab-bfa9-4e23-b47f-fef76216d691")
+		)
+		(pin "1"
+			(uuid "05eabefe-1905-436b-9c16-90f2c1168d1b")
+		)
+		(pin "4"
+			(uuid "b4afcd07-1d23-48a2-8c1b-c0270c850d99")
+		)
+		(pin "5"
+			(uuid "acab388b-e0f0-4c94-82fa-f554ee1fcd06")
 		)
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "R16")
+					(reference "J1")
 					(unit 1)
 				)
 			)
@@ -5154,6 +6151,162 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small")
+		(at 80.01 39.37 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2a0a66e7-41d3-4645-8c57-ced633fd1992")
+		(property "Reference" "R21"
+			(at 81.28 35.56 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10R"
+			(at 82.296 39.624 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 80.01 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 80.01 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 80.01 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "3c73127b-8839-4c18-89de-26b6f5d087e1")
+		)
+		(pin "2"
+			(uuid "91f3d9f5-18ab-4477-82e1-25bfe039f0d3")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "R21")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 194.31 160.02 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2b3ca94d-c7e7-4835-8322-f3a3097b4c2f")
+		(property "Reference" "#PWR060"
+			(at 194.31 166.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 194.31 163.83 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 194.31 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 194.31 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 194.31 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "1cb56efc-8335-464b-90bd-376716a7724e")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "#PWR060")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Small")
 		(at 208.28 55.88 0)
 		(unit 1)
@@ -5230,167 +6383,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "C17")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Small")
-		(at 66.04 156.21 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "35787fba-45a0-4c53-9363-db83041b407a")
-		(property "Reference" "C40"
-			(at 68.58 154.9463 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10nF"
-			(at 68.58 157.4863 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 66.04 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 66.04 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 66.04 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "778c3ce0-3949-4249-924d-fdf823c01b5c")
-		)
-		(pin "2"
-			(uuid "83e81b5d-3c18-409a-ba38-d2a958d7b4e6")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "C40")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 66.04 139.7 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "36c839dd-e630-4a28-a204-b305dddfca6e")
-		(property "Reference" "R21"
-			(at 64.77 143.51 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "2k2"
-			(at 64.77 135.89 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 66.04 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 66.04 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 66.04 139.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "6a07ec67-aa32-4341-8971-879a395b2942")
-		)
-		(pin "2"
-			(uuid "3ef7516e-f9e1-4f4a-bab7-d4074774f005")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "R21")
 					(unit 1)
 				)
 			)
@@ -5476,9 +6468,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Audio:AudioJack4_Ground")
-		(at 257.81 144.78 0)
-		(mirror y)
+		(lib_id "Device:R_Small")
+		(at 194.31 157.48 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5486,32 +6477,29 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3ac908d6-97bd-4e76-ab95-52ceb177d48c")
-		(property "Reference" "J1"
-			(at 266.7 145.4149 0)
+		(uuid "3c5298a8-72d8-4f77-ae5c-a16c419216d0")
+		(property "Reference" "R22"
+			(at 192.278 157.734 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
-		(property "Value" "AudioJack4_Ground"
-			(at 266.7 147.9549 0)
+		(property "Value" "100k"
+			(at 196.342 157.734 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
-		(property "Footprint" "Connector_Audio:Jack_3.5mm_KoreanHropartsElec_PJ-320D-4A_Horizontal"
-			(at 257.81 144.78 0)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 194.31 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5522,7 +6510,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 257.81 144.78 0)
+			(at 194.31 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5532,8 +6520,8 @@
 				)
 			)
 		)
-		(property "Description" "Audio Jack, 4 Poles (TRRS), Grounded Sleeve"
-			(at 257.81 144.78 0)
+		(property "Description" ""
+			(at 194.31 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5543,36 +6531,16 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C95562"
-			(at 257.81 144.78 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
+		(pin "1"
+			(uuid "1881c1d0-63bb-4355-88f5-d65f15a4de78")
 		)
-		(pin "R2"
-			(uuid "286fd3f0-9a1a-4c77-a838-97a9c581d1b5")
-		)
-		(pin "S"
-			(uuid "2982ec86-ee28-447e-b6e9-7225a1fe7913")
-		)
-		(pin "T"
-			(uuid "fe288ab2-1a99-4ec0-914d-6b017ba229ee")
-		)
-		(pin "G"
-			(uuid "9901c4fd-3696-4de5-8743-1587b5dd9d70")
-		)
-		(pin "R1"
-			(uuid "1f00ec52-ee04-4518-ad09-7b58432e2048")
+		(pin "2"
+			(uuid "383463fe-ab3a-46c9-a179-630d81b1079f")
 		)
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "J1")
+					(reference "R22")
 					(unit 1)
 				)
 			)
@@ -5734,7 +6702,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 91.44 55.88 0)
+		(at 83.82 55.88 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5745,7 +6713,7 @@
 		(fields_autoplaced yes)
 		(uuid "3fc20a50-b2d3-4d3a-a612-6730d1094d0e")
 		(property "Reference" "C14"
-			(at 93.98 54.6163 0)
+			(at 86.36 54.6163 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5756,7 +6724,7 @@
 			)
 		)
 		(property "Value" "10u"
-			(at 93.98 57.1563 0)
+			(at 86.36 57.1563 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5767,7 +6735,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 91.44 55.88 0)
+			(at 83.82 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5778,7 +6746,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 91.44 55.88 0)
+			(at 83.82 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5789,7 +6757,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 91.44 55.88 0)
+			(at 83.82 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5815,8 +6783,104 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:D_Schottky_Dual_Series_AKC_Split")
+		(at 59.69 93.98 270)
+		(unit 2)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "40da9d8b-36bb-4ceb-80fd-00fa719c84c5")
+		(property "Reference" "D8"
+			(at 57.15 92.4559 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "D_Schottky_Dual_Series_AKC_Split"
+			(at 57.15 94.9959 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 57.15 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C408389.pdf?spm=wm.sxq.inf.ggs&lcsc_vid=RlZZVFQHQwJZUAEDFFgMVQJRQwNcUlVUE1cLUlYERFIxVlNeT1lYVFRTQ1daXztW"
+			(at 57.15 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Dual Schottky diode, anode/cathode/center"
+			(at 59.69 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part Number" "C408389"
+			(at 59.69 93.98 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "79936851-c105-463a-9260-121bad2def8d")
+		)
+		(pin "1"
+			(uuid "7300efd1-0646-4bf0-87a9-7534828a0368")
+		)
+		(pin "3"
+			(uuid "297361dc-e7f7-475e-9fa8-1a78d0cbf114")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "D8")
+					(unit 2)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Small")
-		(at 99.06 148.59 90)
+		(at 76.2 148.59 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5826,7 +6890,7 @@
 		(dnp no)
 		(uuid "449deecb-f0cd-4e5c-a505-8435defbcd10")
 		(property "Reference" "C41"
-			(at 95.758 147.066 90)
+			(at 72.898 147.066 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5836,7 +6900,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 103.378 147.066 90)
+			(at 80.518 147.066 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5845,8 +6909,8 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 99.06 148.59 0)
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
+			(at 76.2 148.59 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5856,8 +6920,8 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
-			(at 99.06 148.59 0)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C97946.pdf?spm=wm.sxq.inf.ggs&lcsc_vid=RlZZVFQHQwJZUAEDFFgMVQJRQwNcUlVUE1cLUlYERFIxVlNeT1lYU1JXQFdeVTtW"
+			(at 76.2 148.59 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5867,8 +6931,18 @@
 				)
 			)
 		)
-		(property "Description" ""
-			(at 99.06 148.59 0)
+		(property "Description" "Murata GRM31C5C1H104JA01L (C0G)"
+			(at 83.058 142.748 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part Number" "C97946"
+			(at 76.2 148.59 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5895,7 +6969,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 248.92 142.24 270)
+		(at 231.14 144.78 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5905,7 +6979,7 @@
 		(dnp no)
 		(uuid "4637c001-cc9a-4a46-b1c4-92d822dba9ba")
 		(property "Reference" "#PWR052"
-			(at 242.57 142.24 0)
+			(at 224.79 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5916,7 +6990,8 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 245.11 142.24 0)
+			(at 227.33 144.78 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5926,7 +7001,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 248.92 142.24 0)
+			(at 231.14 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5937,7 +7012,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 248.92 142.24 0)
+			(at 231.14 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5948,7 +7023,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 248.92 142.24 0)
+			(at 231.14 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6053,19 +7128,18 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:TestPoint_2Pole")
-		(at 124.46 166.37 0)
+		(lib_id "Device:R_Small")
+		(at 92.71 158.75 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "5154bdaf-10a9-4405-9db0-3242c921b6e0")
-		(property "Reference" "TP7"
-			(at 124.46 161.29 0)
+		(dnp yes)
+		(uuid "49056723-fc27-479d-86b7-51d9c12d05f6")
+		(property "Reference" "R41"
+			(at 98.044 160.782 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6074,8 +7148,8 @@
 				)
 			)
 		)
-		(property "Value" "TEST_MIC_1"
-			(at 124.46 163.83 0)
+		(property "Value" "0R"
+			(at 98.044 157.48 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6084,8 +7158,8 @@
 				)
 			)
 		)
-		(property "Footprint" "custom_footprints:TestPoint_Pad_2x1_D1.0mm"
-			(at 124.46 166.37 0)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 92.71 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6096,7 +7170,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 124.46 166.37 0)
+			(at 92.71 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6107,7 +7181,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 124.46 166.37 0)
+			(at 92.71 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6118,15 +7192,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "7bb1f56b-380a-4704-8141-5ec0ac84a02d")
+			(uuid "15c8d3ab-fe27-428d-8436-eaecc088fb3c")
 		)
 		(pin "2"
-			(uuid "98839ea7-38a9-4ea0-a386-98d50cef6852")
+			(uuid "91e1cc33-84a9-4888-8a2f-981c2d15529e")
 		)
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "TP7")
+					(reference "R41")
 					(unit 1)
 				)
 			)
@@ -6134,7 +7208,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 111.76 58.42 0)
+		(at 104.14 58.42 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6144,7 +7218,7 @@
 		(dnp no)
 		(uuid "56178a0f-f857-4db7-8f4e-cd00205e0c97")
 		(property "Reference" "#PWR012"
-			(at 111.76 64.77 0)
+			(at 104.14 64.77 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6155,7 +7229,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 111.76 62.23 0)
+			(at 104.14 62.23 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6165,7 +7239,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 111.76 58.42 0)
+			(at 104.14 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6176,7 +7250,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 111.76 58.42 0)
+			(at 104.14 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6187,7 +7261,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 111.76 58.42 0)
+			(at 104.14 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6367,7 +7441,7 @@
 	)
 	(symbol
 		(lib_id "Analog_Switch:TS5A23159DGS")
-		(at 187.96 153.67 0)
+		(at 157.48 152.4 0)
 		(mirror y)
 		(unit 2)
 		(body_style 1)
@@ -6378,7 +7452,7 @@
 		(dnp no)
 		(uuid "5c8eeaa1-4451-42fa-a285-7b9156250fed")
 		(property "Reference" "U3"
-			(at 187.96 144.78 0)
+			(at 157.48 143.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6388,7 +7462,7 @@
 			)
 		)
 		(property "Value" "TS5A23159DGS"
-			(at 187.96 147.32 0)
+			(at 157.48 146.05 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6398,7 +7472,7 @@
 			)
 		)
 		(property "Footprint" "Package_SO:TSSOP-10_3x3mm_P0.5mm"
-			(at 186.69 165.735 0)
+			(at 156.21 164.465 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6410,7 +7484,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ts5a23159.pdf"
-			(at 186.69 167.64 0)
+			(at 156.21 166.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6422,7 +7496,7 @@
 			)
 		)
 		(property "Description" "Dual 1 ohm SPDT Analog Switch, TSSOP-10 (Texas DGS0010A / VSSOP)"
-			(at 187.96 153.67 0)
+			(at 157.48 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6472,87 +7546,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 88.9 156.21 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "62fa5ca2-a99b-4cf6-8c51-0b87afeffd2b")
-		(property "Reference" "R22"
-			(at 92.456 154.94 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "2k2"
-			(at 92.456 157.734 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 88.9 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 88.9 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 88.9 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d21b07c2-a724-428c-8b44-ea7cc5c20452")
-		)
-		(pin "2"
-			(uuid "f53fbe4c-1c79-4a2d-b731-5fdb992f1710")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "R22")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
-		(at 52.07 165.1 0)
+		(at 57.15 170.18 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6562,7 +7557,7 @@
 		(dnp no)
 		(uuid "64b4085d-96e3-46a4-8dc2-b59ed8a99b00")
 		(property "Reference" "#PWR064"
-			(at 52.07 171.45 0)
+			(at 57.15 176.53 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6573,7 +7568,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 52.07 168.91 0)
+			(at 57.15 173.99 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6583,7 +7578,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 52.07 165.1 0)
+			(at 57.15 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6594,7 +7589,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 52.07 165.1 0)
+			(at 57.15 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6605,7 +7600,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 52.07 165.1 0)
+			(at 57.15 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6622,85 +7617,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "#PWR064")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 58.42 127 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "659a2a0c-f8ae-4064-ae31-06c798d8352d")
-		(property "Reference" "R23"
-			(at 62.23 128.27 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1k"
-			(at 54.61 128.27 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 58.42 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 58.42 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 58.42 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "92ce908e-1558-401b-b269-6e393eb78cc4")
-		)
-		(pin "2"
-			(uuid "1cbb1355-0f20-4b04-8928-bd6d32283760")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "R23")
 					(unit 1)
 				)
 			)
@@ -6784,8 +7700,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
-		(at 100.33 55.88 0)
+		(lib_id "Device:R_Small")
+		(at 203.2 157.48 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6793,32 +7709,29 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6e92903a-0cd9-43de-9c4a-876327e24f8f")
-		(property "Reference" "C13"
-			(at 102.87 54.6163 0)
+		(uuid "694ef8ff-db8b-4798-a5e9-e6e5115db50f")
+		(property "Reference" "R23"
+			(at 201.168 157.734 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
-		(property "Value" "100nF"
-			(at 102.87 57.1563 0)
+		(property "Value" "100k"
+			(at 205.232 157.734 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 100.33 55.88 0)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 203.2 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6829,7 +7742,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 100.33 55.88 0)
+			(at 203.2 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6840,7 +7753,89 @@
 			)
 		)
 		(property "Description" ""
-			(at 100.33 55.88 0)
+			(at 203.2 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0525a639-9acf-4078-a1c6-3c5fc25d0121")
+		)
+		(pin "2"
+			(uuid "a31e5ade-e57a-459c-b24d-3c74bb8a239c")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "R23")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 92.71 55.88 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6e92903a-0cd9-43de-9c4a-876327e24f8f")
+		(property "Reference" "C13"
+			(at 95.25 54.6163 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 95.25 57.1563 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 92.71 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 92.71 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 92.71 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7121,7 +8116,7 @@
 	)
 	(symbol
 		(lib_id "Analog_Switch:TS5A23159DGS")
-		(at 228.6 130.81 90)
+		(at 196.85 129.54 90)
 		(unit 3)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7132,7 +8127,7 @@
 		(fields_autoplaced yes)
 		(uuid "757f4b85-14a8-4538-8e72-9ff4cceb7d8d")
 		(property "Reference" "U3"
-			(at 228.6 121.92 90)
+			(at 196.85 120.65 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7142,7 +8137,7 @@
 			)
 		)
 		(property "Value" "TS5A23159DGS"
-			(at 228.6 124.46 90)
+			(at 196.85 123.19 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7152,7 +8147,7 @@
 			)
 		)
 		(property "Footprint" "Package_SO:TSSOP-10_3x3mm_P0.5mm"
-			(at 240.665 129.54 0)
+			(at 208.915 128.27 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7164,7 +8159,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ts5a23159.pdf"
-			(at 242.57 129.54 0)
+			(at 210.82 128.27 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7176,7 +8171,7 @@
 			)
 		)
 		(property "Description" "Dual 1 ohm SPDT Analog Switch, TSSOP-10 (Texas DGS0010A / VSSOP)"
-			(at 228.6 130.81 0)
+			(at 196.85 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7380,85 +8375,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
-		(at 107.95 151.13 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "79e4cf5a-8dc0-4506-981f-a037b09f2012")
-		(property "Reference" "C42"
-			(at 104.394 152.908 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100nF"
-			(at 112.268 152.908 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 107.95 151.13 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 107.95 151.13 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 107.95 151.13 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "3a6fcd49-ba9a-4012-a7c5-18dc90244ee0")
-		)
-		(pin "2"
-			(uuid "2a184472-6c93-4bc4-8a0e-83ec316d938a")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "C42")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 187.96 96.52 0)
 		(unit 1)
@@ -7617,6 +8533,95 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
+		(at 73.66 158.75 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "806d7a0b-a62b-47ff-a9b8-4aad324425c3")
+		(property "Reference" "C42"
+			(at 70.358 157.226 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF"
+			(at 77.978 157.226 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
+			(at 73.66 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C97946.pdf?spm=wm.sxq.inf.ggs&lcsc_vid=RlZZVFQHQwJZUAEDFFgMVQJRQwNcUlVUE1cLUlYERFIxVlNeT1lYU1JXQFdeVTtW"
+			(at 73.66 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Murata GRM31C5C1H104JA01L (C0G)"
+			(at 84.836 154.178 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part Number" "C97946"
+			(at 73.66 158.75 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9c1a9c57-94b5-4890-bf49-7e9db110f394")
+		)
+		(pin "2"
+			(uuid "25ace2a1-b316-4e36-bbce-e2b793020342")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "C42")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
 		(at 246.38 93.98 0)
 		(unit 1)
 		(body_style 1)
@@ -7698,8 +8703,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 36.83 39.37 0)
+		(lib_id "Device:R_Small")
+		(at 115.57 59.69 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7707,11 +8712,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8a397f7a-87b5-4929-a64d-2b71fbe1b4da")
-		(property "Reference" "#PWR058"
-			(at 36.83 43.18 0)
-			(hide yes)
+		(uuid "87d18f0e-b0f2-411b-8bcd-13efb569802c")
+		(property "Reference" "R19"
+			(at 113.538 59.69 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7720,8 +8723,8 @@
 				)
 			)
 		)
-		(property "Value" "+3V3_AUDIO"
-			(at 36.83 34.29 0)
+		(property "Value" "1k"
+			(at 117.602 59.69 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7730,8 +8733,8 @@
 				)
 			)
 		)
-		(property "Footprint" ""
-			(at 36.83 39.37 0)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 115.57 59.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7742,7 +8745,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 36.83 39.37 0)
+			(at 115.57 59.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7753,7 +8756,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 36.83 39.37 0)
+			(at 115.57 59.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7764,12 +8767,94 @@
 			)
 		)
 		(pin "1"
-			(uuid "2af47395-8e3b-4fc1-a638-d797d652a37e")
+			(uuid "d4cd06a3-244c-488f-af79-816b0ecb4cb9")
+		)
+		(pin "2"
+			(uuid "f985caa3-d38f-43c9-a8d6-ae342cc6fe1e")
 		)
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "#PWR058")
+					(reference "R19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 121.92 59.69 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "8f56a059-202f-4a79-a37a-c38b2dc68fdd")
+		(property "Reference" "R20"
+			(at 119.888 59.944 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 123.952 59.944 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 121.92 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 121.92 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 121.92 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "db8da11d-1726-4f9a-8097-a34c1dbcee23")
+		)
+		(pin "2"
+			(uuid "7ff169c7-7d3d-415e-a23c-f34ff8228576")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "R20")
 					(unit 1)
 				)
 			)
@@ -7855,8 +8940,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
-		(at 77.47 130.81 180)
+		(lib_id "Device:D_Schottky_Dual_Series_AKC_Split")
+		(at 62.23 109.22 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7865,9 +8950,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "9e8ee061-9985-4be0-8ab8-0440a26d5889")
-		(property "Reference" "C43"
-			(at 80.01 129.5335 0)
+		(uuid "9c04fc01-b3fa-4780-8cb0-732402cfd92d")
+		(property "Reference" "D7"
+			(at 64.77 107.6959 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7877,8 +8962,9 @@
 				(justify right)
 			)
 		)
-		(property "Value" "100nF"
-			(at 80.01 132.0735 0)
+		(property "Value" "D_Schottky_Dual_Series_AKC_Split"
+			(at 64.77 110.2359 90)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7888,8 +8974,103 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 77.47 130.81 0)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 64.77 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C408389.pdf?spm=wm.sxq.inf.ggs&lcsc_vid=RlZZVFQHQwJZUAEDFFgMVQJRQwNcUlVUE1cLUlYERFIxVlNeT1lYVFRTQ1daXztW"
+			(at 64.77 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Dual Schottky diode, anode/cathode/center"
+			(at 62.23 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part Number" "C408389"
+			(at 62.23 109.22 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "8405764e-a524-4c7b-9a54-0ebbe60a78e5")
+		)
+		(pin "1"
+			(uuid "d4dcef49-33ca-4a5d-8b31-9e443d0d067d")
+		)
+		(pin "3"
+			(uuid "f089c6c6-9d69-4b7a-9912-a33562956eea")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "D7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 69.85 27.94 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9d0cdabb-6768-45e1-aa27-2472aaf91960")
+		(property "Reference" "#PWR058"
+			(at 69.85 31.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3_AUDIO"
+			(at 69.85 22.86 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 69.85 27.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7900,7 +9081,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 77.47 130.81 0)
+			(at 69.85 27.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7911,7 +9092,86 @@
 			)
 		)
 		(property "Description" ""
-			(at 77.47 130.81 0)
+			(at 69.85 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8f49f705-9639-4535-9a85-e206f6fa602d")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "#PWR058")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 31.75 152.4 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9e8ee061-9985-4be0-8ab8-0440a26d5889")
+		(property "Reference" "C43"
+			(at 34.29 151.1235 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "100nF"
+			(at 34.29 153.6635 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 31.75 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 31.75 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 31.75 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7937,164 +9197,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
-		(at 214.63 147.32 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a46505c6-70a2-4d28-b27b-0e5f128f93ba")
-		(property "Reference" "C23"
-			(at 210.82 146.05 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1uF"
-			(at 218.44 146.05 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 214.63 147.32 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 214.63 147.32 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 214.63 147.32 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "24843946-5d0b-4bb4-a4f7-4b1aafffe403")
-		)
-		(pin "2"
-			(uuid "2b7b0083-a774-4ad9-b204-05afb58843ef")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "C23")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 88.9 165.1 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a6053158-81b9-44af-9223-916865f07c9c")
-		(property "Reference" "#PWR062"
-			(at 88.9 171.45 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 88.9 168.91 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 88.9 165.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 88.9 165.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 88.9 165.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ec108685-7a58-48f9-8911-b7777a237ca7")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "#PWR062")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "custom_symbols:ICS-40720")
-		(at 52.07 151.13 0)
+		(lib_id "custom_symbols:ZTS6216")
+		(at 58.42 146.05 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8103,31 +9207,29 @@
 		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "a84e4b24-b539-4e6e-ba62-364dba62d769")
+		(uuid "ac2e5233-cc65-4f11-8d1d-013409544a8a")
 		(property "Reference" "MK1"
-			(at 43.18 148.5899 0)
+			(at 58.42 137.16 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
-		(property "Value" "ICS-40720"
-			(at 43.18 151.1299 0)
+		(property "Value" "ZTS6216"
+			(at 58.42 139.7 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
-		(property "Footprint" "custom_footprints:ICS40720"
-			(at 52.07 132.08 0)
+		(property "Footprint" "custom_footprints:ZTS6216"
+			(at 57.404 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8137,8 +9239,8 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2401291126_TDK-InvenSense-ICS-40720_C3171779.pdf"
-			(at 52.07 168.91 0)
+		(property "Datasheet" "https://file1.elecfans.com/web2/M00/C3/0A/wKgaomXgKHiAc_KRAAtAFVHhhXM290.pdf"
+			(at 57.404 134.112 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8148,8 +9250,8 @@
 				)
 			)
 		)
-		(property "Description" "Analog Differential Omni-directional -38dB 70dB MEMS Microphones"
-			(at 51.308 172.466 0)
+		(property "Description" "Analog output omnidirectional MEMS microphone, top-port, 65 dB(A) SNR, -38 dBV/Pa, 1.5-3.6 V, SMD-4P 2.75x1.85mm"
+			(at 57.658 138.43 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8159,28 +9261,50 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C3171779"
-			(at 43.18 153.6699 0)
+		(property "Manufacturer" "ZILLTEK"
+			(at 58.42 146.05 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
-		(pin "4"
-			(uuid "c38b5d43-9c6a-45f4-8f0f-39cf53cecf46")
+		(property "MPN" "ZTS6216"
+			(at 58.166 131.826 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1"
-			(uuid "f3d02070-5356-4ce2-a58e-246111cba301")
+		(property "LCSC" "C481302"
+			(at 58.42 136.652 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(pin "3"
-			(uuid "7ba6e3d8-0fcb-44ef-bb0e-4088b0411935")
+			(uuid "507e6259-978a-47c3-b572-c9500b77a018")
+		)
+		(pin "1"
+			(uuid "34bd137c-ef9a-486f-9578-71bc01a78d9a")
 		)
 		(pin "2"
-			(uuid "83bacf87-d9b0-4bc7-bef4-ee4acf434e0d")
+			(uuid "132da4b0-2482-4a4f-b625-a950f2a2f6e7")
+		)
+		(pin "4"
+			(uuid "41602799-6378-4ea5-936c-ff58f6cf68ef")
 		)
 		(instances
 			(project "bluetooth-audio"
@@ -8274,8 +9398,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 91.44 58.42 0)
+		(lib_id "power:+3V3")
+		(at 40.64 27.94 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8283,9 +9407,10 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "b21b381d-d191-4523-9a36-16e6f427445b")
-		(property "Reference" "#PWR014"
-			(at 91.44 64.77 0)
+		(fields_autoplaced yes)
+		(uuid "aebc0000-ad93-4acd-9eed-2444e388808c")
+		(property "Reference" "#PWR062"
+			(at 40.64 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8295,8 +9420,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 91.44 62.23 0)
+		(property "Value" "+3V3_AUDIO"
+			(at 40.64 22.86 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8306,7 +9431,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 91.44 58.42 0)
+			(at 40.64 27.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8317,7 +9442,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 91.44 58.42 0)
+			(at 40.64 27.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8328,7 +9453,163 @@
 			)
 		)
 		(property "Description" ""
-			(at 91.44 58.42 0)
+			(at 40.64 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ffb2baac-0908-444e-b53d-38964ef7c991")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "#PWR062")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 69.85 39.37 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "b0ac0a8d-e080-460d-b796-928d3982d176")
+		(property "Reference" "R16"
+			(at 71.12 35.56 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10R"
+			(at 72.136 39.624 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 69.85 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 69.85 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 69.85 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "abdb7ac1-b077-4cd5-9450-cb2b2a7d903c")
+		)
+		(pin "2"
+			(uuid "fdc3e746-5850-4065-8622-da3b34583e83")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "R16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 83.82 58.42 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "b21b381d-d191-4523-9a36-16e6f427445b")
+		(property "Reference" "#PWR014"
+			(at 83.82 64.77 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 83.82 62.23 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 83.82 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 83.82 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 83.82 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8351,85 +9632,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 66.04 165.1 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "b6b2dd8f-073f-4d91-a51d-d825b9874578")
-		(property "Reference" "#PWR063"
-			(at 66.04 171.45 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 66.04 168.91 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 66.04 165.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 66.04 165.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 66.04 165.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d0bb4020-d60d-4f7f-abeb-6932f249dfbf")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "#PWR063")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
-		(at 111.76 55.88 0)
+		(at 104.14 55.88 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8440,7 +9644,7 @@
 		(fields_autoplaced yes)
 		(uuid "bde2b9c6-6054-46cc-b68f-8ed56024c1ed")
 		(property "Reference" "C12"
-			(at 114.3 54.6163 0)
+			(at 106.68 54.6163 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8451,7 +9655,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 114.3 57.1563 0)
+			(at 106.68 57.1563 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8462,7 +9666,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 111.76 55.88 0)
+			(at 104.14 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8473,7 +9677,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 111.76 55.88 0)
+			(at 104.14 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8484,7 +9688,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 111.76 55.88 0)
+			(at 104.14 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8504,6 +9708,86 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "C12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Polarized_US")
+		(at 181.61 152.4 90)
+		(mirror x)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "bf8eca38-ba30-4e1c-9431-a2fb75e928b1")
+		(property "Reference" "C21"
+			(at 180.975 160.02 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "47uF"
+			(at 180.975 157.48 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:CP_Elec_5x5.8"
+			(at 181.61 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 181.61 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "EEEFT1E470ARPolarized capacitor, US symbol"
+			(at 181.61 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b5144566-a01a-4f63-89fb-ec2568cdf1b8")
+		)
+		(pin "2"
+			(uuid "0d17af5d-845c-4c12-be34-e8fc62d3130f")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "C21")
 					(unit 1)
 				)
 			)
@@ -8588,7 +9872,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 227.33 153.67 90)
+		(at 217.17 152.4 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8598,7 +9882,7 @@
 		(dnp no)
 		(uuid "bfed5c93-1a7b-49ac-b8cd-c43211e901d6")
 		(property "Reference" "R8"
-			(at 223.52 152.4 90)
+			(at 213.36 151.13 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8608,7 +9892,7 @@
 			)
 		)
 		(property "Value" "10R"
-			(at 231.14 152.4 90)
+			(at 220.98 151.13 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8618,7 +9902,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 227.33 153.67 0)
+			(at 217.17 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8629,7 +9913,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 227.33 153.67 0)
+			(at 217.17 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8640,7 +9924,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 227.33 153.67 0)
+			(at 217.17 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8666,8 +9950,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
-		(at 214.63 153.67 270)
+		(lib_id "Device:D_Schottky_Dual_Series_AKC_Split")
+		(at 57.15 109.22 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8675,29 +9959,32 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "cef754f5-9f1b-4756-a875-d1ef022d01e4")
-		(property "Reference" "C25"
-			(at 210.82 152.4 90)
+		(uuid "c37fea0f-b05e-4b58-965e-69de763da9a7")
+		(property "Reference" "D8"
+			(at 54.61 107.6959 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Value" "1uF"
-			(at 218.44 152.4 90)
+		(property "Value" "D_Schottky_Dual_Series_AKC_Split"
+			(at 54.61 110.2359 90)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 214.63 153.67 0)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 59.69 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8707,8 +9994,8 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
-			(at 214.63 153.67 0)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C408389.pdf?spm=wm.sxq.inf.ggs&lcsc_vid=RlZZVFQHQwJZUAEDFFgMVQJRQwNcUlVUE1cLUlYERFIxVlNeT1lYVFRTQ1daXztW"
+			(at 59.69 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8718,8 +10005,8 @@
 				)
 			)
 		)
-		(property "Description" ""
-			(at 214.63 153.67 0)
+		(property "Description" "Dual Schottky diode, anode/cathode/center"
+			(at 57.15 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8729,16 +10016,30 @@
 				)
 			)
 		)
-		(pin "1"
-			(uuid "70493f83-64f4-4f43-a77e-135a711464bc")
+		(property "Supplier Part Number" "C408389"
+			(at 57.15 109.22 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(pin "2"
-			(uuid "0b335129-a6ca-49ec-9d27-143ab56fec72")
+			(uuid "3605e271-1d5b-4dca-94f2-49fdc3af0490")
+		)
+		(pin "1"
+			(uuid "3809c36b-62ac-41b9-a7e2-c31199b93dec")
+		)
+		(pin "3"
+			(uuid "68bedf6e-b962-4ff4-a6e3-f0919b416731")
 		)
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "C25")
+					(reference "D8")
 					(unit 1)
 				)
 			)
@@ -8746,7 +10047,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint_2Pole")
-		(at 91.44 111.76 0)
+		(at 120.65 113.03 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8757,7 +10058,7 @@
 		(fields_autoplaced yes)
 		(uuid "d019c172-a6b6-4acc-a426-6604f7077bec")
 		(property "Reference" "TP5"
-			(at 91.44 106.68 0)
+			(at 120.65 107.95 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8767,7 +10068,7 @@
 			)
 		)
 		(property "Value" "TEST_IN_2"
-			(at 91.44 109.22 0)
+			(at 120.65 110.49 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8777,7 +10078,7 @@
 			)
 		)
 		(property "Footprint" "custom_footprints:TestPoint_Pad_2x1_D1.0mm"
-			(at 91.44 111.76 0)
+			(at 120.65 113.03 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8788,7 +10089,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 91.44 111.76 0)
+			(at 120.65 113.03 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8799,7 +10100,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 91.44 111.76 0)
+			(at 120.65 113.03 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8826,7 +10127,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 227.33 147.32 90)
+		(at 217.17 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8836,7 +10137,7 @@
 		(dnp no)
 		(uuid "d2e93132-2376-4331-a7fb-b6775faf54b6")
 		(property "Reference" "R7"
-			(at 223.52 146.05 90)
+			(at 213.36 146.05 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8846,7 +10147,7 @@
 			)
 		)
 		(property "Value" "10R"
-			(at 231.14 146.05 90)
+			(at 220.98 146.05 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8856,7 +10157,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 227.33 147.32 0)
+			(at 217.17 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8867,7 +10168,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 227.33 147.32 0)
+			(at 217.17 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8878,7 +10179,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 227.33 147.32 0)
+			(at 217.17 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9061,7 +10362,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 209.55 135.89 0)
+		(at 177.8 134.62 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9071,7 +10372,7 @@
 		(dnp no)
 		(uuid "d5c86be4-8425-4460-a5a5-a68009ab9b7b")
 		(property "Reference" "#PWR076"
-			(at 209.55 142.24 0)
+			(at 177.8 140.97 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9082,7 +10383,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 209.55 139.7 0)
+			(at 177.8 138.43 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9092,7 +10393,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 209.55 135.89 0)
+			(at 177.8 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9103,7 +10404,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 209.55 135.89 0)
+			(at 177.8 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9114,7 +10415,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 209.55 135.89 0)
+			(at 177.8 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9215,7 +10516,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 100.33 58.42 0)
+		(at 92.71 58.42 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9225,7 +10526,7 @@
 		(dnp no)
 		(uuid "db74aaa8-34ab-4a2e-af9e-1f6bd79d7eaa")
 		(property "Reference" "#PWR013"
-			(at 100.33 64.77 0)
+			(at 92.71 64.77 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9236,7 +10537,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 100.33 62.23 0)
+			(at 92.71 62.23 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9246,7 +10547,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 100.33 58.42 0)
+			(at 92.71 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9257,7 +10558,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 100.33 58.42 0)
+			(at 92.71 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9268,7 +10569,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 100.33 58.42 0)
+			(at 92.71 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9371,39 +10672,37 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 80.01 156.21 0)
+		(at 107.95 168.91 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
-		(uuid "decbebd6-f67f-49ce-bb58-5a9dd5a99536")
-		(property "Reference" "C39"
-			(at 82.55 154.9463 0)
+		(dnp yes)
+		(uuid "e072a728-c4a3-4e54-88d0-4387835553fe")
+		(property "Reference" "C54"
+			(at 112.776 169.164 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
-		(property "Value" "10nF"
-			(at 82.55 157.4863 0)
+		(property "Value" "100nF"
+			(at 112.776 166.624 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 80.01 156.21 0)
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
+			(at 107.95 168.91 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9413,8 +10712,8 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
-			(at 80.01 156.21 0)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C97946.pdf?spm=wm.sxq.inf.ggs&lcsc_vid=RlZZVFQHQwJZUAEDFFgMVQJRQwNcUlVUE1cLUlYERFIxVlNeT1lYU1JXQFdeVTtW"
+			(at 107.95 168.91 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9424,8 +10723,18 @@
 				)
 			)
 		)
-		(property "Description" ""
-			(at 80.01 156.21 0)
+		(property "Description" "Murata GRM31C5C1H104JA01L (C0G)"
+			(at 129.032 173.228 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part Number" "C97946"
+			(at 107.95 168.91 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9436,15 +10745,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "ddb0031b-6c58-4daf-bbdf-d04b394b068e")
+			(uuid "b656cff6-5b15-43a7-b4a9-296b8504cc86")
 		)
 		(pin "2"
-			(uuid "a90d1354-e97a-41b7-a822-024acb7ea204")
+			(uuid "5e003712-2d01-447b-9a9e-da21beeb58aa")
 		)
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "C39")
+					(reference "C54")
 					(unit 1)
 				)
 			)
@@ -9770,7 +11079,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 88.9 137.16 0)
+		(at 43.18 158.75 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9780,7 +11089,7 @@
 		(dnp no)
 		(uuid "f04cfce4-d699-460b-908b-6fde8893b1c7")
 		(property "Reference" "#PWR061"
-			(at 88.9 143.51 0)
+			(at 43.18 165.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9791,7 +11100,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 88.9 140.97 0)
+			(at 43.18 162.56 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9801,7 +11110,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 88.9 137.16 0)
+			(at 43.18 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9812,7 +11121,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 88.9 137.16 0)
+			(at 43.18 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9823,7 +11132,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 88.9 137.16 0)
+			(at 43.18 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9846,87 +11155,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
-		(at 109.22 97.79 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "f06bc4d7-1dcf-496d-80cf-480c06e1741e")
-		(property "Reference" "C21"
-			(at 105.41 96.52 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1uF"
-			(at 113.03 96.52 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 109.22 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 109.22 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 109.22 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "23a74c89-bdab-432f-8d5d-508bf3cb31a7")
-		)
-		(pin "2"
-			(uuid "f9c6672b-1e68-4bf4-b820-1f6d52ea1f2b")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "C21")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Analog_Switch:TS5A23159DGS")
-		(at 187.96 135.89 0)
+		(at 157.48 135.89 0)
 		(mirror y)
 		(unit 1)
 		(body_style 1)
@@ -9937,7 +11167,7 @@
 		(dnp no)
 		(uuid "f0c6e4db-5c8f-40a9-ac0b-fa992f3d1be9")
 		(property "Reference" "U3"
-			(at 187.96 127 0)
+			(at 157.48 127 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9947,7 +11177,7 @@
 			)
 		)
 		(property "Value" "TS5A23159DGS"
-			(at 187.96 129.54 0)
+			(at 157.48 129.54 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9957,7 +11187,7 @@
 			)
 		)
 		(property "Footprint" "Package_SO:TSSOP-10_3x3mm_P0.5mm"
-			(at 186.69 147.955 0)
+			(at 156.21 147.955 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9969,7 +11199,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ts5a23159.pdf"
-			(at 186.69 149.86 0)
+			(at 156.21 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9981,7 +11211,7 @@
 			)
 		)
 		(property "Description" "Dual 1 ohm SPDT Analog Switch, TSSOP-10 (Texas DGS0010A / VSSOP)"
-			(at 187.96 135.89 0)
+			(at 157.48 135.89 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10025,6 +11255,86 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "U3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Polarized_US")
+		(at 181.61 147.32 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f2822951-bd38-462c-b050-50ebe0038053")
+		(property "Reference" "C1"
+			(at 180.975 139.7 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "47uF"
+			(at 180.975 142.24 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:CP_Elec_5x5.8"
+			(at 181.61 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 181.61 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "EEEFT1E470ARPolarized capacitor, US symbol"
+			(at 181.61 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "67288e97-318c-4d3a-a8d7-e40dbbca9dce")
+		)
+		(pin "2"
+			(uuid "e31faac0-b97e-440e-961b-d4a4374871c1")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -10109,7 +11419,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 88.9 130.81 0)
+		(at 43.18 152.4 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10120,7 +11430,7 @@
 		(fields_autoplaced yes)
 		(uuid "f5041846-f0d2-4050-a706-079889c7ca45")
 		(property "Reference" "C44"
-			(at 91.44 129.5463 0)
+			(at 45.72 151.1363 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10131,7 +11441,7 @@
 			)
 		)
 		(property "Value" "10u"
-			(at 91.44 132.0863 0)
+			(at 45.72 153.6763 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10142,7 +11452,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 88.9 130.81 0)
+			(at 43.18 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10153,7 +11463,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 88.9 130.81 0)
+			(at 43.18 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10164,7 +11474,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 88.9 130.81 0)
+			(at 43.18 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10184,6 +11494,83 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "C44")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 107.95 175.26 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f53fb446-714c-4d4d-9d90-a963b64e6f0d")
+		(property "Reference" "#PWR0102"
+			(at 107.95 181.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 107.95 179.07 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 107.95 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 107.95 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 107.95 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "28722ae1-3913-48f5-9f2f-12727521c614")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "#PWR0102")
 					(unit 1)
 				)
 			)
@@ -10354,38 +11741,42 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
-		(at 119.38 100.33 270)
-		(unit 1)
+		(lib_id "Device:D_Schottky_Dual_Series_AKC_Split")
+		(at 64.77 93.98 270)
+		(unit 2)
 		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "fdbe2633-bfaf-46a8-9b00-93534c95de5e")
-		(property "Reference" "C22"
-			(at 115.57 99.06 90)
+		(fields_autoplaced yes)
+		(uuid "fea06c67-a3eb-41a4-83e4-97a1fd383edf")
+		(property "Reference" "D7"
+			(at 67.31 92.4559 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Value" "1uF"
-			(at 123.19 99.06 90)
+		(property "Value" "D_Schottky_Dual_Series_AKC_Split"
+			(at 67.31 94.9959 90)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 119.38 100.33 0)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 62.23 91.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10395,8 +11786,8 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
-			(at 119.38 100.33 0)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C408389.pdf?spm=wm.sxq.inf.ggs&lcsc_vid=RlZZVFQHQwJZUAEDFFgMVQJRQwNcUlVUE1cLUlYERFIxVlNeT1lYVFRTQ1daXztW"
+			(at 62.23 91.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10406,8 +11797,8 @@
 				)
 			)
 		)
-		(property "Description" ""
-			(at 119.38 100.33 0)
+		(property "Description" "Dual Schottky diode, anode/cathode/center"
+			(at 64.77 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10417,17 +11808,31 @@
 				)
 			)
 		)
-		(pin "1"
-			(uuid "6a87bb16-017d-4613-af3f-b6dd0e192546")
+		(property "Supplier Part Number" "C408389"
+			(at 64.77 93.98 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(pin "2"
-			(uuid "f5eadcb6-3ede-43da-baa1-c63f3b18df18")
+			(uuid "1304569d-28d4-4d23-8587-b7e804bf6e92")
+		)
+		(pin "1"
+			(uuid "b9d1105d-5630-4a40-bc65-91fb19824a48")
+		)
+		(pin "3"
+			(uuid "a37a9d03-0bc1-4ab5-b9d2-fb221716ec0a")
 		)
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "C22")
-					(unit 1)
+					(reference "D7")
+					(unit 2)
 				)
 			)
 		)
