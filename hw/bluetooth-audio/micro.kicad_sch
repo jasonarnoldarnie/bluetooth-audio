@@ -7813,7 +7813,7 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C2297"
+		(property "Supplier Part Number" ""
 			(at 266.7 91.44 90)
 			(hide yes)
 			(show_name no)
@@ -7824,6 +7824,15 @@
 				)
 			)
 		)
+    (property "Manufacturer" "Hubei KENTO Elec" (at 266.7 91.44 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "MPN" "KT-0805G" (at 266.7 91.44 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "LCSC" "C2297" (at 266.7 91.44 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
 		(pin "1"
 			(uuid "1514d20b-98b8-4a9a-b4cb-f24cf54d7ae7")
 		)
@@ -7982,7 +7991,7 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C255898"
+		(property "Supplier Part Number" ""
 			(at 53.34 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -7993,6 +8002,15 @@
 				)
 			)
 		)
+    (property "Manufacturer" "Seiko Epson" (at 53.34 82.55 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "MPN" "Q22FA12800101" (at 53.34 82.55 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "LCSC" "C255898" (at 53.34 82.55 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
 		(pin "1"
 			(uuid "1da048f3-3d42-4169-9238-1bf7b9160dc7")
 		)
@@ -8236,6 +8254,39 @@
 				)
 			)
 		)
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
+			(at 74.93 179.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402WGF1002TCE"
+			(at 74.93 179.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 74.93 179.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "62a11686-0eb2-4f5b-86e6-9931cad55e69")
 		)
@@ -8318,7 +8369,7 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C967021"
+		(property "Supplier Part Number" ""
 			(at 156.21 107.95 0)
 			(hide yes)
 			(show_name no)
@@ -8329,6 +8380,15 @@
 				)
 			)
 		)
+    (property "Manufacturer" "Espressif Systems" (at 156.21 107.95 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "MPN" "ESP32-D0WD-V3" (at 156.21 107.95 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "LCSC" "C967021" (at 156.21 107.95 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
 		(pin "1"
 			(uuid "68f4f0e8-6017-441e-b6ba-d092f0fc099d")
 		)
@@ -8708,6 +8768,39 @@
 				)
 			)
 		)
+		(property "LCSC" "C25744"
+			(at 74.93 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
+			(at 74.93 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402WGF1002TCE"
+			(at 74.93 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "fd0502ac-433e-4524-8207-6d9dcd927537")
 		)
@@ -8948,6 +9041,39 @@
 				)
 			)
 		)
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
+			(at 248.92 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402WGF3300TCE"
+			(at 248.92 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25104"
+			(at 248.92 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "d9b34d6c-12b4-4cbd-8544-59f77456ed30")
 		)
@@ -9109,7 +9235,7 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C62892"
+		(property "Supplier Part Number" ""
 			(at 86.36 162.56 0)
 			(hide yes)
 			(show_name no)
@@ -9120,6 +9246,15 @@
 				)
 			)
 		)
+    (property "Manufacturer" "Jiangsu Changjing Electronics" (at 86.36 162.56 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "MPN" "UMH3N" (at 86.36 162.56 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "LCSC" "C62892" (at 86.36 162.56 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
 		(pin "5"
 			(uuid "e0884d20-e1de-4a1d-95df-d40bfaf2f15e")
 		)
@@ -9314,6 +9449,39 @@
 				)
 			)
 		)
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
+			(at 74.93 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402WGF0000TCE"
+			(at 74.93 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C17168"
+			(at 74.93 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "4a6d1cac-96ea-4504-a61b-c0fb7e840dc0")
 		)
@@ -9466,6 +9634,39 @@
 			)
 		)
 		(property "Description" ""
+			(at 44.45 142.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung Electro Mechanics"
+			(at 44.45 142.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL05B104KO5NNNC"
+			(at 44.45 142.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
 			(at 44.45 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -9711,6 +9912,39 @@
 				)
 			)
 		)
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
+			(at 39.37 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402WGF0000TCE"
+			(at 39.37 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C17168"
+			(at 39.37 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "38098b80-51d3-4a54-8148-9fc663b87538")
 		)
@@ -9783,6 +10017,39 @@
 			)
 		)
 		(property "Description" ""
+			(at 146.05 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung Electro Mechanics"
+			(at 146.05 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL05B104KO5NNNC"
+			(at 146.05 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
 			(at 146.05 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -10033,8 +10300,41 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C34499"
+		(property "Supplier Part Number" ""
 			(at 248.92 91.44 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Hubei KENTO Elec"
+			(at 248.92 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "KT-0805B"
+			(at 248.92 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2293"
+			(at 248.92 91.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10360,6 +10660,39 @@
 				)
 			)
 		)
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
+			(at 157.48 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402WGF4701TCE"
+			(at 157.48 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25900"
+			(at 157.48 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "cabe062c-1de8-4c49-9dc8-4c41cc613ba4")
 		)
@@ -10444,6 +10777,15 @@
 				)
 			)
 		)
+    (property "Manufacturer" "Alpha Omega Semicon" (at 38.1 129.54 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "MPN" "AO3401A" (at 38.1 129.54 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "LCSC" "C15127" (at 38.1 129.54 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
 		(pin "1"
 			(uuid "bcb1be35-01e1-4f2b-a88f-59718b9b27de")
 		)
@@ -10516,6 +10858,39 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 54.61 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
+			(at 54.61 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402WGF1003TCE"
+			(at 54.61 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25741"
 			(at 54.61 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -10767,7 +11142,7 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C968586"
+		(property "Supplier Part Number" ""
 			(at 38.1 161.29 0)
 			(hide yes)
 			(show_name no)
@@ -10778,6 +11153,15 @@
 				)
 			)
 		)
+    (property "Manufacturer" "WCH(Jiangsu Qin Heng)" (at 38.1 161.29 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "MPN" "CH340K" (at 38.1 161.29 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "LCSC" "C968586" (at 38.1 161.29 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
 		(pin "2"
 			(uuid "e7a589cb-2093-43e5-99f8-011652548985")
 		)
@@ -10877,6 +11261,39 @@
 			)
 		)
 		(property "Description" ""
+			(at 74.93 47.625 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Murata Electronics"
+			(at 74.93 47.625 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "GJM1555C1H3R3BB01D"
+			(at 74.93 47.625 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C76906"
 			(at 74.93 47.625 0)
 			(hide yes)
 			(show_name no)
@@ -11048,7 +11465,40 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C1849"
+		(property "Supplier Part Number" ""
+			(at 99.06 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung Electro Mechanics"
+			(at 99.06 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL05A105KA5NQNC"
+			(at 99.06 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C52923"
 			(at 99.06 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -11128,6 +11578,39 @@
 			)
 		)
 		(property "Description" ""
+			(at 152.4 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
+			(at 152.4 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402WGF4701TCE"
+			(at 152.4 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25900"
 			(at 152.4 167.64 0)
 			(hide yes)
 			(show_name no)
@@ -11296,6 +11779,39 @@
 				)
 			)
 		)
+		(property "Manufacturer" "Samsung Electro Mechanics"
+			(at 114.3 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL05B103KB5NNNC"
+			(at 114.3 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 114.3 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "c05c1f2e-bc54-4d01-8cbb-547139858d56")
 		)
@@ -11368,6 +11884,39 @@
 			)
 		)
 		(property "Description" ""
+			(at 182.88 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung Electro Mechanics"
+			(at 182.88 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL05B104KO5NNNC"
+			(at 182.88 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
 			(at 182.88 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -11459,7 +12008,7 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C571260"
+		(property "Supplier Part Number" ""
 			(at 269.24 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -11470,6 +12019,15 @@
 				)
 			)
 		)
+    (property "Manufacturer" "Winbond Elec" (at 269.24 137.16 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "MPN" "W25Q32JVZPIQ" (at 269.24 137.16 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
+    (property "LCSC" "C571260" (at 269.24 137.16 0)
+      (effects (font (size 1.27 1.27)) (hide yes))
+    )
 		(pin "1"
 			(uuid "2c5e0637-2db9-40cd-bd7f-152678c97f73")
 		)
@@ -11649,6 +12207,39 @@
 				)
 			)
 		)
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
+			(at 74.93 185.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402WGF0000TCE"
+			(at 74.93 185.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C17168"
+			(at 74.93 185.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "b6387779-bf5b-48ba-b3de-1c3e80b87fda")
 		)
@@ -11721,6 +12312,39 @@
 			)
 		)
 		(property "Description" ""
+			(at 199.39 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung Electro Mechanics"
+			(at 199.39 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL05B104KO5NNNC"
+			(at 199.39 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
 			(at 199.39 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -11892,6 +12516,39 @@
 				)
 			)
 		)
+		(property "Manufacturer" "Murata Electronics"
+			(at 50.8 47.625 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "GJM1555C1H3R3BB01D"
+			(at 50.8 47.625 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C76906"
+			(at 50.8 47.625 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "a198aa98-6827-4c4e-8d44-94a9f603b489")
 		)
@@ -11974,7 +12631,40 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C1849"
+		(property "Supplier Part Number" ""
+			(at 39.37 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "FH Guangdong Fenghua Advanced Tech"
+			(at 39.37 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402CG180J500NT"
+			(at 39.37 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1549"
 			(at 39.37 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -12370,6 +13060,39 @@
 			)
 		)
 		(property "Description" ""
+			(at 90.805 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
+			(at 90.805 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402WGF1002TCE"
+			(at 90.805 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25744"
 			(at 90.805 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -12936,7 +13659,7 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C62892"
+		(property "Supplier Part Number" ""
 			(at 86.36 179.07 0)
 			(hide yes)
 			(show_name no)
@@ -13279,6 +14002,39 @@
 				)
 			)
 		)
+		(property "Manufacturer" "Samsung Electro Mechanics"
+			(at 133.35 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL05B104KO5NNNC"
+			(at 133.35 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 133.35 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "50e908e3-d83f-49e5-bd46-962c921ed37f")
 		)
@@ -13372,6 +14128,39 @@
 				)
 			)
 		)
+		(property "Manufacturer" "FH Guangdong Fenghua Advanced Tech"
+			(at 62.23 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402CG180J500NT"
+			(at 62.23 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1549"
+			(at 62.23 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "645bf142-62b7-4228-9e47-8e8a7db658a8")
 		)
@@ -13454,7 +14243,40 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C1849"
+		(property "Supplier Part Number" ""
+			(at 259.08 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung Electro Mechanics"
+			(at 259.08 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL05A105KA5NQNC"
+			(at 259.08 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C52923"
 			(at 259.08 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -13626,7 +14448,40 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C1849"
+		(property "Supplier Part Number" ""
+			(at 161.29 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung Electro Mechanics"
+			(at 161.29 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL05A105KA5NQNC"
+			(at 161.29 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C52923"
 			(at 161.29 25.4 0)
 			(hide yes)
 			(show_name no)
@@ -13955,6 +14810,39 @@
 				)
 			)
 		)
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
+			(at 266.7 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402WGF3300TCE"
+			(at 266.7 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25104"
+			(at 266.7 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "2b6636e3-88d3-40a5-959b-ca265703b35f")
 		)
@@ -14113,6 +15001,39 @@
 				)
 			)
 		)
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
+			(at 158.75 186.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402WGF4701TCE"
+			(at 158.75 186.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25900"
+			(at 158.75 186.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "1f32e5fa-c3ce-4152-8f60-c42f150ef16a")
 		)
@@ -14261,6 +15182,39 @@
 			)
 		)
 		(property "Description" ""
+			(at 62.23 41.275 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Murata Electronics"
+			(at 62.23 41.275 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "LQG15HS2N2S02D"
+			(at 62.23 41.275 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C86061"
 			(at 62.23 41.275 0)
 			(hide yes)
 			(show_name no)
@@ -14432,7 +15386,40 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" "C1849"
+		(property "Supplier Part Number" ""
+			(at 151.13 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung Electro Mechanics"
+			(at 151.13 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL10A106KP8NNNC"
+			(at 151.13 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C19702"
 			(at 151.13 25.4 0)
 			(hide yes)
 			(show_name no)
