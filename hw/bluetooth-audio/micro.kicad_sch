@@ -10256,7 +10256,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "LED_BLUE"
+		(property "Value" "LED_WHITE"
 			(at 251.46 92.6465 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10322,7 +10322,7 @@
 				)
 			)
 		)
-		(property "MPN" "KT-0805B"
+		(property "MPN" "KT-0805W"
 			(at 248.92 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -10333,7 +10333,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2293"
+		(property "LCSC" "C34499"
 			(at 248.92 91.44 0)
 			(hide yes)
 			(show_name no)

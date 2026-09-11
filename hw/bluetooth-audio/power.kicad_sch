@@ -8154,7 +8154,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 96.52 138.938 90)
 			(hide yes)
 			(show_name no)
@@ -8187,7 +8187,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "FOJAN"
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
 			(at 96.52 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -8198,7 +8198,7 @@
 				)
 			)
 		)
-		(property "MPN" "FRC0402F5602TS"
+		(property "MPN" "0603WAF5602T5E"
 			(at 96.52 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -8209,7 +8209,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2906875"
+		(property "LCSC" "C23206"
 			(at 96.52 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -11033,7 +11033,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 29.21 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -11077,7 +11077,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "YAGEO"
+		(property "Manufacturer" "FH Guangdong Fenghua Advanced Tech"
 			(at 29.21 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -11088,7 +11088,7 @@
 				)
 			)
 		)
-		(property "MPN" "CC1206JRNPO9BN472"
+		(property "MPN" "0402B472K500NT"
 			(at 29.21 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -11099,7 +11099,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C113886"
+		(property "LCSC" "C1538"
 			(at 29.21 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -11157,7 +11157,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 96.52 124.968 90)
 			(hide yes)
 			(show_name no)
@@ -11190,7 +11190,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "FOJAN"
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
 			(at 96.52 123.19 0)
 			(hide yes)
 			(show_name no)
@@ -11201,7 +11201,7 @@
 				)
 			)
 		)
-		(property "MPN" "FRC0402F3001TS"
+		(property "MPN" "0603WAF3001T5E"
 			(at 96.52 123.19 0)
 			(hide yes)
 			(show_name no)
@@ -11212,7 +11212,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2909355"
+		(property "LCSC" "C4211"
 			(at 96.52 123.19 0)
 			(hide yes)
 			(show_name no)
@@ -12783,7 +12783,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 105.918 168.91 90)
 			(hide yes)
 			(show_name no)
@@ -12816,7 +12816,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "FOJAN"
+		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
 			(at 104.14 168.91 0)
 			(hide yes)
 			(show_name no)
@@ -12827,7 +12827,7 @@
 				)
 			)
 		)
-		(property "MPN" "FRC0402F1201TS"
+		(property "MPN" "0603WAF1201T5E"
 			(at 104.14 168.91 0)
 			(hide yes)
 			(show_name no)
@@ -12838,7 +12838,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2909307"
+		(property "LCSC" "C22765"
 			(at 104.14 168.91 0)
 			(hide yes)
 			(show_name no)
