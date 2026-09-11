@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "custom_footprints")(type "KiCad")(uri "${KIPRJMOD}/kicad-library/footprints/custom_footprints.pretty")(options "")(descr "Shared personal footprints (kicad-library submodule)"))
+)
