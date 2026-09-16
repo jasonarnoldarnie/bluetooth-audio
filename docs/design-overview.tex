@@ -68,7 +68,7 @@
 
 % Document stamp (hook updates the date)
 \newcommand{\docrev}{Rev B (in design)}
-\newcommand{\docdate}{2026-09-10}
+\newcommand{\docdate}{2026-09-16}
 \newcommand{\docauthor}{Jason}
 
 \begin{document}
@@ -840,6 +840,7 @@ Hardware choices that constrain firmware, or vice versa.
 17 & Output coupling 1 µF MLCC → 47 µF electrolytic (C1/C21, Panasonic C336270) on the jack side; add 100 kΩ jack-side bleed (R22/R23) & Deep bass margin, one shared bidirectional cap, pop suppression \\
 18 & Add TX-input clamps D7/D8 (2× BAT54S, C408389) on LIN2/RIN2 to AVDD/GND & Protect codec inputs / electrolytic couplers from an over-range TX source \\
 19 & Mic coupling → 100 nF C0G (C41/C42, Murata C97946, 1206); provision pseudo-diff (R41 0 Ω + C54 alt, both DNP) & ZTS6216 forbids Class-2 near the mic; option to reject common-mode noise later \\
+20 & ES8388 OUT2 → TP6 test-output couplers 1 µF MLCC → 47 µF electrolytic (C24/C26, Panasonic C336270), matching C1/C21; + terminal to the codec/VMID side & Removes Class-2 ceramic coupling distortion; one shared coupler part across the board \\
 \bottomrule
 \end{longtable}
 \normalsize
@@ -919,6 +920,11 @@ Deltas \#4, \#9, \#13–17 are now on the schematic.
   pseudo-diff) removes it. Deliberate provisioning choice, not a defect.
 \item \textbf{Firmware mute} across power-up and TX/RX switching — the 47 µF couplers give slow
   ($\sim$1–5 s) VMID settling. (A8)
+\item \textbf{Remove D7/D8 TX-input clamps} (decided 2026-09-16) — \texttt{LIN2}/\texttt{RIN2} are
+  internal line-level nets with no external connector, so the codec's own ESD structures suffice; the
+  BAT54S junction capacitance ($\sim$10 pF) and reverse leakage degrade the high-impedance analog
+  input for no protective benefit. \textbf{Schematic edit pending} (done by hand); delta \#18 to be
+  struck and §6/§9 clamp text removed once applied.
 \end{itemize}
 
 \section{Manufacturing}
@@ -985,6 +991,7 @@ B & 2026-08-31 & Full ESP32 GPIO map committed (§3.8) with strapping-pin FW/HW 
 B & 2026-09-03 & Design overview converted from Markdown to LaTeX (Tectonic/XeTeX build) for easier manual editing. Content unchanged. \\
 B & 2026-09-07 & Audio sheet re-reviewed from a fresh netlist (\texttt{design-review-audio.md}). Folded confirmed audio decisions into §2/§6/§8/§9/§10: single-ended ZTS6216 mic (was differential SPH8878), 47 µF electrolytic jack-side couplers C1/C21 + R22/R23 bleed (was 1 µF MLCC), PJ-3537S TRS jack, L/R and I²C-pull-up-rail fixes. Corrected the stale "isolation-transformer footprints provisioned" claim — R7/R8 are plain 10 Ω, battery-only is the ground-loop plan. Also recorded the earlier withdrawal of the ES8388 OUT1-vs-OUT2 line/headphone distinction (no such split in the datasheet). \\
 B & 2026-09-08 & Audio caps + clamps finalized against the netlist: TX-input clamps to 2× BAT54S (D7/D8, common→signal / anode→GND / cathode→AVDD); mic DC-blocking caps to 100 nF C0G (Murata C97946, 1206) with a provisioned pseudo-differential option (R41 0 Ω + C54 alt, both DNP). Added §8 coupling-cap sizing calculations — jack couplers vs the car-AUX load (0.34 Hz into 10 kΩ) and mic caps vs the ES8388 20 kΩ ADC input (80 Hz). I²C pull-ups noted at 1 kΩ. TX input level decided \textbf{line-level-only} (PGA 0 dB, no attenuator; clamps = damage protection) — A7 closed. \\
+B & 2026-09-16 & Pre-layout BOM pass on the audio sheet: ES8388 OUT2 → TP6 test-output couplers C24/C26 → 47 µF electrolytic (Panasonic C336270, matching C1/C21, + to codec/VMID side), removing Class-2 ceramic coupling distortion (delta \#20); \texttt{C53} VBUS-sense filter 1206 → 0402 (house part C1525); \texttt{C41}/\texttt{C42} mic couplers footprint aligned to plain \texttt{C\_1206\_3216Metric} (matching C54). Decided to remove the D7/D8 TX-input clamps (\texttt{LIN2}/\texttt{RIN2} are internal line-level nets, no external exposure) — schematic edit pending. All PCB footprints now placed in initial positions; V1 routing pending. \\
 \bottomrule
 \end{longtable}
 \normalsize

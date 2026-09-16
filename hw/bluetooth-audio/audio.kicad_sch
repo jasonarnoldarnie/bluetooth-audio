@@ -33,7 +33,7 @@
 					(justify left)
 				)
 			)
-			(property "Footprint" "Package_SO:TSSOP-10_3x3mm_P0.5mm"
+			(property "Footprint" "Package_SO:MSOP-10_3x3mm_P0.5mm"
 				(at 1.27 -12.065 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1336,224 +1336,6 @@
 					(at 0 -2.54 90)
 					(length 2.032)
 					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Device:D_Schottky_Dual_Series_AKC_Split"
-			(pin_names
-				(offset 0.762)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "D"
-				(at 0 2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "D_Schottky_Dual_Series_AKC_Split"
-				(at 0 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at -2.54 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at -2.54 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Dual Schottky diode, anode/cathode/center"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_locked" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "diode"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "D_Schottky_Dual_Series_AKC_Split_0_1"
-				(pin passive line
-					(at 3.81 0 180)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "D_Schottky_Dual_Series_AKC_Split_1_1"
-				(polyline
-					(pts
-						(xy -1.27 1.27) (xy 1.27 0) (xy -1.27 -1.27) (xy -1.27 1.27) (xy -1.27 1.27) (xy -1.27 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 0) (xy -1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.778 1.016) (xy 1.778 1.27) (xy 1.27 1.27) (xy 1.27 -1.27) (xy 0.762 -1.27) (xy 0.762 -1.016)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "D_Schottky_Dual_Series_AKC_Split_2_1"
-				(polyline
-					(pts
-						(xy -1.778 1.016) (xy -1.778 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.762 -1.27) (xy -0.762 -1.016)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 0) (xy 1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27) (xy 1.27 1.27) (xy 1.27 1.27) (xy 1.27 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "K"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3139,17 +2921,6 @@
 		)
 		(uuid "480a0c2b-84f3-4a8d-94c6-fa34b49fcc43")
 	)
-	(text "Change dielectric\n"
-		(exclude_from_sim no)
-		(at 186.182 69.85 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(color 194 0 0 1)
-			)
-		)
-		(uuid "49c61b06-f824-494c-85c8-d699b4c265da")
-	)
 	(text "Left / Right clock (Word select / WS) \n"
 		(exclude_from_sim no)
 		(at 85.344 81.28 0)
@@ -3159,17 +2930,6 @@
 			)
 		)
 		(uuid "598133ef-585a-42ff-b61b-62c4b9ebfebb")
-	)
-	(text "Change dielectric\n"
-		(exclude_from_sim no)
-		(at 184.658 80.264 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(color 194 0 0 1)
-			)
-		)
-		(uuid "9fdcfc18-fee9-4ca4-88eb-97f6d7ed4f79")
 	)
 	(text "Populate R41 + either C42/C54 \nto configure pseudo-differential mic"
 		(exclude_from_sim no)
@@ -3278,18 +3038,6 @@
 		(uuid "035a7332-3baa-48de-98a9-60ab64307907")
 	)
 	(junction
-		(at 203.2 147.32)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "051889f1-aede-442b-a5e1-8cb99b5591dd")
-	)
-	(junction
-		(at 62.23 102.87)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "0c1d4098-f8a0-460a-b7cb-a51c7c082100")
-	)
-	(junction
 		(at 92.71 49.53)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3300,12 +3048,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "19fc6af4-037c-4d89-a722-4a00357b87db")
-	)
-	(junction
-		(at 57.15 100.33)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "1dbf0ccb-4de2-40af-8dcf-ed01710085bd")
 	)
 	(junction
 		(at 166.37 59.69)
@@ -3332,6 +3074,12 @@
 		(uuid "31f19b57-950f-4e97-bc59-7e9db45f6c6c")
 	)
 	(junction
+		(at 127 100.33)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "39a7ecdf-27bd-47ad-bd18-00cd4c2c6705")
+	)
+	(junction
 		(at 187.96 90.17)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3344,10 +3092,10 @@
 		(uuid "446146fd-e5e4-43cc-9858-d536b6f7b050")
 	)
 	(junction
-		(at 59.69 100.33)
+		(at 203.2 147.32)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "44b916bc-37f9-4bde-8514-85238e822a54")
+		(uuid "51dccf2e-b7a0-4bf9-afa8-05cf16189177")
 	)
 	(junction
 		(at 194.31 152.4)
@@ -3380,18 +3128,6 @@
 		(uuid "6ac4d3ac-1ec5-45e8-977f-f70bd90e7b39")
 	)
 	(junction
-		(at 64.77 102.87)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "733b38a0-75b9-406f-af16-04865df83ee9")
-	)
-	(junction
-		(at 127 102.87)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7949d3f6-1d93-4e3d-ad45-6dd256d3c68c")
-	)
-	(junction
 		(at 208.28 49.53)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3416,16 +3152,16 @@
 		(uuid "91d5b906-c585-477c-b668-5dc720ac7554")
 	)
 	(junction
-		(at 59.69 114.3)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9b8c3d9c-8eef-49c2-88ef-5cb1c652ee4e")
-	)
-	(junction
 		(at 43.18 156.21)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a991d094-0425-4526-b815-ac9725d3474a")
+	)
+	(junction
+		(at 114.3 97.79)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b1073c90-fd4f-40d8-9da9-9f26caf620dc")
 	)
 	(junction
 		(at 212.09 87.63)
@@ -3440,22 +3176,10 @@
 		(uuid "d00d15af-60d5-48a4-8a5b-320a072b759b")
 	)
 	(junction
-		(at 114.3 100.33)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d13e23a4-addd-421b-bc90-a2a17bbd240b")
-	)
-	(junction
 		(at 43.18 148.59)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ebb5c585-5450-4c3f-8d72-3273b6bd81b9")
-	)
-	(junction
-		(at 64.77 88.9)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ee3dee87-2d05-42e6-8126-215793a2b7b7")
 	)
 	(junction
 		(at 115.57 52.07)
@@ -3529,16 +3253,6 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 97.79) (xy 64.77 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "07d5d8f6-4739-4340-8739-f8ba0a6de671")
-	)
-	(wire
-		(pts
 			(xy 125.73 113.03) (xy 127 113.03)
 		)
 		(stroke
@@ -3549,33 +3263,13 @@
 	)
 	(wire
 		(pts
-			(xy 129.54 100.33) (xy 135.89 100.33)
+			(xy 189.23 73.66) (xy 199.39 73.66)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0b076ce0-0bab-4f98-baaa-ff77e7eaba23")
-	)
-	(wire
-		(pts
-			(xy 62.23 102.87) (xy 64.77 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0fd65637-6ee6-4d2e-ba65-cb9fdcbc4904")
-	)
-	(wire
-		(pts
-			(xy 57.15 114.3) (xy 59.69 114.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1320bbcf-76a6-4335-9dc4-af993fe2009f")
+		(uuid "0b4e590b-68be-42f4-a9bd-c8615449c2df")
 	)
 	(wire
 		(pts
@@ -3586,16 +3280,6 @@
 			(type default)
 		)
 		(uuid "157ccdd6-9d0f-4522-8a24-223b48ada88d")
-	)
-	(wire
-		(pts
-			(xy 57.15 114.3) (xy 57.15 113.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "19142613-3ba4-4708-a6ac-c86f7ba7d7f6")
 	)
 	(wire
 		(pts
@@ -3639,16 +3323,6 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 100.33) (xy 59.69 100.33)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "27eedca2-55b5-4dbb-bbfb-405d7d4d66ea")
-	)
-	(wire
-		(pts
 			(xy 184.15 52.07) (xy 163.83 52.07)
 		)
 		(stroke
@@ -3666,6 +3340,16 @@
 			(type default)
 		)
 		(uuid "292f677e-d843-4a99-9214-c64d4635630c")
+	)
+	(wire
+		(pts
+			(xy 173.99 77.47) (xy 173.99 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2a90dea7-2ce3-4570-a985-bea6e5e658de")
 	)
 	(wire
 		(pts
@@ -3689,7 +3373,7 @@
 	)
 	(wire
 		(pts
-			(xy 127 102.87) (xy 129.54 102.87)
+			(xy 127 100.33) (xy 135.89 100.33)
 		)
 		(stroke
 			(width 0)
@@ -3709,26 +3393,6 @@
 	)
 	(wire
 		(pts
-			(xy 219.71 147.32) (xy 233.68 147.32)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "31f77c67-03e5-4a71-b0dd-a08b01d35bc1")
-	)
-	(wire
-		(pts
-			(xy 114.3 100.33) (xy 114.3 113.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "344bfb5c-56e4-4e75-ba29-0d94fd05bec7")
-	)
-	(wire
-		(pts
 			(xy 43.18 156.21) (xy 31.75 156.21)
 		)
 		(stroke
@@ -3736,26 +3400,6 @@
 			(type default)
 		)
 		(uuid "38bee700-1174-4f56-8a18-c3e106cc426b")
-	)
-	(wire
-		(pts
-			(xy 64.77 88.9) (xy 73.66 88.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3b9d50ba-3650-417e-a022-53ebb84f322c")
-	)
-	(wire
-		(pts
-			(xy 59.69 97.79) (xy 59.69 100.33)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3c364f45-ecba-460b-bbeb-391d439f0cdb")
 	)
 	(wire
 		(pts
@@ -3849,6 +3493,16 @@
 	)
 	(wire
 		(pts
+			(xy 127 100.33) (xy 127 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4ba52511-bbed-4c2e-ad8c-41afd75e98f2")
+	)
+	(wire
+		(pts
 			(xy 166.37 59.69) (xy 172.72 59.69)
 		)
 		(stroke
@@ -3939,7 +3593,7 @@
 	)
 	(wire
 		(pts
-			(xy 163.83 73.66) (xy 176.53 73.66)
+			(xy 163.83 73.66) (xy 181.61 73.66)
 		)
 		(stroke
 			(width 0)
@@ -3959,16 +3613,6 @@
 	)
 	(wire
 		(pts
-			(xy 163.83 76.2) (xy 186.69 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "53717618-f8e0-4a15-a363-30700a96bd59")
-	)
-	(wire
-		(pts
 			(xy 185.42 147.32) (xy 203.2 147.32)
 		)
 		(stroke
@@ -3976,16 +3620,6 @@
 			(type default)
 		)
 		(uuid "55024763-b614-4d21-b6e5-ae30e9e286e8")
-	)
-	(wire
-		(pts
-			(xy 59.69 100.33) (xy 114.3 100.33)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5628cd09-b8f8-4de4-a03a-ded9e36929aa")
 	)
 	(wire
 		(pts
@@ -4009,7 +3643,7 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 102.87) (xy 62.23 102.87)
+			(xy 104.14 100.33) (xy 127 100.33)
 		)
 		(stroke
 			(width 0)
@@ -4029,16 +3663,6 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 114.3) (xy 62.23 114.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5f2512fc-da0b-4d86-8b2e-2d0fc2a4aa8d")
-	)
-	(wire
-		(pts
 			(xy 163.83 67.31) (xy 175.26 67.31)
 		)
 		(stroke
@@ -4046,6 +3670,16 @@
 			(type default)
 		)
 		(uuid "5f4db3d8-731e-42f0-a399-f0d95c7feb2c")
+	)
+	(wire
+		(pts
+			(xy 219.71 147.32) (xy 233.68 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "613ef36d-6f45-4b02-9674-35d10f19814d")
 	)
 	(wire
 		(pts
@@ -4089,16 +3723,6 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 102.87) (xy 127 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "62fb372b-acb2-437f-b2a2-70a8704250eb")
-	)
-	(wire
-		(pts
 			(xy 163.83 49.53) (xy 208.28 49.53)
 		)
 		(stroke
@@ -4109,6 +3733,16 @@
 	)
 	(wire
 		(pts
+			(xy 173.99 76.2) (xy 163.83 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6494c885-9012-48c0-b5b3-a16b07a144ec")
+	)
+	(wire
+		(pts
 			(xy 40.64 30.48) (xy 44.45 30.48)
 		)
 		(stroke
@@ -4116,16 +3750,6 @@
 			(type default)
 		)
 		(uuid "64fe5e40-06a5-4934-8e98-fb04d0685234")
-	)
-	(wire
-		(pts
-			(xy 59.69 114.3) (xy 59.69 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "675f75b6-ca25-4343-9e2f-c79019d1646d")
 	)
 	(wire
 		(pts
@@ -4146,26 +3770,6 @@
 			(type default)
 		)
 		(uuid "68f64bc6-9176-466d-a4d3-27463685f806")
-	)
-	(wire
-		(pts
-			(xy 57.15 100.33) (xy 57.15 105.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6a6ecb03-b220-4374-8a30-ff61f87cccff")
-	)
-	(wire
-		(pts
-			(xy 64.77 88.9) (xy 64.77 90.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7217d7b5-d07c-4338-9a8e-337cca50d331")
 	)
 	(wire
 		(pts
@@ -4219,16 +3823,6 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 114.3) (xy 62.23 113.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7c43cc7e-ea74-4d6c-9a5d-e6b9f571299d")
-	)
-	(wire
-		(pts
 			(xy 138.43 147.32) (xy 138.43 160.02)
 		)
 		(stroke
@@ -4246,16 +3840,6 @@
 			(type default)
 		)
 		(uuid "8160a704-71e2-4f22-a292-1b0cc6734ca6")
-	)
-	(wire
-		(pts
-			(xy 191.77 76.2) (xy 209.55 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8202952a-ffed-4006-8846-0e6ffc6c24f9")
 	)
 	(wire
 		(pts
@@ -4296,16 +3880,6 @@
 			(type default)
 		)
 		(uuid "849b1c01-e7a4-4f2a-a90a-e6ecd212d848")
-	)
-	(wire
-		(pts
-			(xy 59.69 88.9) (xy 64.77 88.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "85fa9a47-7057-4453-b931-699e44915086")
 	)
 	(wire
 		(pts
@@ -4399,13 +3973,13 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 97.79) (xy 114.3 100.33)
+			(xy 198.12 77.47) (xy 203.2 77.47)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "924c85e4-1626-4857-8044-dde7bec0da44")
+		(uuid "93f4a1a5-1498-4cd6-845f-f60da4ae6158")
 	)
 	(wire
 		(pts
@@ -4459,7 +4033,17 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 100.33) (xy 57.15 100.33)
+			(xy 203.2 77.47) (xy 203.2 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9f1c52b4-a634-493f-8c1e-0db43288dcce")
+	)
+	(wire
+		(pts
+			(xy 104.14 97.79) (xy 114.3 97.79)
 		)
 		(stroke
 			(width 0)
@@ -4506,6 +4090,16 @@
 			(type default)
 		)
 		(uuid "a7e98679-a27a-4d1b-88fc-95149056ee73")
+	)
+	(wire
+		(pts
+			(xy 114.3 97.79) (xy 114.3 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "acd60446-2ac3-4888-85c6-6cb65c825c70")
 	)
 	(wire
 		(pts
@@ -4559,6 +4153,16 @@
 	)
 	(wire
 		(pts
+			(xy 203.2 76.2) (xy 209.55 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be4143f2-6fa6-4da3-8723-9d7e492c56b9")
+	)
+	(wire
+		(pts
 			(xy 196.85 91.44) (xy 196.85 90.17)
 		)
 		(stroke
@@ -4609,16 +4213,6 @@
 	)
 	(wire
 		(pts
-			(xy 129.54 100.33) (xy 129.54 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c2548f1e-1330-4bcd-84c6-352dff316d84")
-	)
-	(wire
-		(pts
 			(xy 163.83 59.69) (xy 166.37 59.69)
 		)
 		(stroke
@@ -4666,16 +4260,6 @@
 			(type default)
 		)
 		(uuid "c5ef5b6f-cafe-4716-abfb-1c28aa24398b")
-	)
-	(wire
-		(pts
-			(xy 59.69 88.9) (xy 59.69 90.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c8523ee5-c1db-44c3-8491-b471d8a530bd")
 	)
 	(wire
 		(pts
@@ -4909,16 +4493,6 @@
 	)
 	(wire
 		(pts
-			(xy 181.61 73.66) (xy 199.39 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ec39fe2b-7ed2-467a-8922-f4df4f049075")
-	)
-	(wire
-		(pts
 			(xy 107.95 171.45) (xy 107.95 175.26)
 		)
 		(stroke
@@ -4939,6 +4513,16 @@
 	)
 	(wire
 		(pts
+			(xy 190.5 77.47) (xy 173.99 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f1d9c742-94c7-4cea-8574-f00a27f8efd4")
+	)
+	(wire
+		(pts
 			(xy 57.15 170.18) (xy 57.15 165.1)
 		)
 		(stroke
@@ -4956,26 +4540,6 @@
 			(type default)
 		)
 		(uuid "f346ef54-3ac9-4600-a06b-eb6017b1b753")
-	)
-	(wire
-		(pts
-			(xy 62.23 105.41) (xy 62.23 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f380d9a6-ce30-4a0b-b9cd-c818a3aefda9")
-	)
-	(wire
-		(pts
-			(xy 127 102.87) (xy 127 113.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f8aaaf39-0b14-4fcf-a6c4-08ab570bfaa9")
 	)
 	(wire
 		(pts
@@ -5057,16 +4621,6 @@
 		)
 		(uuid "0a4f09c7-a553-4526-9fd9-9257f1b8fd8c")
 	)
-	(label "AVDD"
-		(at 73.66 88.9 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "10d218a2-8435-4849-87aa-c7a2d44f5db9")
-	)
 	(label "ROUT1"
 		(at 175.26 69.85 180)
 		(effects
@@ -5128,7 +4682,7 @@
 		(uuid "449182d1-e7ee-4893-9709-b8e495aff7c8")
 	)
 	(label "RIN2"
-		(at 48.26 102.87 0)
+		(at 104.14 100.33 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5178,7 +4732,7 @@
 		(uuid "8be674ca-5bda-46cb-940e-fc67c2ed8e42")
 	)
 	(label "LIN2"
-		(at 48.26 100.33 0)
+		(at 104.14 97.79 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5625,83 +5179,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "#PWR075")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 59.69 115.57 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "11451ecb-a48f-482f-9921-f6458a70523b")
-		(property "Reference" "#PWR0103"
-			(at 59.69 121.92 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 59.69 119.38 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 59.69 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 59.69 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 59.69 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "4911b9e8-9e1a-485d-9db7-a908796494bb")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "#PWR0103")
 					(unit 1)
 				)
 			)
@@ -6211,6 +5688,120 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "C31")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Polarized_US")
+		(at 194.31 77.47 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "29d28889-0322-4eaa-8334-bacdb0cce375")
+		(property "Reference" "C26"
+			(at 200.914 79.248 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "47uF"
+			(at 190.5 79.248 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:CP_Elec_5x5.8"
+			(at 194.31 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 194.31 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Panasonic EEEFT1E470AR 47uF 25V electrolytic"
+			(at 194.31 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "PANASONIC"
+			(at 194.31 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "EEEFT1E470AR"
+			(at 194.31 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C336270"
+			(at 194.31 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "012e318c-1693-4780-9ff7-21f745260747")
+		)
+		(pin "2"
+			(uuid "e6bf6956-70a8-412f-aaad-69606a76c7b9")
+		)
+		(instances
+			(project "bluetooth-audio"
+				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
+					(reference "C26")
 					(unit 1)
 				)
 			)
@@ -7014,52 +6605,40 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_Schottky_Dual_Series_AKC_Split")
-		(at 59.69 93.98 270)
-		(unit 2)
+		(lib_id "Device:C_Polarized_US")
+		(at 185.42 73.66 90)
+		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "40da9d8b-36bb-4ceb-80fd-00fa719c84c5")
-		(property "Reference" "D8"
-			(at 57.15 92.4559 90)
+		(uuid "4076b6c7-c2ef-4293-9136-0e216b713e13")
+		(property "Reference" "C24"
+			(at 192.024 71.628 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
-		(property "Value" "D_Schottky_Dual_Series_AKC_Split"
-			(at 57.15 94.9959 90)
-			(hide yes)
+		(property "Value" "47uF"
+			(at 182.88 71.628 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 57.15 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/C408389.pdf?spm=wm.sxq.inf.ggs&lcsc_vid=RlZZVFQHQwJZUAEDFFgMVQJRQwNcUlVUE1cLUlYERFIxVlNeT1lYVFRTQ1daXztW"
-			(at 57.15 91.44 0)
+		(property "Footprint" "Capacitor_SMD:CP_Elec_5x5.8"
+			(at 185.42 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7069,8 +6648,8 @@
 				)
 			)
 		)
-		(property "Description" "Dual Schottky diode, anode/cathode/center"
-			(at 59.69 93.98 0)
+		(property "Datasheet" ""
+			(at 185.42 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7080,8 +6659,8 @@
 				)
 			)
 		)
-		(property "Supplier Part Number" ""
-			(at 59.69 93.98 90)
+		(property "Description" "Panasonic EEEFT1E470AR 47uF 25V electrolytic"
+			(at 185.42 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7091,29 +6670,50 @@
 				)
 			)
 		)
-    (property "Manufacturer" "MDD Microdiode Semiconductor" (at 59.69 93.98 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "MPN" "BAT54S" (at 59.69 93.98 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "LCSC" "C408389" (at 59.69 93.98 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-		(pin "2"
-			(uuid "79936851-c105-463a-9260-121bad2def8d")
+		(property "Manufacturer" "PANASONIC"
+			(at 185.42 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "EEEFT1E470AR"
+			(at 185.42 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C336270"
+			(at 185.42 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(pin "1"
-			(uuid "7300efd1-0646-4bf0-87a9-7534828a0368")
+			(uuid "b2ddcaf0-609c-440f-9317-eb90d76ee275")
 		)
-		(pin "3"
-			(uuid "297361dc-e7f7-475e-9fa8-1a78d0cbf114")
+		(pin "2"
+			(uuid "c8a1452f-0aa3-4a67-b6fe-1e9702374ef4")
 		)
 		(instances
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "D8")
-					(unit 2)
+					(reference "C24")
+					(unit 1)
 				)
 			)
 		)
@@ -7149,7 +6749,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 76.2 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -7878,15 +7478,39 @@
 				)
 			)
 		)
-    (property "Manufacturer" "Texas Instruments" (at 157.48 152.4 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "MPN" "TS5A23159DGSR" (at 157.48 152.4 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "LCSC" "C42751" (at 157.48 152.4 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
+		(property "Manufacturer" "Texas Instruments"
+			(at 157.48 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "TS5A23159DGSR"
+			(at 157.48 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C42751"
+			(at 157.48 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "e1dc870f-867b-4478-b522-ba7f6c8bc75d")
 		)
@@ -8374,15 +7998,39 @@
 				)
 			)
 		)
-    (property "Manufacturer" "Samsung Electro Mechanics" (at 187.96 93.98 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "MPN" "CL10A106KP8NNNC" (at 187.96 93.98 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "LCSC" "C19702" (at 187.96 93.98 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
+		(property "Manufacturer" "Samsung Electro Mechanics"
+			(at 187.96 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL10A106KP8NNNC"
+			(at 187.96 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C19702"
+			(at 187.96 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "147052c6-3237-4f12-931a-8ac74d353efe")
 		)
@@ -8474,15 +8122,39 @@
 				)
 			)
 		)
-    (property "Manufacturer" "Everest Semiconductor" (at 149.86 74.93 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "MPN" "ES8388" (at 149.86 74.93 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "LCSC" "C365736" (at 149.86 74.93 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
+		(property "Manufacturer" "Everest Semiconductor"
+			(at 149.86 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "ES8388"
+			(at 149.86 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C365736"
+			(at 149.86 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "d38d582b-e114-4523-a719-ce5f59406d83")
 		)
@@ -8611,7 +8283,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SO:TSSOP-10_3x3mm_P0.5mm"
+		(property "Footprint" "Package_SO:MSOP-10_3x3mm_P0.5mm"
 			(at 208.915 128.27 0)
 			(hide yes)
 			(show_name no)
@@ -9027,7 +8699,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 73.66 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -9452,224 +9124,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "R20")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Small")
-		(at 189.23 76.2 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "93ae3ffa-1b81-474e-b284-c78dccfddc42")
-		(property "Reference" "C26"
-			(at 185.42 74.93 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1uF"
-			(at 193.04 74.93 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 189.23 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 189.23 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 189.23 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Samsung Electro Mechanics"
-			(at 189.23 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "CL05A105KA5NQNC"
-			(at 189.23 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C52923"
-			(at 189.23 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9c7d7a66-9678-448b-802d-085844fc83b9")
-		)
-		(pin "2"
-			(uuid "2d08417c-2a34-4fa8-a362-68b42e92f368")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "C26")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_Schottky_Dual_Series_AKC_Split")
-		(at 62.23 109.22 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "9c04fc01-b3fa-4780-8cb0-732402cfd92d")
-		(property "Reference" "D7"
-			(at 64.77 107.6959 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "D_Schottky_Dual_Series_AKC_Split"
-			(at 64.77 110.2359 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 64.77 111.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/C408389.pdf?spm=wm.sxq.inf.ggs&lcsc_vid=RlZZVFQHQwJZUAEDFFgMVQJRQwNcUlVUE1cLUlYERFIxVlNeT1lYVFRTQ1daXztW"
-			(at 64.77 111.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Dual Schottky diode, anode/cathode/center"
-			(at 62.23 109.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier Part Number" ""
-			(at 62.23 109.22 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-    (property "Manufacturer" "MDD Microdiode Semiconductor" (at 62.23 109.22 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "MPN" "BAT54S" (at 62.23 109.22 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "LCSC" "C408389" (at 62.23 109.22 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-		(pin "2"
-			(uuid "8405764e-a524-4c7b-9a54-0ebbe60a78e5")
-		)
-		(pin "1"
-			(uuid "d4dcef49-33ca-4a5d-8b31-9e443d0d067d")
-		)
-		(pin "3"
-			(uuid "f089c6c6-9d69-4b7a-9912-a33562956eea")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "D7")
 					(unit 1)
 				)
 			)
@@ -10787,102 +10241,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_Schottky_Dual_Series_AKC_Split")
-		(at 57.15 109.22 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "c37fea0f-b05e-4b58-965e-69de763da9a7")
-		(property "Reference" "D8"
-			(at 54.61 107.6959 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "D_Schottky_Dual_Series_AKC_Split"
-			(at 54.61 110.2359 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 59.69 111.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/C408389.pdf?spm=wm.sxq.inf.ggs&lcsc_vid=RlZZVFQHQwJZUAEDFFgMVQJRQwNcUlVUE1cLUlYERFIxVlNeT1lYVFRTQ1daXztW"
-			(at 59.69 111.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Dual Schottky diode, anode/cathode/center"
-			(at 57.15 109.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier Part Number" ""
-			(at 57.15 109.22 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "3605e271-1d5b-4dca-94f2-49fdc3af0490")
-		)
-		(pin "1"
-			(uuid "3809c36b-62ac-41b9-a7e2-c31199b93dec")
-		)
-		(pin "3"
-			(uuid "68bedf6e-b962-4ff4-a6e3-f0919b416731")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "D8")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector:TestPoint_2Pole")
 		(at 120.65 113.03 0)
 		(unit 1)
@@ -11069,118 +10427,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "R7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Small")
-		(at 179.07 73.66 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "d3c45a87-479b-434d-b81e-e7593efa4a01")
-		(property "Reference" "C24"
-			(at 175.26 72.39 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1uF"
-			(at 182.88 72.39 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 179.07 73.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 179.07 73.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 179.07 73.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Samsung Electro Mechanics"
-			(at 179.07 73.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "CL05A105KA5NQNC"
-			(at 179.07 73.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C52923"
-			(at 179.07 73.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d846ddba-753d-4ea4-9b70-8f7019e13606")
-		)
-		(pin "2"
-			(uuid "aa8e2216-667f-4fb0-97df-ebc709aea296")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "C24")
 					(unit 1)
 				)
 			)
@@ -11637,7 +10883,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 107.95 168.91 0)
 			(hide yes)
 			(show_name no)
@@ -12221,7 +11467,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SO:TSSOP-10_3x3mm_P0.5mm"
+		(property "Footprint" "Package_SO:MSOP-10_3x3mm_P0.5mm"
 			(at 156.21 147.955 0)
 			(hide yes)
 			(show_name no)
@@ -12903,103 +12149,6 @@
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
 					(reference "C15")
 					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_Schottky_Dual_Series_AKC_Split")
-		(at 64.77 93.98 270)
-		(unit 2)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "fea06c67-a3eb-41a4-83e4-97a1fd383edf")
-		(property "Reference" "D7"
-			(at 67.31 92.4559 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "D_Schottky_Dual_Series_AKC_Split"
-			(at 67.31 94.9959 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 62.23 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/C408389.pdf?spm=wm.sxq.inf.ggs&lcsc_vid=RlZZVFQHQwJZUAEDFFgMVQJRQwNcUlVUE1cLUlYERFIxVlNeT1lYVFRTQ1daXztW"
-			(at 62.23 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Dual Schottky diode, anode/cathode/center"
-			(at 64.77 93.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Supplier Part Number" ""
-			(at 64.77 93.98 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "1304569d-28d4-4d23-8587-b7e804bf6e92")
-		)
-		(pin "1"
-			(uuid "b9d1105d-5630-4a40-bc65-91fb19824a48")
-		)
-		(pin "3"
-			(uuid "a37a9d03-0bc1-4ab5-b9d2-fb221716ec0a")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/0f4fac18-add1-4ad4-9475-492acd2dc726"
-					(reference "D7")
-					(unit 2)
 				)
 			)
 		)

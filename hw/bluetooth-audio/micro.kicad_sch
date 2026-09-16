@@ -4829,12 +4829,6 @@
 		(uuid "1807989e-e96a-4640-a6d0-c8fbc0f28e3e")
 	)
 	(junction
-		(at 68.58 162.56)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "1e8729ce-55ff-4b78-9a9d-56b1504e4aaa")
-	)
-	(junction
 		(at 50.8 51.435)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4845,6 +4839,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2ada3882-e441-45b9-a9e9-5312c63dfae6")
+	)
+	(junction
+		(at 77.47 179.07)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2f1be7e4-060d-4845-98b2-e53f2d2aa71b")
 	)
 	(junction
 		(at 182.88 34.29)
@@ -4893,12 +4893,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "72e46afc-2351-4e4b-b41d-e6abaf2b5674")
-	)
-	(junction
-		(at 66.04 179.07)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "74a91004-bf48-4b60-b549-22571ea37e6a")
 	)
 	(junction
 		(at 151.13 20.32)
@@ -4971,6 +4965,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ee956aef-2676-49f1-aef9-e7e1012d6119")
+	)
+	(junction
+		(at 80.01 162.56)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f1bafee4-4b46-4d78-8020-eae7428bf6fc")
 	)
 	(junction
 		(at 152.4 161.29)
@@ -5286,7 +5286,7 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 168.91) (xy 66.04 179.07)
+			(xy 77.47 168.91) (xy 77.47 179.07)
 		)
 		(stroke
 			(width 0)
@@ -5476,6 +5476,16 @@
 	)
 	(wire
 		(pts
+			(xy 77.47 179.07) (xy 81.28 179.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4763543d-6e26-4a9a-9dca-6e3872b9eb81")
+	)
+	(wire
+		(pts
 			(xy 189.23 123.19) (xy 200.66 123.19)
 		)
 		(stroke
@@ -5556,7 +5566,7 @@
 	)
 	(wire
 		(pts
-			(xy 91.44 172.72) (xy 68.58 172.72)
+			(xy 91.44 172.72) (xy 80.01 172.72)
 		)
 		(stroke
 			(width 0)
@@ -5616,7 +5626,7 @@
 	)
 	(wire
 		(pts
-			(xy 91.44 168.91) (xy 66.04 168.91)
+			(xy 91.44 168.91) (xy 77.47 168.91)
 		)
 		(stroke
 			(width 0)
@@ -5776,7 +5786,7 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 172.72) (xy 68.58 162.56)
+			(xy 80.01 172.72) (xy 80.01 162.56)
 		)
 		(stroke
 			(width 0)
@@ -5946,7 +5956,7 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 162.56) (xy 68.58 162.56)
+			(xy 62.23 162.56) (xy 80.01 162.56)
 		)
 		(stroke
 			(width 0)
@@ -5973,6 +5983,16 @@
 			(type default)
 		)
 		(uuid "811591fe-b652-4eef-ac26-7a7fbc09c721")
+	)
+	(wire
+		(pts
+			(xy 80.01 162.56) (xy 81.28 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "82c95521-a6ce-4568-9d7d-27da151f5d6f")
 	)
 	(wire
 		(pts
@@ -6656,16 +6676,6 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 179.07) (xy 81.28 179.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e292ffe0-9241-40d0-bbca-aeb2a3391282")
-	)
-	(wire
-		(pts
 			(xy 132.08 45.72) (xy 151.13 45.72)
 		)
 		(stroke
@@ -6686,7 +6696,7 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 179.07) (xy 66.04 179.07)
+			(xy 62.23 179.07) (xy 77.47 179.07)
 		)
 		(stroke
 			(width 0)
@@ -6706,16 +6716,6 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 179.07) (xy 72.39 179.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e83687d9-2824-4e18-bcb6-8f965d54e94b")
-	)
-	(wire
-		(pts
 			(xy 161.29 45.72) (xy 161.29 69.85)
 		)
 		(stroke
@@ -6726,16 +6726,6 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 162.56) (xy 81.28 162.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e90000b5-c57b-44d6-a4be-2f22112587cc")
-	)
-	(wire
-		(pts
 			(xy 91.44 168.91) (xy 91.44 167.64)
 		)
 		(stroke
@@ -6743,16 +6733,6 @@
 			(type default)
 		)
 		(uuid "e9dde3fd-152d-4e34-a7ca-f8aeb284d9a9")
-	)
-	(wire
-		(pts
-			(xy 68.58 162.56) (xy 72.39 162.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e9fb011b-0861-473f-b1bd-a4f32965a2b7")
 	)
 	(wire
 		(pts
@@ -7024,7 +7004,7 @@
 		)
 		(uuid "47f2dd64-0cae-42ee-9006-aecd3c162f42")
 	)
-	(label "LED_BLUE"
+	(label "LED_WHITE"
 		(at 201.93 102.87 180)
 		(effects
 			(font
@@ -7324,7 +7304,7 @@
 		)
 		(uuid "c83c8f29-94b1-4d24-bc49-0e655fc03177")
 	)
-	(label "LED_BLUE"
+	(label "LED_WHITE"
 		(at 238.76 77.47 0)
 		(effects
 			(font
@@ -7824,15 +7804,39 @@
 				)
 			)
 		)
-    (property "Manufacturer" "Hubei KENTO Elec" (at 266.7 91.44 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "MPN" "KT-0805G" (at 266.7 91.44 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "LCSC" "C2297" (at 266.7 91.44 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
+		(property "Manufacturer" "Hubei KENTO Elec"
+			(at 266.7 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "KT-0805G"
+			(at 266.7 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2297"
+			(at 266.7 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "1514d20b-98b8-4a9a-b4cb-f24cf54d7ae7")
 		)
@@ -7958,7 +7962,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Crystal:Crystal_SMD_SeikoEpson_FA128-4Pin_2.0x1.6mm"
+		(property "Footprint" "Crystal:Crystal_SMD_2520-4Pin_2.5x2.0mm"
 			(at 53.34 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -8002,15 +8006,39 @@
 				)
 			)
 		)
-    (property "Manufacturer" "Seiko Epson" (at 53.34 82.55 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "MPN" "Q22FA12800101" (at 53.34 82.55 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "LCSC" "C255898" (at 53.34 82.55 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
+		(property "Manufacturer" "Hosonic Elec"
+			(at 53.34 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "E2SB40E000006E"
+			(at 53.34 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1021653"
+			(at 53.34 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "1da048f3-3d42-4169-9238-1bf7b9160dc7")
 		)
@@ -8191,118 +8219,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 74.93 179.07 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "18db24e0-841f-4183-ab56-f548262b1e57")
-		(property "Reference" "R2"
-			(at 71.12 177.8 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 78.74 177.8 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 74.93 179.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 74.93 179.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 74.93 179.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
-			(at 74.93 179.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0402WGF1002TCE"
-			(at 74.93 179.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C25744"
-			(at 74.93 179.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "62a11686-0eb2-4f5b-86e6-9931cad55e69")
-		)
-		(pin "2"
-			(uuid "432569b3-75c3-49e4-a012-a9157e3a002e")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/55b72bbf-9038-47b8-a963-4590678f9f83"
-					(reference "R2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "PCM_Espressif:ESP32")
 		(at 156.21 107.95 0)
 		(unit 1)
@@ -8380,15 +8296,39 @@
 				)
 			)
 		)
-    (property "Manufacturer" "Espressif Systems" (at 156.21 107.95 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "MPN" "ESP32-D0WD-V3" (at 156.21 107.95 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "LCSC" "C967021" (at 156.21 107.95 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
+		(property "Manufacturer" "Espressif Systems"
+			(at 156.21 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "ESP32-D0WD-V3"
+			(at 156.21 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C967021"
+			(at 156.21 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "68f4f0e8-6017-441e-b6ba-d092f0fc099d")
 		)
@@ -8699,118 +8639,6 @@
 			(project "bluetooth-audio"
 				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/55b72bbf-9038-47b8-a963-4590678f9f83"
 					(reference "TP1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 74.93 162.56 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "2384b1f2-b974-4e7b-8c99-dd6a88994143")
-		(property "Reference" "R1"
-			(at 71.12 161.29 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 78.74 161.29 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 74.93 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 74.93 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 74.93 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C25744"
-			(at 74.93 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "UNI ROYAL Uniroyal Elec"
-			(at 74.93 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0402WGF1002TCE"
-			(at 74.93 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "fd0502ac-433e-4524-8207-6d9dcd927537")
-		)
-		(pin "2"
-			(uuid "98081d46-d152-47f6-9538-14d5c5221d7e")
-		)
-		(instances
-			(project "bluetooth-audio"
-				(path "/eafc8824-f117-40b2-99b0-597946d6c01d/55b72bbf-9038-47b8-a963-4590678f9f83"
-					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -9246,15 +9074,39 @@
 				)
 			)
 		)
-    (property "Manufacturer" "Jiangsu Changjing Electronics" (at 86.36 162.56 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "MPN" "UMH3N" (at 86.36 162.56 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "LCSC" "C62892" (at 86.36 162.56 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
+		(property "Manufacturer" "Jiangsu Changjing Electronics"
+			(at 86.36 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "UMH3N"
+			(at 86.36 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C62892"
+			(at 86.36 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "5"
 			(uuid "e0884d20-e1de-4a1d-95df-d40bfaf2f15e")
 		)
@@ -10777,15 +10629,39 @@
 				)
 			)
 		)
-    (property "Manufacturer" "Alpha Omega Semicon" (at 38.1 129.54 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "MPN" "AO3401A" (at 38.1 129.54 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "LCSC" "C15127" (at 38.1 129.54 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
+		(property "Manufacturer" "Alpha Omega Semicon"
+			(at 38.1 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "AO3401A"
+			(at 38.1 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15127"
+			(at 38.1 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "bcb1be35-01e1-4f2b-a88f-59718b9b27de")
 		)
@@ -11153,15 +11029,39 @@
 				)
 			)
 		)
-    (property "Manufacturer" "WCH(Jiangsu Qin Heng)" (at 38.1 161.29 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "MPN" "CH340K" (at 38.1 161.29 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "LCSC" "C968586" (at 38.1 161.29 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
+		(property "Manufacturer" "WCH(Jiangsu Qin Heng)"
+			(at 38.1 161.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CH340K"
+			(at 38.1 161.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C968586"
+			(at 38.1 161.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "e7a589cb-2093-43e5-99f8-011652548985")
 		)
@@ -12019,15 +11919,39 @@
 				)
 			)
 		)
-    (property "Manufacturer" "Winbond Elec" (at 269.24 137.16 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "MPN" "W25Q32JVZPIQ" (at 269.24 137.16 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
-    (property "LCSC" "C571260" (at 269.24 137.16 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
+		(property "Manufacturer" "Winbond Elec"
+			(at 269.24 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "W25Q32JVZPIQ"
+			(at 269.24 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C571260"
+			(at 269.24 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "2c5e0637-2db9-40cd-bd7f-152678c97f73")
 		)
