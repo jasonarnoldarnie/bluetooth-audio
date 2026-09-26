@@ -19,49 +19,49 @@
 # TODO new rule: non-plated slots: min diameter/width 1.0mm
 # JLCPCB: "The minimum Non-Plated Slot Width is 1.0mm, please draw the slot outline in the mechanical layer(GML or GKO)""
 
-(rule "1: Track width, outer layer (1oz copper)"
+(rule "Track width, outer layer (1oz copper)"
 	(layer outer)
 	(condition "A.Type == 'track'")
 	(constraint track_width (min 0.127mm))
 )
 
-(rule "2: Track spacing, outer layer (1oz copper)"
+(rule "Track spacing, outer layer (1oz copper)"
 	(layer outer)
 	(condition "A.Type == 'track' && B.Type == A.Type")
 	(constraint clearance (min 0.127mm))
 )
 
-(rule "3: Track width, inner layer"
+(rule "Track width, inner layer"
 	(layer inner)
 	(condition "A.Type == 'track'")
 	(constraint track_width (min 0.09mm))
 )
 
-(rule "4: Track spacing, inner layer"
+(rule "Track spacing, inner layer"
 	(layer inner)
 	(condition "A.Type == 'track' && B.Type == A.Type")
 	(constraint clearance (min 0.09mm))
 )
 
-(rule "5: Silkscreen text"
+(rule "Silkscreen text"
 	(layer "?.Silkscreen")
 	(condition "A.Type == 'Text' || A.Type == 'Text Box'")
 	(constraint text_thickness (min 0.15mm))
 	(constraint text_height (min 1mm))
 )
 
-(rule "6: Pad to Silkscreen"
+(rule "Pad to Silkscreen"
 	(layer outer)
 	(condition "A.Type == 'pad' && B.Layer == '?.Silkscreen'")
 	(constraint silk_clearance (min 0.15mm))
 )
 
-(rule "7: Edge (routed) to track clearance"
+(rule "Edge (routed) to track clearance"
 	(condition "A.Type == 'track'")
 	(constraint edge_clearance (min 0.3mm))
 )
 
-#(rule "8: Edge (v-cut) to track clearance"
+#(rule "Edge (v-cut) to track clearance"
 #	(condition "A.Type == 'track'")
 #	(constraint edge_clearance (min 0.4mm))
 #)
@@ -70,18 +70,18 @@
 # Illustration: 0.2 mm, 1&2 layer: 0.3 mm, multilayer: "(0.15mm more costly)"
 # This rule handles diameter minimum and maximum for ALL holes.
 # Other specialized rules handle restrictions (e.g. Via, PTH, NPTH) 
-(rule "9: Hole diameter"
+(rule "Hole diameter"
 	(constraint hole_size (min 0.2mm) (max 6.3mm))
 )
 
-(rule "10: Hole (NPTH) diameter"
+(rule "Hole (NPTH) diameter"
 	(layer outer)
 	(condition "!A.isPlated()")
 	(constraint hole_size (min 0.5mm))
 )
 
 # TODO: Hole to board edge ≥ 1 mm. Min. board size 10 × 10 mm
-(rule "11: Hole (castellated) diameter"
+(rule "Hole (castellated) diameter"
 	(layer outer)
 	(condition "A.Type == 'pad' && A.Fabrication_Property == 'Castellated pad'")
 	(constraint hole_size (min 0.6mm))
@@ -89,45 +89,71 @@
 
 # JLCPCB: "Via diameter should be 0.1mm(0.15mm preferred) larger than Via hole size" (illustration shows diameters for both dimensions)
 # JLCPCB: PTH: "The annular ring size will be enlarged to 0.15mm in production."
-(rule "12: Annular ring width (via and PTH)"
+(rule "Annular ring width (via and PTH)"
 	(layer outer)
 	(condition "A.isPlated()")
 	(constraint annular_width (min 0.075mm))
 )
 
-(rule "13: Clearance: hole to hole (perimeter), different nets"
+(rule "Clearance: hole to hole (perimeter), different nets"
 	(layer outer)
 	(condition "A.Net != B.Net")
 	(constraint hole_to_hole (min 0.5mm))
 )
 
-(rule "14: Clearance: hole to hole (perimeter), same net"
+(rule "Clearance: hole to hole (perimeter), same net"
 	(layer outer)
 	(condition "A.Net == B.Net")
 	(constraint hole_to_hole (min 0.254mm))
 )
 
-(rule "15: Clearance: track to NPTH hole (perimeter)"
+(rule "Clearance: track to NPTH hole (perimeter)"
 #	(condition "A.Pad_Type == 'NPTH, mechanical' && B.Type == 'track' && A.Net != B.Net")
 	(condition "!A.isPlated() && B.Type == 'track' && A.Net != B.Net")
 	(constraint hole_clearance (min 0.254mm))
 )
 
-(rule "16: Clearance: track to PTH hole perimeter"
+(rule "Clearance: track to PTH hole perimeter"
 	(condition "A.isPlated() && B.Type == 'track' && A.Net != B.Net")
 	(constraint hole_clearance (min 0.33mm))
 )
 
 # TODO: try combining with rule "Clearance: PTH to track, different nets"
-(rule "17: Clearance: track to pad"
+(rule "Clearance: track to pad"
 	(condition "A.Type == 'pad' && B.Type == 'track' &&  A.Net != B.Net")
 	(constraint clearance (min 0.2mm))
 )
 
-(rule "18: Clearance: pad/via to pad/via"
+(rule "Clearance: pad/via to pad/via"
 	(layer outer)
-#	(condition "(A.Type == 'Pad' || A.Type == 'Via') && (B.Type == 'Pad' || B.Type == 'Via') && A.Net != B.Net")	
+#	(condition "(A.Type == 'Pad' || A.Type == 'Via') && (B.Type == 'Pad' || B.Type == 'Via') && A.Net != B.Net")
 	(condition "A.isPlated() && B.isPlated() && A.Net != B.Net")
 	(constraint clearance (min 0.127mm))
 )
 
+# Pad-to-pad clearance (different nets), SMD and THT.
+# The "pad/via to pad/via" rule above uses isPlated(), which only matches plated
+# HOLES (THT pads + vias) -- SMD pads have no hole, so they never match it and
+# fall through to the Default netclass clearance (0.254mm). That netclass value is
+# larger than the inherent pad spacing on fine-pitch parts (USB-C J2 ~0.2mm, Q1
+# ~0.25mm), producing spurious clearance errors. This rule governs pad-to-pad for
+# SMD pads too, at the JLCPCB outer-copper floor of 0.127mm.
+# MUST stay last: rules are evaluated bottom-up and the first match wins, so this
+# overrides the netclass clearance where it applies.
+(rule "Clearance: pad to pad (SMD and THT)"
+	(layer outer)
+	(condition "A.Type == 'pad' && B.Type == 'pad' && A.Net != B.Net")
+	(constraint clearance (min 0.127mm))
+)
+
+# Track-to-pad clearance at IC pins, for fine-pitch escape routing (e.g. ESP32).
+# The general "Clearance: track to pad" rule (0.2mm) above leaves no room to thread
+# a 6 mil (0.152mm) track between fine-pitch IC pads. Relax track-to-pad clearance
+# to the JLCPCB outer-copper floor of 0.127mm, but only at IC footprints (reference
+# U*) so ordinary routing elsewhere keeps the wider 0.2mm safety margin.
+# MUST stay last: rules are evaluated bottom-up and the first match wins.
+(rule "Clearance: track to IC pad (fine-pitch escape)"
+	(layer outer)
+	(condition "A.memberOfFootprint('U*') && A.Type == 'pad' && B.Type == 'track' && A.Net != B.Net")
+	(constraint clearance (min 0.127mm))
+)
