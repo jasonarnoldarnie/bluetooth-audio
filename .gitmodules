@@ -1,3 +1,6 @@
 [submodule "hw/bluetooth-audio/kicad-library"]
 	path = hw/bluetooth-audio/kicad-library
 	url = https://github.com/jasonarnoldarnie/kicad-library.git
+[submodule "hw/kicad-tools"]
+	path = hw/kicad-tools
+	url = https://github.com/jasonarnoldarnie/kicad-tools.git

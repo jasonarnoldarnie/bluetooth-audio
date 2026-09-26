@@ -1,0 +1,13 @@
+{
+  "_comment": "Net class overrides for hw/kicad-tools/return_path/return_path_check.py, which finds this file next to the board. Keys are net-name globs, values one of: rf, clock, high-speed, analog, medium, low-speed, static, unclassified. First match wins; unmatched nets fall back to the script's name rules. Why: GPIO_0 is the ES8388 MCLK; C35-Pad1 is the 40 MHz crystal; C1/C21/C24/C26 are the output coupling caps; Q2-D is the switched CH340 supply; D?-A are LED anodes.",
+  "nets": {
+    "/Micro/GPIO_0": "clock",
+    "Net-(C35-Pad1)": "clock",
+    "Net-(C1-Pad*)": "analog",
+    "Net-(C21-Pad*)": "analog",
+    "Net-(C24-Pad2)": "analog",
+    "Net-(C26-Pad2)": "analog",
+    "Net-(Q2-D)": "static",
+    "Net-(D?-A)": "static"
+  }
+}
